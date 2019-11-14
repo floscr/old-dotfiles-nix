@@ -2,6 +2,7 @@
 { pkgs, ... }:
 
 let
+  unstable = import <nixpkgs-unstable> {};
   # Spotify is terrible on hidpi screens (retina, 4k); this small wrapper
   # passes a command-line flag to force better scaling.
   spotify-4k = pkgs.symlinkJoin {
