@@ -104,9 +104,11 @@ in {
   # services.throttled.enable = true;
 
   # Optimize power use
-  environment.systemPackages = [ pkgs.powertop pkgs.docker pkgs.docker-compose  ];
-  services.tlp.enable = true;
-  powerManagement.powertop.enable = true;
+  # environment.systemPackages = [ pkgs.powertop pkgs.docker pkgs.docker-compose  ];
+  # services.tlp.enable = true;
+  # powerManagement.powertop.enable = true;
+
+  services.thermald.enable = true;
 
   # Printing
   services.printing.enable = true;
