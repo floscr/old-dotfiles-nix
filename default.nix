@@ -26,9 +26,7 @@
       # fan control
       s-tui
       # thinkfan
-      fwupd
       udiskie
-      undervolt
       bc
       coreutils
       tree

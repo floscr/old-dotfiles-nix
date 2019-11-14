@@ -5,6 +5,14 @@
     ../misc/throttled.nix
   ];
 
+  environment = {
+    systemPackages = with pkgs; [
+      fwupd
+      undervolt
+    ];
+  };
+
+  # Encryption
   boot.initrd.luks.devices = [{
     name = "root";
     device = "/dev/nvme0n1p2";
