@@ -98,6 +98,9 @@ in {
   networking.hostName = "thinknix";
   networking.networkmanager.enable = true;
 
+  boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" ];
+  boot.kernelModules = [ "kvm-intel" ];
+
   # services.throttled.enable = true;
 
   # Optimize power use
