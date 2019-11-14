@@ -10,6 +10,8 @@ in {
     "${nixos-hardware}/common/cpu/intel"
     "${nixos-hardware}/common/pc/laptop/acpi_call.nix"
 
+    ./modules/hardware/t490s.nix
+
     # Desktoop Ui
     ./modules/desktop/bspwm.nix
     # ./modules/desktop/autorandr.nix
@@ -51,13 +53,6 @@ in {
     (import ./overlays/chromium.nix)
   ];
 
-  # Encrypted Disk
-  boot.initrd.luks.devices = [{
-    name = "root";
-    device = "/dev/nvme0n1p2";
-    preLVM = true;
-  }];
-
   i18n = {
     consoleFont = "Lat2-Terminus16";
     consoleKeyMap = "us";
@@ -91,26 +86,8 @@ in {
   networking.hostName = "thinknix";
   networking.networkmanager.enable = true;
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" ];
-  boot.kernelModules = [ "kvm-intel" ];
-
-  services.thermald = {
-    enable = true;
-    configFile = <config/thermald/thermal-conf.xml>;
-  };
-  home-manager.users.floscr.xdg.configFile = {
-    "thermald/thermal-conf.xml".source = <config/thermald/thermal-conf.xml>;
-  };
-
-  # environment.systemPackages = [ unstable.throttled ];
-  services.throttled.enable = true;
-
   # Printing
   services.printing.enable = true;
-
-  # services.undervolt.enable = true;
-  # services.undervolt.coreOffset= "-110";
-  # services.undervolt.temp= "95";
 
   # Monitor backlight control
   programs.light.enable = true;
