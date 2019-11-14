@@ -41,6 +41,7 @@ in {
     ./modules/services/greenclip.nix
 
     ./modules/misc/keyboard.nix
+    ./modules/misc/throttled.nix
 
     # Themes
     ./themes/glimpse
@@ -101,21 +102,17 @@ in {
   boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" ];
   boot.kernelModules = [ "kvm-intel" ];
 
-  # services.throttled.enable = true;
-
-  # Optimize power use
-  # environment.systemPackages = [ pkgs.powertop pkgs.docker pkgs.docker-compose  ];
-  # services.tlp.enable = true;
-  # powerManagement.powertop.enable = true;
-
   services.thermald.enable = true;
+
+  # environment.systemPackages = [ unstable.throttled ];
+  services.throttled.enable = true;
 
   # Printing
   services.printing.enable = true;
 
-  services.undervolt.enable = true;
-  services.undervolt.coreOffset= "-110";
-  services.undervolt.temp= "95";
+  # services.undervolt.enable = true;
+  # services.undervolt.coreOffset= "-110";
+  # services.undervolt.temp= "95";
 
   # Monitor backlight control
   programs.light.enable = true;
