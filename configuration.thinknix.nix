@@ -102,7 +102,13 @@ in {
   boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" ];
   boot.kernelModules = [ "kvm-intel" ];
 
-  services.thermald.enable = true;
+  services.thermald = {
+    enable = true;
+    configFile = <config/thermald/thermal-conf.xml>;
+  };
+  home-manager.users.floscr.xdg.configFile = {
+    "thermald/thermal-conf.xml".source = <config/thermald/thermal-conf.xml>;
+  };
 
   # environment.systemPackages = [ unstable.throttled ];
   services.throttled.enable = true;

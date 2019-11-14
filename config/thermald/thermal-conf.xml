@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<ThermalConfiguration>
+  <Platform>
+    <Name>Override CPU Passive</Name>
+    <ProductName>*</ProductName>
+    <Preference>QUIET</Preference>
+    <ThermalZones>
+      <ThermalZone>
+        <Type>cpu</Type>
+        <TripPoints>
+          <TripPoint>
+            <Temperature>80000</Temperature>
+            <type>passive</type>
+            <ControlType>SEQUENTIAL</ControlType>
+          </TripPoint>
+        </TripPoints>
+      </ThermalZone>
+    </ThermalZones>
+  </Platform>
+</ThermalConfiguration>
