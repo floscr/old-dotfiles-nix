@@ -11,8 +11,16 @@
     preLVM = true;
   }];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" ]; boot.kernelModules = [ "kvm-intel" ]; services.tlp.enable = true;
-  # environment.systemPackages = [ unstable.throttled ];
+  # Bios updates
+  services.fwupd.enable = true;
+
+  # Kernels
+  boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" ];
+  boot.kernelModules = [ "kvm-intel" ];
+
+  # Power management
+  services.tlp.enable = true;
+
   services.throttled = {
     enable = true;
     extraConfig = ''
@@ -101,6 +109,7 @@
     '';
   };
 
+  # Throttled takes care of temperature throttling
   # services.thermald = {
   #   enable = true;
   #   configFile = <config/thermald/thermal-conf.xml>;
@@ -109,6 +118,7 @@
   #   "thermald/thermal-conf.xml".source = <config/thermald/thermal-conf.xml>;
   # };
 
+  # Undervolting can be done by throttled, but here are settings that "worked" for me
   # services.undervolt.enable = true;
   # services.undervolt.coreOffset= "-110";
   # services.undervolt.temp= "95";

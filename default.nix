@@ -21,17 +21,6 @@
   };
   nixpkgs.config.allowUnfree = true;
 
-  # Cpu throttling
-  services.thermald.enable = true;
-
-  # services.udiskie = {
-  #   enable = true;
-  #   notify = false;
-  # };
-
-  services.fwupd.enable = true;
-  # services.thinkfan.enable = true;
-
   environment = {
     systemPackages = with pkgs; [
       # fan control
