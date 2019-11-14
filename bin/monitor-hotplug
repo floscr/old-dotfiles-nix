@@ -15,7 +15,6 @@ function connectLG(){
   
   # Restart compton
   killall compton
-  compton&
 
   xcape
   ~/bin/setup-keyboard
