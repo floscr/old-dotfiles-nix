@@ -13,6 +13,6 @@
 
   # Restore keyboard modifications that get lost during hibernate
   powerManagement.resumeCommands = ''
-    sh ~/bin/setup-keyboard
+    ~/bin/setup-keyboard&
   '';
 }
