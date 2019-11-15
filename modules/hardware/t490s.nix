@@ -51,7 +51,7 @@
       # Time window #2 duration
       PL2_Duration_S: 0.002
       # Max allowed temperature before throttling
-      Trip_Temp_C: 85
+      Trip_Temp_C: 60
       # Set cTDP to normal=0, down=1 or up=2 (EXPERIMENTAL)
       cTDP: 0
 
@@ -75,18 +75,6 @@
       # Set cTDP to normal=0, down=1 or up=2 (EXPERIMENTAL)
       cTDP: 0
 
-      [UNDERVOLT.BATTERY]
-      # CPU core voltage offset (mV)
-      CORE: 0
-      # Integrated GPU voltage offset (mV)
-      GPU: 0
-      # CPU cache voltage offset (mV)
-      CACHE: 0
-      # System Agent voltage offset (mV)
-      UNCORE: 0
-      # Analog I/O voltage offset (mV)
-      ANALOGIO: 0
-
       [UNDERVOLT.AC]
       # CPU core voltage offset (mV)
       CORE: 0
@@ -99,6 +87,18 @@
       # Analog I/O voltage offset (mV)
       ANALOGIO: 0
 
+      [UNDERVOLT.BATTERY]
+      # CPU core voltage offset (mV)
+      CORE: -105
+      # Integrated GPU voltage offset (mV)
+      GPU: -85
+      # CPU cache voltage offset (mV)
+      CACHE: -105
+      # System Agent voltage offset (mV)
+      UNCORE: -85
+      # Analog I/O voltage offset (mV)
+      ANALOGIO: 0
+
       # [ICCMAX.AC]
       # # CPU core max current (A)
       # CORE:
@@ -108,7 +108,7 @@
       # CACHE:
 
       # [ICCMAX.BATTERY]
-      # # CPU core max current (A)
+      # CPU core max current (A)
       # CORE:
       # # Integrated GPU max current (A)
       # GPU:
