@@ -20,7 +20,7 @@
   programs.chromium = {
     enable = true;
     extensions = [
-      "aomjjhallfgjeglblehebfpbcfeobpgk" # 1Password X
+      # "aomjjhallfgjeglblehebfpbcfeobpgk" # 1Password X
       "gcbommkclmclpchllfjekcdonpmejbdp" # HTTPS Everywhere
       "cjpalhdlnbpafiamejdnhcphjbkeiagm" # uBlock Origin
       "dbepggeogbaibhgnhhndojpepiihcmeb" # Vimium
