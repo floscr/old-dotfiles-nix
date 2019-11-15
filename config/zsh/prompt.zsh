@@ -69,3 +69,15 @@ prompt_init() {
 }
 
 prompt_init "$@"
+
+# Automatically set the terminal title on directory change
+# Source: https://superuser.com/questions/633926/how-to-change-terminator-title-terminal-title-zsh-on-debian
+chpwd() {
+  [[ -t 1 ]] || return
+  case $TERM in
+    sun-cmd) print -Pn "\e]l%~\e\\"
+      ;;
+    *xterm*|rxvt|(dt|k|E)term) print -Pn "\e]2;%~\a"
+      ;;
+  esac
+}
