@@ -25,6 +25,7 @@
       "cjpalhdlnbpafiamejdnhcphjbkeiagm" # uBlock Origin
       "dbepggeogbaibhgnhhndojpepiihcmeb" # Vimium
       "lhaoghhllmiaaagaffababmkdllgfcmc" # Atomic Chrome, edit inputs in emacs
+      "eimadpbcbfnmbkopoojfekhnkhdbieeh" # Dark Reader
     ];
   };
 }
