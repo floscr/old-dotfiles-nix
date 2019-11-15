@@ -18,6 +18,14 @@
   hardware.pulseaudio.enable = true;
 
   services = {
+    physlock = {
+      enable = true;
+      lockOn = {
+        suspend = true;
+        hibernate = true;
+      };
+    };
+
     xserver = {
       enable = true;
       libinput.disableWhileTyping = true;
