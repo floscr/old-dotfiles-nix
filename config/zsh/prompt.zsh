@@ -25,6 +25,13 @@ prompt_hook_precmd() {
   # Newline before prompt, except on init
   [[ -n $PROMPT_DONE ]] && print ""; PROMPT_DONE=1
 }
+function set-title-precmd() {
+  printf "\e]2;%s\a" "${PWD/#$HOME/~}"
+}
+
+function set-title-preexec() {
+  printf "\e]2;%s\a" "$1"
+}
 
 ## Initialization ######################
 prompt_init() {
@@ -36,6 +43,9 @@ prompt_init() {
   setopt promptsubst
   autoload -Uz add-zsh-hook
   autoload -Uz vcs_info
+
+  add-zsh-hook precmd set-title-precmd
+  add-zsh-hook preexec set-title-preexec
 
   add-zsh-hook precmd prompt_hook_precmd
   # Updates cursor shape and prompt symbol based on vim mode
