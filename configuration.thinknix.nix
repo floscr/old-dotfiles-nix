@@ -43,7 +43,9 @@ in {
     ./modules/services/greenclip.nix
 
     ./modules/misc/keyboard.nix
-    ./modules/misc/throttled.nix
+    ./modules/misc/home.nix
+
+    ./modules/gaming/emulators.nix
 
     # Themes
     ./themes/glimpse
