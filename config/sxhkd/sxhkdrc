@@ -78,17 +78,11 @@ super + shift + BackSpace
 super + shift + s
 	flameshot gui
 
-super + alt + p
-	playerctl play-pause
-super + alt + j
-	amixer -q set Master 10%- unmute
-super + alt + k
-	amixer -q set Master 10%+ unmute
-super + alt + l
-	playerctl next
-super + alt + h
-	playerctl previous
-super + alt + m
-	amixer -q set Master toggle
+# super + shift + {_,ctrl +}{h,j,k,l}
+# 	/etc/dotfiles/bin/bspc/swap {_,-m }{west,south,north,east}
 
+super + ctrl + h
+	bspc node @east -r +100
 
+# super + ctrl + {h,j,k,l}
+# 	bspc node {@west,@south,@north,@east} -r +100
