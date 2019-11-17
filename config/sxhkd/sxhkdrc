@@ -15,6 +15,9 @@ super + @space
 super + {_,shift + }w
 	bspc node -{c,k}
 
+super + shift + x
+	bspc rule -a 'Emacs' -o state=floating && org-capture
+
 # program launcher
 super + shift + Tab
 	~/bin/rofi/app_switch
