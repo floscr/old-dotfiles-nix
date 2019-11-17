@@ -9,8 +9,7 @@ super + shift + v
 
 # program launcher
 super + @space
-	rofi -modi drun -show drun
-	# rofi -show run
+	~/.config/rofi/modules/main
 
 # close and kill
 super + {_,shift + }w
