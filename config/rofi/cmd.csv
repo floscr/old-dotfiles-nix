@@ -1,2 +1,15 @@
+Chromium (Browser),~/.config/rofi/modules/chromium-browser
+Emacs (Editor),emacs
+Spotify (Audio Player),spotify
+SimpleScreenRecorder (Record Screen),simplescreenrecorder
+Inkscape (Graphics),inkscape
+Gimp (Graphics),gimp
+Flameshot (Screenshot),flameshot gui
+MPV (Video Player),flameshot gui
+Termite (Terminal),termite
 Greenclip (Clipboard Manager),rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
 Web Search (Browser Search),~/.config/rofi/modules/web_search
+PulseAudio Volume Control (Volume Control),pavucontrol
+htop (Activity Monitor),termite -e htop
+s-tui (Heat Sensors),termite -e s-tui
+drun (Rofi drun),rofi -modi drun -show drun
