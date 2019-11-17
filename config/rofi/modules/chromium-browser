@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# start chromium depending on which display is connected
+
+if [[ $(xrandr | grep "^eDP1 connected primary") ]]; then
+  chromium-browser --force-device-scale-factor=1.2
+else
+  chromium-browser
+fi
