@@ -1,0 +1,2 @@
+Greenclip (Clipboard Manager),rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
+Web Search (Browser Search),~/.config/rofi/modules/web_search
