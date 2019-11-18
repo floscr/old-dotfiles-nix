@@ -99,7 +99,7 @@
       # Time window #2 duration
       PL2_Duration_S: 0.002
       # Max allowed temperature before throttling
-      Trip_Temp_C: 85
+      Trip_Temp_C: 70
       # Set HWP energy performance hints to 'performance' on high load (EXPERIMENTAL)
       HWP_Mode: True
       # Set cTDP to normal=0, down=1 or up=2 (EXPERIMENTAL)
