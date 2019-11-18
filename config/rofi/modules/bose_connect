@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# Connect to bose headphones
+
+bluetoothctl <<EOF
+power on
+discoverable on
+pairable on
+agent NoInputNoOutput
+default-agent
+connect 04:52:C7:C6:1B:68
+EOF
