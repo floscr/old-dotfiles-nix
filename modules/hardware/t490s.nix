@@ -81,7 +81,7 @@
       # Time window #2 duration
       PL2_Duration_S: 0.002
       # Max allowed temperature before throttling
-      Trip_Temp_C: 60
+      Trip_Temp_C: 65
       # Set cTDP to normal=0, down=1 or up=2 (EXPERIMENTAL)
       cTDP: 0
 
@@ -98,7 +98,7 @@
       # Time window #2 duration
       PL2_Duration_S: 0.002
       # Max allowed temperature before throttling
-      Trip_Temp_C: 70
+      Trip_Temp_C: 65
       # Set HWP energy performance hints to 'performance' on high load (EXPERIMENTAL)
       HWP_Mode: True
       # Set cTDP to normal=0, down=1 or up=2 (EXPERIMENTAL)
@@ -106,7 +106,7 @@
 
       [UNDERVOLT.AC]
       # CPU core voltage offset (mV)
-      CORE: -105
+      CORE: -95
       # Integrated GPU voltage offset (mV)
       GPU: -85
       # CPU cache voltage offset (mV)
@@ -118,7 +118,7 @@
 
       [UNDERVOLT.BATTERY]
       # CPU core voltage offset (mV)
-      CORE: -105
+      CORE: -95
       # Integrated GPU voltage offset (mV)
       GPU: -85
       # CPU cache voltage offset (mV)
