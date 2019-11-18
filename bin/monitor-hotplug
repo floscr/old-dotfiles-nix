@@ -43,3 +43,5 @@ fi
 ~/.config/bspwm/bspwmrc
 
 feh --no-fehbg --bg-scale /etc/dotfiles/themes/glimpse/wallpaper.png
+
+killall compton
