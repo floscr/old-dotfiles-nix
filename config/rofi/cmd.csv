@@ -7,7 +7,7 @@ Gimp (Graphics),gimp
 Flameshot (Screenshot),flameshot gui
 MPV (Video Player),flameshot gui
 Termite (Terminal),termite
-Greenclip (Clipboard Manager),rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
+Greenclip (Clipboard Manager),~/.config/rofi/modules/greenclip
 Web Search (Browser Search),~/.config/rofi/modules/web_search
 PulseAudio Volume Control (Volume Control),pavucontrol
 htop (Activity Monitor),termite -e htop
