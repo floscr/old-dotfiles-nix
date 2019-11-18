@@ -2,7 +2,11 @@
 # start chromium depending on which display is connected
 
 if [[ $(xrandr | grep "^eDP1 connected primary") ]]; then
-  chromium-browser --force-device-scale-factor=1.2
+chromium-browser \
+  --force-device-scale-factor=1.2 \
+  --enable-native-notifications
 else
-  chromium-browser
+  chromium-browser \
+    --force-device-scale-factor=1.5 \
+    --enable-native-notifications
 fi
