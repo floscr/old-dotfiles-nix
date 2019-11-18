@@ -9,6 +9,7 @@
     systemPackages = with pkgs; [
       fwupd
       undervolt
+      ddcutil # Control brightness of external monitor
     ];
   };
 
@@ -24,7 +25,10 @@
 
   # Kernels
   boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" ];
-  boot.kernelModules = [ "kvm-intel" ];
+  boot.kernelModules = [
+    "kvm-intel"
+    "i2c-dev" # Control brightness of external monitor
+  ];
 
   services.upower.enable = true;
 
