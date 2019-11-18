@@ -3,13 +3,13 @@
 {
   imports = [
     ../misc/throttled.nix
+    ./monitor.nix
   ];
 
   environment = {
     systemPackages = with pkgs; [
       fwupd
       undervolt
-      ddcutil # Control brightness of external monitor
     ];
   };
 
@@ -27,7 +27,6 @@
   boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" ];
   boot.kernelModules = [
     "kvm-intel"
-    "i2c-dev" # Control brightness of external monitor
   ];
 
   services.upower.enable = true;
