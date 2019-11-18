@@ -15,7 +15,7 @@
           alignment = [ "left" ];
           markup = [ "full" ];
           bounce_freq = 0;
-          browser = [ "chromium-browser" ];
+          browser = "${pkgs.chromium}/bin/chromium";
           dmenu = [ "/usr/bin/rofi -dmenu -p dunst:" ];
           follow = [ "none" ];
           font = "Iosevka 12";
@@ -49,7 +49,13 @@
           frame_color = "#131416";
         };
 
-        shortcuts = { context = [ "ctrl+shift+period" ]; };
+
+        shortcuts = {
+          # close = "ctrl+shift";
+          # close_all = "ctrl+shift+space";
+          # history = "ctrl+grave";
+          context = "ctrl+shift+period";
+        };
 
         urgency_low = {
           # IMPORTANT: colors have to be defined in quotation marks.
