@@ -37,9 +37,6 @@ super + {_,ctrl + }f
 super + {_,ctrl +}{h,j,k,l}
 	 /etc/dotfiles/bin/bspc/focus {_,-m }{west,south,north,east}
 
-hyper_r + {_,ctrl +}{h,j,k,l}
-	 /etc/dotfiles/bin/bspc/focus {_,-m }{west,south,north,east}
-
 super + shift + {_,ctrl +}{h,j,k,l}
 	/etc/dotfiles/bin/bspc/swap {_,-m }{west,south,north,east}
 
