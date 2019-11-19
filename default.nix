@@ -94,7 +94,6 @@ xset -dpms
 greenclip daemon&
 
 sh ~/.config/polybar/launch.sh&
-sh ~/bin/setup-keyboard
     '';
   };
 

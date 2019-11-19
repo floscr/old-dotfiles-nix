@@ -5,8 +5,10 @@
 # And buttons get implemented multiple times
 killall xcape
 
+# Load keyboard layout
+xkbcomp /etc/X11/keymap.xkb $DISPLAY
+
 # Capslock to control
-setxkbmap -option ctrl:nocaps
 xcape -e 'Control_L=Escape'
 
 # Make space Control L whenn pressed.
