@@ -34,13 +34,16 @@
 
     redshift = {
       enable = true;
-      latitude = "55.88";
-      longitude = "12.5";
       temperature = {
         day = 5500;
         night = 3000;
       };
     };
+  };
+
+  location = {
+    longitude = 12.5;
+    latitude = 55.88;
   };
 
   fonts = {
