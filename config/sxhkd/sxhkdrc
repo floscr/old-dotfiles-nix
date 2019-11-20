@@ -52,10 +52,10 @@ XF86MonBrightnessUp
 XF86MonBrightnessDown
 	light -U 5
 
-{ XF86AudioRaiseVolume, super + alt + j }
-	amixer -q set Master 10%+ unmute
 { XF86AudioLowerVolume, super + alt + j }
 	amixer -q set Master 10%- unmute
+{ XF86AudioRaiseVolume, super + alt + k }
+	amixer -q set Master 10%+ unmute
 { XF86AudioPlay, super + alt + p }
 	playerctl play-pause
 { XF86AudioNext, super + alt + l }
