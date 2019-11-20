@@ -42,10 +42,6 @@ in
     extraModules = [ unstable.pulseaudio-modules-bt ];
   };
 
- # hardware.pulseaudio.configFile = pkgs.runCommand "default.pa" {} ''
- #    pacmd set-card-profile 3 a2dp_sink
- #  '';
-
   nixpkgs.config = {
     packageOverrides = pkgs: {
       bluez = pkgs.bluez5;
