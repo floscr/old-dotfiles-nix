@@ -15,8 +15,6 @@
     ];
   };
 
-  hardware.opengl.extraPackages = with pkgs; [ vaapiIntel ];
-
   programs.chromium = {
     enable = true;
     extensions = [
