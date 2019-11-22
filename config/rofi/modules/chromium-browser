@@ -4,9 +4,11 @@
 if [[ $(xrandr | grep "^eDP1 connected primary") ]]; then
 chromium-browser \
   --force-device-scale-factor=1.2 \
-  --enable-native-notifications
+  --enable-native-notifications \
+  --disable-gpu-driver-bug-workarounds
 else
   chromium-browser \
     --force-device-scale-factor=1.5 \
-    --enable-native-notifications
+    --enable-native-notifications \
+    --disable-gpu-driver-bug-workarounds
 fi
