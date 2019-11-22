@@ -123,7 +123,7 @@
       # Set HWP energy performance hints to 'performance' on high load (EXPERIMENTAL)
       HWP_Mode: True
       # Set cTDP to normal=0, down=1 or up=2 (EXPERIMENTAL)
-      cTDP: 0
+      cTDP: 2
 
       [UNDERVOLT.AC]
       # CPU core voltage offset (mV)
