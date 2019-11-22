@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 # Connect to bose headphones
+# pulseaudio -k
+# pulseaudio --start
 
 bluetoothctl <<EOF
 power on
