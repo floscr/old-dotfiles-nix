@@ -4,6 +4,7 @@ if [[ -n $INSIDE_EMACS ]]; then
 fi
 
 ## General
+export EDITOR="nvim"
 export _FASD_DATA="$XDG_CACHE_HOME/fasd"
 export _FASD_VIMINFO="$XDG_CACHE_HOME/viminfo"
 
