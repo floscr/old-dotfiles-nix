@@ -21,6 +21,7 @@ in {
 
     # Dev
     ./modules/editors/emacs.nix
+    ./modules/editors/vim.nix
     ./modules/dev/node.nix
     ./modules/dev/cpp.nix
     ./modules/dev/default.nix
