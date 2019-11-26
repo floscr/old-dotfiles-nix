@@ -51,7 +51,7 @@ in {
 
     # Themes
     ./themes/glimpse
-  ];
+  ] ++ lib.optional (builtins.pathExists ../dotfiles-private/private.nix) ../dotfiles-private/private.nix;
 
   nixpkgs.overlays = [
     (import ./overlays/chromium.nix)
