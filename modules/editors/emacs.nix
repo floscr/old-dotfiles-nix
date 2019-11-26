@@ -14,6 +14,10 @@ in
     texlive.combined.scheme-medium  # :lang org -- for latex previews
     ccls                            # :lang (cc +lsp)
     nodePackages.javascript-typescript-langserver # :lang (javascript +lsp)
+    aspell
+    aspellDicts.en
+    aspellDicts.en-computers
+    aspellDicts.en-science
   ];
 
   fonts.fonts = [ pkgs.emacs-all-the-icons-fonts ];
