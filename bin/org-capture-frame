@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+export RESOLUTION=`xrandr | grep \* | awk '{print $1}'`
+export WIDTH=`echo $RESOLUTION | awk -F "x" '{print $1}'`
+export HEIGHT=`echo $RESOLUTION | awk -F "x" '{print $2}'`
+
+function scale_width {
+  echo $(( $WIDTH / 100 * $1 ))
+}
+
+function scale_height {
+  echo $(( $HEIGHT / 100 * $1 ))
+}
+
+bspc rule -a 'Emacs:org-capture' state=floating center=on rectangle="$(scale_width 40)x$(scale_height 65)+0+0" sticky=on
+
+emacsclient -a "" -c -F '((name . "org-capture") (width . 120) (height . 30) (transient . t))' -e "(progn (+org-capture/open-frame))"

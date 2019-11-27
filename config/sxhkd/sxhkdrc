@@ -16,7 +16,7 @@ super + {_,shift + }w
 	bspc node -{c,k}
 
 super + shift + x
-	bspc rule -a 'Emacs' -o state=floating && org-capture
+	org-capture-frame
 
 # program launcher
 super + shift + Tab
