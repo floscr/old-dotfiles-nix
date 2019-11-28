@@ -101,23 +101,6 @@
       # SYSFS path for checking if the system is running on AC power
       Sysfs_Power_Path: /sys/class/power_supply/AC*/online
 
-      ## Settings to apply while connected to Battery power
-      [BATTERY]
-      # Update the registers every this many seconds
-      Update_Rate_s: 30
-      # Max package power for time window #1
-      PL1_Tdp_W: 29
-      # Time window #1 duration
-      PL1_Duration_s: 28
-      # Max package power for time window #2
-      PL2_Tdp_W: 44
-      # Time window #2 duration
-      PL2_Duration_S: 0.002
-      # Max allowed temperature before throttling
-      Trip_Temp_C: 65
-      # Set cTDP to normal=0, down=1 or up=2 (EXPERIMENTAL)
-      cTDP: 0
-
       ## Settings to apply while connected to AC power
       [AC]
       # Update the registers every this many seconds
@@ -148,6 +131,26 @@
       UNCORE: -85
       # Analog I/O voltage offset (mV)
       ANALOGIO: 0
+
+      ## Settings to apply while connected to Battery power
+      [BATTERY]
+      # Update the registers every this many seconds
+      Update_Rate_s: 30
+      # Max package power for time window #1
+      PL1_Tdp_W: 29
+      # Time window #1 duration
+      PL1_Duration_s: 28
+      # Max package power for time window #2
+      PL2_Tdp_W: 44
+      # Time window #2 duration
+      PL2_Duration_S: 0.002
+      # Set HWP energy performance hints to 'performance' on high load (EXPERIMENTAL)
+      HWP_Mode: True
+      # Max allowed temperature before throttling
+      Trip_Temp_C: 65
+      # Set cTDP to normal=0, down=1 or up=2 (EXPERIMENTAL)
+      cTDP: 0
+
 
       [UNDERVOLT.BATTERY]
       # CPU core voltage offset (mV)
