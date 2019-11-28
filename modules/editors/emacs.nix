@@ -20,6 +20,9 @@ in
     aspellDicts.en-science
   ];
 
+  # services.emacs.enable = true;
+  # services.emacs.install = true;
+
   fonts.fonts = [ pkgs.emacs-all-the-icons-fonts ];
 
   home-manager.users.floscr.xdg.configFile = {
