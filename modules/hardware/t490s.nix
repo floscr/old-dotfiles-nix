@@ -80,6 +80,18 @@
       '';
   };
 
+  # services.thinkfan.enable = true;
+  # services.thinkfan.sensors = ''
+  #   hwmon /sys/devices/platform/coretemp.0/hwmon/hwmon3/temp3_input
+  #   hwmon /sys/devices/platform/coretemp.0/hwmon/hwmon3/temp4_input
+  #   hwmon /sys/devices/platform/coretemp.0/hwmon/hwmon3/temp1_input
+  #   hwmon /sys/devices/platform/coretemp.0/hwmon/hwmon3/temp5_input
+  #   hwmon /sys/devices/platform/coretemp.0/hwmon/hwmon3/temp2_input
+  #   hwmon /sys/devices/virtual/thermal/thermal_zone2/hwmon1/temp1_input
+  #   hwmon /sys/devices/virtual/thermal/thermal_zone3/hwmon2/temp1_input
+  #   hwmon /sys/devices/virtual/thermal/thermal_zone6/hwmon4/temp1_input
+  # '';
+
   services.throttled = {
     enable = true;
     extraConfig = ''
