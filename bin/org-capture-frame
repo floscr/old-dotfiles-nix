@@ -14,4 +14,4 @@ function scale_height {
 
 bspc rule -a 'Emacs:org-capture' state=floating center=on rectangle="$(scale_width 40)x$(scale_height 65)+0+0" sticky=on
 
-emacsclient -a "" -c -F '((name . "org-capture") (width . 120) (height . 30) (transient . t))' -e "(progn (+org-capture/open-frame))"
+emacsclient -a "" -c -F '((name . "org-capture") (width . 120) (height . 30) (transient . t))' -e "(progn (global-auto-revert-mode 1) (+org-capture/open-frame))"
