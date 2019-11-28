@@ -39,6 +39,7 @@ alias ssc='sudo systemctl'
 alias y='xclip -selection clipboard -in'
 alias p='xclip -selection clipboard -out'
 
+alias done='notify-send "Done"'
 
 ### Tools
 autoload -U zmv
