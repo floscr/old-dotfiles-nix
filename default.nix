@@ -71,6 +71,11 @@
     backend = "glx";
     vSync = true;
     inactiveOpacity = "0.90";
+    refreshRate = 60;
+    opacityRules = [
+      "100:class_g ?= 'chromium'"
+      "100:class_g ?= 'emacs'"
+    ];
   };
 
   services.xserver = {
