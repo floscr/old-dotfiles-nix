@@ -14,6 +14,8 @@ bspc config remove_unplugged_monitors true
 # Rules
 bspc rule -r '*'
 
+bspc rule -a SimpleScreenRecorder state=floating
+bspc rule -a Spotify state=floating
 bspc rule -a 'Emacs:org*' state=floating
 bspc rule -a 'Emacs:capture' state=floating
 bspc rule -a mpv state=floating center=on
