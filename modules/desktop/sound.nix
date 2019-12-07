@@ -39,7 +39,9 @@ in
     enable = true;
     support32Bit = true;
     package = pkgs.pulseaudioFull;
-    extraModules = [ unstable.pulseaudio-modules-bt ];
+    extraModules = [
+      unstable.pulseaudio-modules-bt
+    ];
   };
 
   nixpkgs.config = {
