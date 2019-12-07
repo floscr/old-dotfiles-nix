@@ -96,6 +96,10 @@
 # disable Display Power Managing Signaling
 xset -dpms
 
+# Trackpad settings
+xinput set-prop 13 317 0.7 # Speed
+xinput set-prop 13 318 3, 3 # Sensitivity
+
 greenclip daemon&
 
 sh ~/.config/polybar/launch.sh&
