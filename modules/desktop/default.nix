@@ -28,8 +28,11 @@
 
     xserver = {
       enable = true;
+      # # Enable touchpad support.
       libinput.disableWhileTyping = true;
       libinput.enable = true;
+      libinput.accelSpeed = "-0.3";
+      multitouch.enable = true;
     };
 
     redshift = {

@@ -88,10 +88,6 @@
     windowManager.bspwm.enable = true;
     displayManager.lightdm.enable = true;
 
-    # Enable touchpad support.
-    libinput.enable = true;
-    multitouch.enable = true;
-
     displayManager.sessionCommands = ''
 # disable Display Power Managing Signaling
 xset -dpms
