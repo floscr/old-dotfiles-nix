@@ -64,6 +64,8 @@ in {
     defaultLocale = "en_US.UTF-8";
   };
 
+  services.devmon.enable = true;
+
   fonts = {
     fontconfig = {
       dpi = 180;
