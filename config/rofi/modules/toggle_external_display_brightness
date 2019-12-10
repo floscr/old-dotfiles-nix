@@ -7,7 +7,7 @@ echo "Current Brightness $MONITOR_BRIGHTNESS"
 
 if [[ $MONITOR_BRIGHTNESS -lt 80 ]]; then
     echo "Setting to Full Brightness"
-    ddcutil setvcp 10 100
+    ddcutil setvcp 10 85
 else
     echo "Setting to Low Brightness"
     ddcutil setvcp 10 30
