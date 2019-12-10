@@ -26,6 +26,7 @@ in {
     ./modules/dev/cpp.nix
     ./modules/dev/default.nix
     ./modules/dev/docker.nix
+    ./modules/dev/android.nix
 
     ./modules/graphics/gimp.nix
     ./modules/graphics/krita.nix
