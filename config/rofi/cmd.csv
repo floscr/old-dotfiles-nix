@@ -1,5 +1,6 @@
 Chromium (Browser),~/.config/rofi/modules/chromium-browser
 Emacs (Editor),emacs
+Nautilus (File Explorer),nautilus
 Pass (Password Manager),rofi-pass
 Spotify (Audio Player),spotify
 SimpleScreenRecorder (Record Screen),simplescreenrecorder
