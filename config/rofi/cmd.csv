@@ -1,4 +1,4 @@
-Chromium (Browser),~/.config/rofi/modules/chromium-browser
+Chromium (Browser),launch-chrome
 Emacs (Editor),emacs
 Nautilus (File Explorer),nautilus
 Pass (Password Manager),rofi-pass
