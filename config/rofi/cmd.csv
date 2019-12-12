@@ -12,8 +12,8 @@ Termite (Terminal),termite
 Greenclip (Clipboard Manager),~/.config/rofi/modules/greenclip
 Web Search (Browser Search),~/.config/rofi/modules/web_search
 PulseAudio Volume Control (Volume Control),pavucontrol
-Toggle Monitor Brightness (Script),~/.config/rofi/modules/toggle_external_display_brightness
-Connect Bluetooth Headphones (Script),~/.config/rofi/modules/bose_connect
+Toggle Monitor Brightness (Script),toggle_external_display_brightness
+Connect Bluetooth Headphones (Script),bose_connect
 htop (Activity Monitor),termite -e htop
 s-tui (Heat Sensors),termite -e s-tui
 Capture (Emacs Org),org-capture-frame
