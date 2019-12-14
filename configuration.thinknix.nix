@@ -31,6 +31,7 @@ in {
     ./modules/graphics/krita.nix
     ./modules/graphics/screencapture.nix
     ./modules/graphics/xcolor.nix
+    ./modules/graphics/optimization.nix
 
     # Shell
     # ./modules/shell/direnv.nix
