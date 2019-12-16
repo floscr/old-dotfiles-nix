@@ -68,10 +68,10 @@
 
   services.compton = {
     enable = true;
-    backend = "glx";
+    backend = "xr_glx_hybrid";
     vSync = true;
     inactiveOpacity = "0.90";
-    refreshRate = 60;
+    refreshRate = 0;
     opacityRules = [
       "100:class_g ?= 'chromium'"
       "100:class_g ?= 'emacs'"
