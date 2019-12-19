@@ -96,6 +96,9 @@ xset -dpms
 xinput set-prop 13 317 0.7 # Speed
 xinput set-prop 13 318 3, 3 # Sensitivity
 
+# Disable trackpoint
+xinput set-prop "ETPS/2 Elantech TrackPoint" "Device Enabled" 0
+
 greenclip daemon&
 
 sh ~/.config/polybar/launch.sh&
