@@ -1,5 +1,6 @@
 { config, lib, pkgs, ... }:
 
+# Hide the cursor when it's inactive
 {
   environment.systemPackages = with pkgs; [
     hhpc
