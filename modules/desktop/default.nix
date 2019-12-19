@@ -21,28 +21,12 @@
     physlock = {
       enable = true;
       lockOn = {
-        suspend = true;
+        suspend = false;
         hibernate = true;
       };
     };
 
-    xserver = {
-      enable = true;
-      # Enable laptop trackpads.
-      synaptics.enable = true;
-      synaptics.additionalOptions = ''
-        Option "VertScrollDelta" "100"
-        Option "HorizScrollDelta" "100"
-      '';
-      synaptics.palmDetect = true;
-      synaptics.minSpeed = ".9";
-      synaptics.maxSpeed = "1.4";
-      synaptics.accelFactor = "0.005";
-      synaptics.buttonsMap = [ 1 2 3 ];
-      synaptics.fingersMap = [ 1 3 2 ];
-      synaptics.twoFingerScroll = true;
-      synaptics.vertEdgeScroll = false;
-    };
+    xserver.enable = true;
 
     redshift = {
       enable = true;

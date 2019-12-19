@@ -11,6 +11,7 @@ in {
     "${nixos-hardware}/common/pc/laptop/acpi_call.nix"
 
     ./modules/hardware/t490s.nix
+    ./modules/hardware/mouse.nix
 
     # Desktoop Ui
     ./modules/desktop/bspwm.nix
