@@ -62,6 +62,7 @@
     '';
   };
 
+  # https://gist.github.com/Yatoom/1c80b8afe7fa47a938d3b667ce234559
   services.thinkfan.enable = true;
   services.thinkfan.sensors = ''
     hwmon /sys/devices/platform/coretemp.0/hwmon/hwmon3/temp3_input
@@ -69,9 +70,6 @@
     hwmon /sys/devices/platform/coretemp.0/hwmon/hwmon3/temp1_input
     hwmon /sys/devices/platform/coretemp.0/hwmon/hwmon3/temp5_input
     hwmon /sys/devices/platform/coretemp.0/hwmon/hwmon3/temp2_input
-    hwmon /sys/devices/virtual/thermal/thermal_zone2/hwmon1/temp1_input
-    hwmon /sys/devices/virtual/thermal/thermal_zone6/hwmon4/temp1_input
-    hwmon /sys/devices/virtual/thermal/thermal_zone4/hwmon2/temp1_input
   '';
   services.thinkfan.levels = ''
     (0, 0, 65)
@@ -95,9 +93,9 @@
       ## Settings to apply while connected to AC power
       [AC]
       # Update the registers every this many seconds
-      Update_Rate_s: 20
+      Update_Rate_s: 10
       # Max package power for time window #1
-      PL1_Tdp_W: 35
+      PL1_Tdp_W: 40
       # Time window #1 duration
       PL1_Duration_s: 28
       # Max package power for time window #2
@@ -105,11 +103,11 @@
       # Time window #2 duration
       PL2_Duration_S: 0.002
       # Max allowed temperature before throttling
-      Trip_Temp_C: 63
+      Trip_Temp_C: 66
       # Set HWP energy performance hints to 'performance' on high load (EXPERIMENTAL)
       HWP_Mode: True
       # Set cTDP to normal=0, down=1 or up=2 (EXPERIMENTAL)
-      cTDP: 0
+      cTDP: 2
 
       [UNDERVOLT.AC]
       # CPU core voltage offset (mV)
@@ -126,11 +124,11 @@
       ## Settings to apply while connected to Battery power
       [BATTERY]
       # Update the registers every this many seconds
-      Update_Rate_s: 30
+      Update_Rate_s: 15
       # Max package power for time window #1
-      PL1_Tdp_W: 29
+      PL1_Tdp_W: 40
       # Time window #1 duration
-      PL1_Duration_s: 28
+      PL1_Duration_s: 29
       # Max package power for time window #2
       PL2_Tdp_W: 44
       # Time window #2 duration
@@ -171,18 +169,4 @@
       # CACHE:
     '';
   };
-
-  # Throttled takes care of temperature throttling
-  # services.thermald = {
-  #   enable = true;
-  #   configFile = <config/thermald/thermal-conf.xml>;
-  # };
-  # home-manager.users.floscr.xdg.configFile = {
-  #   "thermald/thermal-conf.xml".source = <config/thermald/thermal-conf.xml>;
-  # };
-
-  # Undervolting can be done by throttled, but here are settings that "worked" for me
-  # services.undervolt.enable = true;
-  # services.undervolt.coreOffset= "-110";
-  # services.undervolt.temp= "95";
 }
