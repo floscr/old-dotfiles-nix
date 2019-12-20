@@ -31,3 +31,5 @@ else
       ;;
   esac
 fi
+
+i3lock-pixeled&

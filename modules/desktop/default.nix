@@ -9,6 +9,7 @@
     mpv
     feh
     imagemagickBig
+    i3lock-pixeled
 
     # Useful apps
     # evince    # pdf reader
@@ -18,14 +19,6 @@
   hardware.pulseaudio.enable = true;
 
   services = {
-    physlock = {
-      enable = true;
-      lockOn = {
-        suspend = false;
-        hibernate = true;
-      };
-    };
-
     xserver.enable = true;
 
     redshift = {
