@@ -19,6 +19,11 @@ in {
     ];
   };
 
+  # Needed for netflix
+  nixpkgs.config.chromium = {
+    enableWideVine = true;
+  };
+
   programs.chromium = {
     enable = true;
     extensions = [
