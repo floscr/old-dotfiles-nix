@@ -33,6 +33,7 @@ function disconnect(){
     --primary \
     --dpi 92 \
     --auto
+  bspc config window_gap 0
 }
 
 if [[ $(xrandr | grep "^DP2 connected") ]]; then
