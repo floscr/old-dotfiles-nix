@@ -12,6 +12,7 @@
     texlive.combined.scheme-medium  # :lang org -- for latex previews
     ccls                            # :lang (cc +lsp)
     nodePackages.javascript-typescript-langserver # :lang (javascript +lsp)
+    gnutls # :tools irc
     aspell
     aspellDicts.en
     aspellDicts.en-computers
