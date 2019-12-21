@@ -46,6 +46,7 @@ in {
     # Services
     ./modules/services/syncthing.nix
     ./modules/services/greenclip.nix
+    ./modules/services/battery-notifier.nix
 
     ./modules/misc/android.nix
     ./modules/misc/keyboard.nix
@@ -89,6 +90,9 @@ in {
       font-awesome_5
     ];
   };
+
+  # Notify on low battery
+  services.batteryNotifier.enable = true;
 
   # Networking
   networking.hostName = "thinknix";
