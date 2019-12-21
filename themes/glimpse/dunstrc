@@ -5,11 +5,11 @@ bounce_freq = 0
 browser = firefox -new-tab
 dmenu = rofi -dmenu -p dunst:
 follow = none
-font = Fira Code 14
+font = Fira Code 9
 # font = Misc Tamsyn 12
 format = "%s\n%b"
 # geometry [{width}]x{height}][+/-{x}+/-{y}]
-geometry = "365x15-21+21"
+geometry = "365x15-20+55"
 history_length = 20
 horizontal_padding = 16
 idle_threshold = 120
@@ -38,6 +38,8 @@ frame_color = "#131416"
 
 [shortcuts]
 context = ctrl+shift+period
+close = ctrl+space
+close_all = ctrl+shift+space
 
 [urgency_low]
 # IMPORTANT: colors have to be defined in quotation marks.
