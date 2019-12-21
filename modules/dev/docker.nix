@@ -13,4 +13,8 @@
     pkgs.docker
     pkgs.docker-compose
   ];
+
+  environment.shellAliases = {
+    docker-killall = "docker stop $(docker ps -q)";
+  };
 }
