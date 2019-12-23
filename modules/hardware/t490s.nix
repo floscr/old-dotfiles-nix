@@ -13,6 +13,8 @@
     ];
   };
 
+  services.xserver.videoDrivers = ["intel"];
+
   # Integrated graphics driver
   environment.variables = {
     MESA_LOADER_DRIVER_OVERRIDE = "iris";

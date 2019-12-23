@@ -82,8 +82,6 @@
     enable = true;
     autorun = true;
 
-    videoDrivers = ["intel"];
-
     desktopManager.xterm.enable = false;
     windowManager.bspwm.enable = true;
     displayManager.lightdm.enable = true;
