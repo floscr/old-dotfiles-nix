@@ -51,6 +51,7 @@ in {
     ./modules/misc/android.nix
     ./modules/misc/keyboard.nix
     ./modules/misc/home.nix
+    ./modules/misc/virtualbox.nix
 
     ./modules/gaming/emulators.nix
 
