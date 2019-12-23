@@ -21,11 +21,11 @@ in {
     ./modules/browser/chromium.nix
 
     # Dev
+    ./modules/dev/default.nix
     ./modules/editors/emacs.nix
     ./modules/editors/vim.nix
     ./modules/dev/node.nix
     ./modules/dev/cpp.nix
-    ./modules/dev/default.nix
     ./modules/dev/docker.nix
     ./modules/dev/reasonml.nix
 
