@@ -468,6 +468,14 @@ in
           WHEEL_DOWN  repeatable script-message pan-image y +0.02 yes yes
           WHEEL_LEFT  repeatable script-message pan-image x -0.02 yes yes
           WHEEL_RIGHT repeatable script-message pan-image x +0.02 yes yes
+          
+          # Mouse wheels, touchpad or other input devices that have axes
+          # if the input devices supports precise scrolling it will also scale the
+          # numeric value accordingly
+          WHEEL_UP      add volume 2
+          WHEEL_DOWN    add volume -2
+          WHEEL_LEFT    add volume -2
+          WHEEL_RIGHT   add volume 2
 
           # align the border of the image to the border of the window
           # align-border takes the following arguments:
