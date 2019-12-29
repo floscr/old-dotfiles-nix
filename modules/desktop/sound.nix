@@ -76,10 +76,10 @@ in
     };
   };
 
-  environment.systemPackages = [
-    pkgs.playerctl
-    pkgs.pavucontrol
-    pkgs.blueman
+  environment.systemPackages = with pkgs; [
+    playerctl
+    pavucontrol
+    blueman
     spotify-4k
   ];
 }
