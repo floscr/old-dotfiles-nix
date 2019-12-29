@@ -56,3 +56,8 @@ r() {
   local time=$1; shift
   sched "$time" "notify-send --urgency=critical 'Reminder' '$@'; ding";
 }; compdef r=sched
+
+alias o='open'
+function open () {
+  xdg-open "$@">/dev/null 2>&1
+}
