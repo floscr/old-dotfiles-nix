@@ -106,7 +106,13 @@ sh ~/.config/polybar/launch.sh&
   users.users.floscr = {
     isNormalUser = true;
     uid = 1000;
-    extraGroups = [ "wheel" "video" "networkmanager" "docker" ];
+    extraGroups = [
+      "wheel"
+      "video"
+      "networkmanager"
+      "docker"
+      "vboxusers"
+    ];
     shell = pkgs.zsh;
   };
 
