@@ -20,6 +20,8 @@ in {
     ./modules/desktop/notifications.nix
     ./modules/browser/chromium.nix
 
+    ./modules/media/mpv.nix
+
     # Dev
     ./modules/dev/default.nix
     ./modules/editors/emacs.nix

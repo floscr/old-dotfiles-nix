@@ -6,7 +6,6 @@
     xclip
     xdotool
     ffmpeg
-    mpv
     feh
     imagemagickBig
     i3lock-pixeled
