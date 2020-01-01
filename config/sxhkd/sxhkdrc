@@ -7,6 +7,10 @@ super + Return
 super + shift + v
 	rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
 
+# mpv toggle
+super + P
+    mpv-scratchpad-toggle
+
 # program launcher
 super + @space
 	~/.config/rofi/modules/main
