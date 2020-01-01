@@ -49,6 +49,7 @@ in {
     ./modules/services/syncthing.nix
     ./modules/services/greenclip.nix
     ./modules/services/battery-notifier.nix
+    ./modules/services/wireguard.nix
 
     ./modules/misc/android.nix
     ./modules/misc/keyboard.nix
@@ -69,6 +70,13 @@ in {
     consoleFont = "Lat2-Terminus16";
     consoleKeyMap = "us";
     defaultLocale = "en_US.UTF-8";
+  };
+
+  services.wg-quicker = {
+    available = true;
+    setups = {
+      "ch" = builtins.toString ../dotfiles-private/mullvad/ch1.conf;
+    };
   };
 
   fonts = {
