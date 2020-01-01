@@ -164,21 +164,12 @@ in
         #!/bin/bash
         # open item in mpv, try different methods
 
-        NOTIFY_MAX_LEN=33
         url="$1"
-
-        if [ "''${#url}" -gt "$(($NOTIFY_MAX_LEN - 2))" ]; then
-            url="$(echo $1 | cut -c1-$(($NOTIFY_MAX_LEN - 1)))"
-            url+="…"
-        fi
-
-        notify-send "MPV opening" "$url"
 
         # (mpv --force-window "gallery-dl://$@";
         #   bspc node --focus last) ||
         (mpv --force-window "gallery-dl://$@") ||
-        (xdg-open "$@" &&
-            notify-send "Browser opening" "$url") ||
+        xdg-open "$@" ||
         notify-send "Error opening" "$url"
       '');
 
