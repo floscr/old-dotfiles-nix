@@ -50,6 +50,10 @@ super + Escape
 super + apostrophe
 	rofi-pass
 
+
+XF86Bluetooth
+    bluetooth-toggle
+
 XF86MonBrightnessUp
 	light -A 5
 XF86MonBrightnessDown
