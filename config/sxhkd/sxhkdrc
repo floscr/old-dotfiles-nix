@@ -78,6 +78,16 @@ super + shift + BackSpace
 super + shift + s
 	flameshot gui
 
+
+# Circulate the leaves of the tree
+super + {_,shift + }x
+    bspc node @/ --circulate {backward,forward}
+
+
+# flip
+super + ctrl + {_,shift + }v
+    bspc node @/ --flip {vertical,horizontal}
+
 # super + shift + {_,ctrl +}{h,j,k,l}
 # 	/etc/dotfiles/bin/bspc/swap {_,-m }{west,south,north,east}
 
