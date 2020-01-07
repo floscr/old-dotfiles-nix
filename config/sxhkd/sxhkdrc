@@ -88,8 +88,8 @@ super + shift + s
 
 
 # Circulate the leaves of the tree
-super + {_,shift + }x
-    bspc node @/ --circulate {backward,forward}
+# super + {_,shift + }x
+# 	bspc node @/ --circulate {backward,forward}
 
 
 # flip
