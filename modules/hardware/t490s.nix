@@ -95,7 +95,7 @@
       ## Settings to apply while connected to AC power
       [AC]
       # Update the registers every this many seconds
-      Update_Rate_s: 10
+      Update_Rate_s: 30
       # Max package power for time window #1
       PL1_Tdp_W: 40
       # Time window #1 duration
