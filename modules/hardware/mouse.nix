@@ -17,6 +17,13 @@
     additionalOptions = ''
         Option "VertScrollDelta" "100"
         Option "HorizScrollDelta" "100"
+        Option "ClickTime" "25"
+        Option "Sensitivity" "1.4"
+        Option "FingerHigh" "12"
+        Option "FingerLow" "1"
+        Option "BottomEdge" "30"
+        Option "PalmSize" "45"
+        Option "IgnoreThumb" "true"
       '';
     palmDetect = true;
     minSpeed = ".9";
