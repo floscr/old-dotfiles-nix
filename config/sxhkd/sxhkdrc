@@ -94,7 +94,7 @@ super + shift + s
 
 # flip
 super + ctrl + {_,shift + }v
-    bspc node @/ --flip {vertical,horizontal}
+	bspc node @/ --flip {vertical,horizontal}
 
 # super + shift + {_,ctrl +}{h,j,k,l}
 # 	/etc/dotfiles/bin/bspc/swap {_,-m }{west,south,north,east}
