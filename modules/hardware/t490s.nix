@@ -95,9 +95,9 @@
       ## Settings to apply while connected to AC power
       [AC]
       # Update the registers every this many seconds
-      Update_Rate_s: 30
+      Update_Rate_s: 5
       # Max package power for time window #1
-      PL1_Tdp_W: 40
+      PL1_Tdp_W: 44
       # Time window #1 duration
       PL1_Duration_s: 28
       # Max package power for time window #2
@@ -109,7 +109,7 @@
       # Set HWP energy performance hints to 'performance' on high load (EXPERIMENTAL)
       HWP_Mode: True
       # Set cTDP to normal=0, down=1 or up=2 (EXPERIMENTAL)
-      cTDP: 2
+      cTDP: 0
 
       [UNDERVOLT.AC]
       # CPU core voltage offset (mV)
