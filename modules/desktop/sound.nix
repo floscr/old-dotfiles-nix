@@ -2,12 +2,14 @@
 { pkgs, ... }:
 
 let
-  unstable = import <nixpkgs-unstable> {};
+  unstable = import <nixpkgs-unstable> {
+    config.allowUnfree = true;
+  };
   # Spotify is terrible on hidpi screens (retina, 4k); this small wrapper
   # passes a command-line flag to force better scaling.
   spotify-4k = pkgs.symlinkJoin {
     name = "spotify";
-    paths = [ pkgs.spotify ];
+    paths = [ unstable.spotify ];
     nativeBuildInputs = [ pkgs.makeWrapper ];
     postBuild = ''
       wrapProgram $out/bin/spotify \
