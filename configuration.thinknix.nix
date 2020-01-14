@@ -52,6 +52,7 @@ in {
     ./modules/services/battery-notifier.nix
     ./modules/services/wireguard.nix
 
+    ./modules/misc/disk-management.nix
     ./modules/misc/android.nix
     ./modules/misc/keyboard.nix
     ./modules/misc/home.nix
