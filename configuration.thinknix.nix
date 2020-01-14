@@ -48,6 +48,7 @@ in {
     ./modules/shell/git.nix
     ./modules/shell/zsh.nix
     ./modules/shell/pass.nix
+    ./modules/shell/weechat.nix
 
     # Services
     ./modules/services/syncthing.nix
