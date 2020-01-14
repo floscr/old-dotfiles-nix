@@ -33,6 +33,7 @@ in {
     ./modules/dev/rust.nix
 
     ./modules/graphics/gimp.nix
+    ./modules/graphics/inkscape.nix
     ./modules/graphics/krita.nix
     ./modules/graphics/screencapture.nix
     ./modules/graphics/xcolor.nix
