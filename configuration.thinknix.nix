@@ -20,6 +20,8 @@ in {
     ./modules/desktop/notifications.nix
     ./modules/browser/chromium.nix
 
+    ./modules/work/meisterlabs.nix
+
     ./modules/media/mpv.nix
 
     ./modules/apps/nautilus.nix
