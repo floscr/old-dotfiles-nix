@@ -74,7 +74,7 @@
     hwmon /sys/devices/platform/coretemp.0/hwmon/hwmon3/temp2_input
   '';
   services.thinkfan.levels = ''
-    (0, 0, 65)
+    (0, 0, 68)
     (1, 50, 70)
     (2, 68, 74)
     (3, 72, 75)
@@ -95,9 +95,9 @@
       ## Settings to apply while connected to AC power
       [AC]
       # Update the registers every this many seconds
-      Update_Rate_s: 5
+      Update_Rate_s: 10
       # Max package power for time window #1
-      PL1_Tdp_W: 44
+      PL1_Tdp_W: 42
       # Time window #1 duration
       PL1_Duration_s: 28
       # Max package power for time window #2
@@ -109,7 +109,7 @@
       # Set HWP energy performance hints to 'performance' on high load (EXPERIMENTAL)
       HWP_Mode: True
       # Set cTDP to normal=0, down=1 or up=2 (EXPERIMENTAL)
-      cTDP: 0
+      cTDP: 2
 
       [UNDERVOLT.AC]
       # CPU core voltage offset (mV)
