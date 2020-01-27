@@ -12,13 +12,10 @@ else
   bspc config window_gap 8
 fi
 
-
-# Only have workspaces for primary monitor
 bspc monitor $MONITOR -d {1,2,3,4,5,6,7}
 
 bspc config remove_disabled_monitors true
 bspc config remove_unplugged_monitors true
-
 
 # Rules
 bspc rule -r '*'
@@ -36,8 +33,6 @@ bspc rule -a Pinentry state=floating center=on
 bspc rule -a feh state=fullscreen
 bspc rule -a st-scratch state=floating sticky=on center=on
 
-
-#
 for file in $XDG_CONFIG_HOME/bspwm/rc.d/*; do
   source "$file"
 done
