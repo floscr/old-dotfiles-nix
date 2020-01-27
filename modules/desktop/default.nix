@@ -8,7 +8,6 @@
     ffmpeg
     feh
     imagemagickBig
-    i3lock-pixeled
 
     # Useful apps
     # evince    # pdf reader

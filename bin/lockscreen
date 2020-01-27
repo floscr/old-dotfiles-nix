@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+# If -f, then put computer to sleep.
+# Otherwise, lock screen and turn off monitor.
+
+i3lock-color \
+    --clock \
+    --color=191c21 \
+    --insidecolor=00000000 \
+    --datecolor=f0c67400 \
+    --insidewrongcolor=00000000 \
+    --insidevercolor=00000000 \
+    --datestr='%A %Y-%m-%d' \
+    --radius 30 \
+    --ring-width 10
