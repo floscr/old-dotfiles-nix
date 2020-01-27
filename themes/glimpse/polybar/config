@@ -117,9 +117,7 @@ time = %I:%M %p
 time-alt = %H:%M:%S
 format-prefix = ""
 format-prefix-padding = 1
-; format-prefix-background = ${colors.bg-alt}
 format-prefix-foreground = ${colors.icons}
-; format-underline = ${xrdb:color4}
 
 [module/xwindow]
 type = internal/xwindow
