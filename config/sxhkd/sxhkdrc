@@ -33,6 +33,9 @@ super + {grave,Tab}
 super + d
 	rofi -show
 
+super + shift + f
+	/etc/dotfiles/bin/bspc/toggle_desktop_mode
+
 # Toggle floating/fullscreen
 super + {_,ctrl + }f
 	bspc node -t ~{floating,fullscreen}
