@@ -11,7 +11,7 @@ sleep_prepare () {
   systemctl --user stop hhpc
 
   i3lock-color --clock --color=191c21 --datestr='%A %Y-%m-%d' --radius 30 --ring-width 10 --timepos="-100:+30"
-  sleep 1
+  sleep 3
 }
 
 if [[ $1 == -h ]]; then
