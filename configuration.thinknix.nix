@@ -15,6 +15,7 @@ in {
 
     # Desktoop Ui
     ./modules/desktop/bspwm.nix
+    ./modules/desktop/compton.nix
     # ./modules/desktop/autorandr.nix
     ./modules/desktop/sound.nix
     ./modules/desktop/notifications.nix
