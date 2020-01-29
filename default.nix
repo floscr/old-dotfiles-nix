@@ -74,7 +74,7 @@
     refreshRate = 0;
     opacityRules = [
       "100:name *= 'i3lock'"
-      "100:class_g ?= 'chromium'"
+      "100:name *= 'Chromium'"
       "100:class_g ?= 'emacs'"
     ];
   };
