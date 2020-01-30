@@ -37,6 +37,7 @@ bspc rule -a 'Emacs:capture' state=floating
 
 bspc rule -a Chromium split_ratio=0.32 --center
 
+bspc rule -a Pavucontrol state=floating
 bspc rule -a mpv state=floating center=on
 bspc rule -a Pinentry state=floating center=on
 bspc rule -a feh state=fullscreen
