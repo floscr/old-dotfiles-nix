@@ -73,6 +73,8 @@ in {
     ./themes/glimpse
   ] ++ lib.optional (builtins.pathExists ../dotfiles-private/private.nix) ../dotfiles-private/private.nix;
 
+  nix.maxJobs = lib.mkDefault 6;
+
   nixpkgs.overlays = [
     (import ./overlays/chromium.nix)
   ];
