@@ -593,7 +593,7 @@ in
           stop-screensaver=yes
 
           # save position on quit
-          # save-position-on-quit
+          save-position-on-quit
 
           # Enable hardware decoding if available.
           #hwdec=cuda
