@@ -206,6 +206,12 @@ in
               sha256 = "18m0lzf0gs3g0mfgwfgih6mz98v5zcciykjl7jmg9rllwsx8syjl";
             })
 
+            # autoload
+            (fetchurl {
+              url = "https://raw.githubusercontent.com/mpv-player/mpv/master/TOOLS/lua/autoload.lua";
+              sha256 = "0ifml25sc1mxv0m4qy50xshsx75560zmwj4ivys14vnpk1j40m1r";
+            })
+
             # autoloop
             (fetchurl {
               url = "https://raw.githubusercontent.com/zc62/mpv-scripts/master/autoloop.lua";
