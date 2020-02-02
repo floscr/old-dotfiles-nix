@@ -537,7 +537,7 @@ in
           x11-bypass-compositor=yes # bypass compositor
           demuxer-thread=yes
 
-          script-opts=osc-layout=slimbox
+          script-opts=osc-layout=box
           profile=opengl-hq
           scale=ewa_lanczossharp
           #scale=haasnsoft
