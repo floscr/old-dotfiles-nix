@@ -91,6 +91,8 @@ in {
   };
 
   fonts = {
+    enableFontDir = true;
+    enableGhostscriptFonts = true;
     fontconfig = {
       dpi = 180;
       enable = true;
@@ -104,12 +106,14 @@ in {
       };
     };
     fonts = with pkgs; [
+      fira-code
       fira-code-symbols
+      font-awesome_5
       iosevka
       noto-fonts
-      symbola
       noto-fonts-cjk
-      font-awesome_5
+      siji
+      symbola
     ];
   };
 
