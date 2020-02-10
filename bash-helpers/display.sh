@@ -24,8 +24,8 @@ function set_window_size () {
     local display_width=$(echo "$display_dimensions" | head -n 1)
     local display_height=$(echo "$display_dimensions" | tail -n 1)
 
-    local diffwidth=$((display_width / 100 * 85))
-    local diffheight=$((display_height / 100 * 90))
+    local diffwidth=$((display_width / 100 * 80))
+    local diffheight=$((display_height / 100 * 95))
     local x=$(((display_width - diffwidth) / 2))
     local y=$(((display_height - diffheight) / 2))
 
