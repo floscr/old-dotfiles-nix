@@ -1,8 +1,6 @@
 { config, pkgs, options, lib, ...}:
 {
-  imports = [
-    <home-manager/nixos>
-  ];
+  imports = [<home-manager/nixos>];
 
   # Nothing in /tmp should survive a reboot
   boot.cleanTmpDir = true;
@@ -63,7 +61,6 @@
 
   time.timeZone = "Europe/Vienna";
 
-  # Enable sound.
   sound.enable = true;
 
   services.xserver = {
