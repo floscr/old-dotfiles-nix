@@ -4,13 +4,18 @@
 # Otherwise, lock screen and turn off monitor.
 
 
+restore() {
+  setup-keyboard
+}
+
 
 sleep_prepare () {
   playerctl pause&
+
   # i3lock can't grab the cursor if another application is handling it
   systemctl --user stop hhpc
 
-  i3lock-color --clock --color=191c21 --datestr='%A %Y-%m-%d' --radius 30 --ring-width 10 --timepos="-100:+30"
+  (i3lock-color --clock --color=191c21 --datestr='%A %Y-%m-%d' --radius 30 --ring-width 10 --timepos="-100:+30"; restore)&
   sleep 3
 }
 
