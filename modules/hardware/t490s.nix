@@ -126,11 +126,11 @@
       ## Settings to apply while connected to Battery power
       [BATTERY]
       # Update the registers every this many seconds
-      Update_Rate_s: 15
+      Update_Rate_s: 10
       # Max package power for time window #1
-      PL1_Tdp_W: 40
+      PL1_Tdp_W: 42
       # Time window #1 duration
-      PL1_Duration_s: 29
+      PL1_Duration_s: 28
       # Max package power for time window #2
       PL2_Tdp_W: 44
       # Time window #2 duration
@@ -138,9 +138,9 @@
       # Set HWP energy performance hints to 'performance' on high load (EXPERIMENTAL)
       HWP_Mode: True
       # Max allowed temperature before throttling
-      Trip_Temp_C: 65
+      Trip_Temp_C: 66
       # Set cTDP to normal=0, down=1 or up=2 (EXPERIMENTAL)
-      cTDP: 0
+      cTDP: 2
 
       [UNDERVOLT.BATTERY]
       # CPU core voltage offset (mV)
