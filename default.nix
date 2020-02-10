@@ -98,7 +98,6 @@ sh ~/.config/polybar/launch.sh&
       "wheel"
       "video"
       "networkmanager"
-      "wireshark"
       "docker"
       "vboxusers"
     ];
