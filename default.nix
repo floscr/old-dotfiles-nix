@@ -112,13 +112,6 @@ sh ~/.config/polybar/launch.sh&
     };
   };
 
-  # programs.home-manager.enable = true;
-  # programs.home-manager.path = https://github.com/rycee/home-manager/archive/master.tar.gz;
-
-  # home-manager.users.floscr = {
-  #   programs.zsh.enable = true;
-  # };
-
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database
   # servers. You should change this only after NixOS release notes say you
