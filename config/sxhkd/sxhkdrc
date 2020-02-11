@@ -7,29 +7,24 @@ super + Return
 super + shift + v
 	rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
 
-# mpv toggle
 super + P
-    mpv-scratchpad-toggle
+	mpv-scratchpad-toggle
 
-# program launcher
 super + @space
 	~/.config/rofi/modules/main
 
-# close and kill
 super + {_,shift + }w
 	bspc node -{c,k}
 
 super + shift + x
 	org-capture-frame
 
-# program launcher
 super + shift + Tab
 	~/bin/rofi/app_switch
 
 super + {grave,Tab}
 	bspc {node,desktop} -f last
 
-# program launcher
 super + d
 	rofi -show
 
@@ -89,11 +84,9 @@ super + shift + BackSpace
 super + shift + s
 	flameshot gui
 
-
 # Circulate the leaves of the tree
 # super + {_,shift + }x
 # 	bspc node @/ --circulate {backward,forward}
-
 
 # flip
 super + ctrl + {_,shift + }v
