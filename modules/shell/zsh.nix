@@ -7,8 +7,6 @@ in
     variables = {
       ZDOTDIR = "$XDG_CONFIG_HOME/zsh";
       ZSH_CACHE = "$XDG_CACHE_HOME/zsh";
-      ZGEN_DIR  = "$XDG_CACHE_HOME/zgen";
-      ZGEN_SOURCE = "${zgen}/zgen.zsh";
     };
 
     systemPackages = with pkgs; [

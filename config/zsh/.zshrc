@@ -1,18 +1,17 @@
+export ZGEN_DIR="$XDG_CACHE_HOME/zgen"
+export ZGEN_SOURCE="$ZGEN_DIR/zgen.zsh"
+
+[ -d "$ZGEN_DIR" ] || git clone https://github.com/tarjoilija/zgen "$ZGEN_DIR"
 source $ZGEN_SOURCE
 
 if ! zgen saved; then
   echo "Initializing zgen"
-
   zgen load hlissner/zsh-autopair autopair.zsh develop
   zgen load zsh-users/zsh-history-substring-search
   zgen load zdharma/history-search-multi-word
   zgen load zsh-users/zsh-completions src
   zgen load kutsan/zsh-system-clipboard
-
-  if [[ -z $SSH_CONNECTION ]]; then
-    zgen load zdharma/fast-syntax-highlighting
-  fi
-
+  [ -z "$SSH_CONNECTION" ] && zgen load zdharma/fast-syntax-highlighting
   zgen save
 fi
 
