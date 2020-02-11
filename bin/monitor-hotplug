@@ -47,3 +47,5 @@ fi
 feh --no-fehbg --bg-scale /etc/dotfiles/themes/glimpse/wallpaper.png
 
 killall compton
+
+emacsclient -a "" -e "(progn (+ui|adjust-ui-to-display))"
