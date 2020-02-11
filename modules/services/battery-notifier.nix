@@ -7,8 +7,7 @@ let
 in
 {
   options = {
-    services.batteryNotifier = {
-      enable = mkOption {
+    services.batteryNotifier = {enable = mkOption {
         default = false;
         description = ''
           Whether to enable battery notifier.
@@ -18,6 +17,12 @@ in
         default = "BAT0";
         description = ''
           Device to monitor.
+        '';
+      };
+      cacheFile = mkOption {
+        default = "/tmp/battery-notifier-cache";
+        description = ''
+          File to save the last battery status time, so you don't get the same nagging warning every minute.
         '';
       };
       notifyCapacity = mkOption {
@@ -49,7 +54,13 @@ in
         export battery_capacity=$(${pkgs.coreutils}/bin/cat /sys/class/power_supply/${cfg.device}/capacity)
         export battery_status=$(${pkgs.coreutils}/bin/cat /sys/class/power_supply/${cfg.device}/status)
 
-        if [[ $battery_capacity -le ${builtins.toString cfg.notifyCapacity} && $battery_status = "Discharging" ]]; then
+        # Remove cache file once the machine is charged again
+        if [[ $battery_capacity -ge ${builtins.toString cfg.notifyCapacity} && -f ${cfg.cacheFile} ]]; then
+          rm ${cfg.cacheFile}
+        fi
+
+        if [[ $battery_capacity -le ${builtins.toString cfg.notifyCapacity} && $battery_status = "Discharging" && ! -f ${cfg.cacheFile} ]]; then
+            touch ${cfg.cacheFile}
             ${pkgs.libnotify}/bin/notify-send --urgency=critical --hint=int:transient:1 --icon=battery_empty "Battery Low" "You should probably plug-in."
         fi
 
