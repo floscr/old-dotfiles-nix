@@ -5,6 +5,9 @@
 
   environment.systemPackages = with pkgs; [ arc-theme ];
 
+  # Has to be enabled for gnome applications settings to work
+  services.dbus.packages = with pkgs; [ gnome3.dconf ];
+
   services.xserver.displayManager.lightdm.background = "${./wallpaper.png}";
   home-manager.users.floscr = {
     home.file.".background-image".source = ./wallpaper.png;
