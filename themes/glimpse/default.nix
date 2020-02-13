@@ -12,6 +12,13 @@
   home-manager.users.floscr = {
     home.file.".background-image".source = ./wallpaper.png;
 
+    dconf.settings = {
+      dconf.enable = true;
+      "org/gnome/nautilus/preferences" = {
+        sort-directories-first = true;
+      };
+    };
+
     xdg.configFile = {
       "xtheme/90-theme".source = ./Xresources;
       "dunst/dunstrc".source = ./dunstrc;
