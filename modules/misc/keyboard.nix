@@ -41,10 +41,10 @@ in
     serviceConfig = {
       Type = "forking";
       ExecStart = "${pkgs.bash}/bin/bash ${pkgs.writeScript "setup-keyboard.sh" ''
-
         #!${pkgs.stdenv.shell}
 
-sleep 1;
+        echo "start"
+        sleep 2;
 
         # Stop previous xcape processes, otherwise xcape is launched multiple times
         # And buttons get implemented multiple times
@@ -75,8 +75,10 @@ sleep 1;
   };
 
   # SUBSYSTEM=="usb", ACTION=="add", RUN+="${pkgs.systemd}/bin/systemctl --user restart setup-keyboard"
+        # ACTION=="add", SUBSYSTEM=="usb", ATTRS{ID_VENDOR}=="Ultimate_Gadget_Laboratories", TAG+="systemd", ENV{SYSTEMD_USER_WANTS}="setup-keyboard.service"
+
   services.udev.extraRules = ''
-        SUBSYSTEM=="usb", ACTION=="add", ENV{ID_VENDOR}=="Ultimate_Gadget_Laboratories", RUN{program}="${pkgs.systemd}/bin/systemctl --user restart setup-keyboard.service"
+        ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6122", TAG+="systemd", ENV{SYSTEMD_USER_WANTS}="setup-keyboard.service"
   '';
 
   powerManagement.resumeCommands = ''
