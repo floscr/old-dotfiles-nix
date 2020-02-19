@@ -34,6 +34,51 @@ in
         '';
   };
 
+  systemd.user.services."setup-keyboard" = {
+    enable = true;
+    description = "Load my keyboard modifications";
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Type = "forking";
+      ExecStart = "${pkgs.bash}/bin/bash ${pkgs.writeScript "setup-keyboard.sh" ''
+
+        #!${pkgs.stdenv.shell}
+
+sleep 1;
+
+        # Stop previous xcape processes, otherwise xcape is launched multiple times
+        # And buttons get implemented multiple times
+        ${pkgs.killall}/bin/killall xcape
+
+        # Load keyboard layout
+        ${pkgs.xorg.xkbcomp}/bin/xkbcomp /etc/X11/keymap.xkb $DISPLAY
+
+        # Capslock to control
+        ${pkgs.xcape}/bin/xcape -e 'Control_L=Escape'
+
+        # Make space Control L whenn pressed.
+        spare_modifier="Hyper_L"
+        ${pkgs.xorg.xmodmap}/bin/xmodmap -e "keycode 65 = $spare_modifier"
+        ${pkgs.xorg.xmodmap}/bin/xmodmap -e "remove mod4 = $spare_modifier"
+        ${pkgs.xorg.xmodmap}/bin/xmodmap -e "add Control = $spare_modifier"
+
+        # Map space to an unused keycode (to keep it around for xcape to
+        # use).
+        ${pkgs.xorg.xmodmap}/bin/xmodmap -e "keycode any = space"
+
+        # Finally use xcape to cause the space bar to generate a space when tapped.
+        ${pkgs.xcape}/bin/xcape -e "$spare_modifier=space"
+
+        echo "Keyboard setup done!"
+      ''}";
+    };
+  };
+
+  # SUBSYSTEM=="usb", ACTION=="add", RUN+="${pkgs.systemd}/bin/systemctl --user restart setup-keyboard"
+  services.udev.extraRules = ''
+        SUBSYSTEM=="usb", ACTION=="add", ENV{ID_VENDOR}=="Ultimate_Gadget_Laboratories", RUN{program}="${pkgs.systemd}/bin/systemctl --user restart setup-keyboard.service"
+  '';
+
   powerManagement.resumeCommands = ''
     ~/bin/setup-keyboard&
   '';
