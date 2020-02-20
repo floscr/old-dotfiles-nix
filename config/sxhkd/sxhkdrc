@@ -52,9 +52,11 @@ super + {_,shift +}{1-9,0}
 super + Escape
 	pkill -USR1 -x sxhkd
 
+super + t
+	~/bin/toggle-polybar
+
 super + apostrophe
 	rofi-pass
-
 
 XF86Bluetooth
 	bluetooth-toggle
