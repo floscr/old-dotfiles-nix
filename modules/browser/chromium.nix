@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 
 let
-  brotab = pkgs.callPackages ../../packages/brotab.nix { };
+  # brotab = pkgs.callPackages ../../packages/brotab.nix { };
 in {
   environment = {
     sessionVariables = {
@@ -11,7 +11,7 @@ in {
     systemPackages = with pkgs; [
       chromium
 
-      brotab
+      # brotab
       (pkgs.writeScriptBin "chromium-private" ''
         #! ${pkgs.bash}/bin/bash
         chromium-browser --incognito "$@"
