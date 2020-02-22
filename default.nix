@@ -80,6 +80,7 @@ xinput set-prop 13 317 0.7 # Speed
 xinput set-prop 13 318 3, 3 # Sensitivity
 
 greenclip daemon&
+dunst&
 
 sh ~/.config/polybar/launch.sh&
     '';
