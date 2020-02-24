@@ -84,9 +84,6 @@ in
     };
   };
 
-  # SUBSYSTEM=="usb", ACTION=="add", RUN+="${pkgs.systemd}/bin/systemctl --user restart setup-keyboard"
-        # ACTION=="add", SUBSYSTEM=="usb", ATTRS{ID_VENDOR}=="Ultimate_Gadget_Laboratories", TAG+="systemd", ENV{SYSTEMD_USER_WANTS}="setup-keyboard.service"
-
   services.udev.extraRules = ''
         ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6122", TAG+="systemd", ENV{SYSTEMD_USER_WANTS}="hotplug-keyboard.service"
   '';
