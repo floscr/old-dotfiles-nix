@@ -35,12 +35,24 @@ in
         '';
   };
 
+  systemd.user.services."hotplug-keyboard" = {
+    enable = true;
+    description = "Load my keyboard modifications";
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = false;
+      ExecStart = "${pkgs.systemd}/bin/systemctl --user restart setup-keyboard";
+    };
+  };
+
   systemd.user.services."setup-keyboard" = {
     enable = true;
     description = "Load my keyboard modifications";
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
-      Type = "forking";
+      Type = "oneshot";
+      RemainAfterExit = true;
       ExecStart = "${pkgs.bash}/bin/bash ${pkgs.writeScript "setup-keyboard.sh" ''
         #!${pkgs.stdenv.shell}
 
@@ -79,7 +91,7 @@ in
         # ACTION=="add", SUBSYSTEM=="usb", ATTRS{ID_VENDOR}=="Ultimate_Gadget_Laboratories", TAG+="systemd", ENV{SYSTEMD_USER_WANTS}="setup-keyboard.service"
 
   services.udev.extraRules = ''
-        ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6122", TAG+="systemd", ENV{SYSTEMD_USER_WANTS}="setup-keyboard.service"
+        ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6122", TAG+="systemd", ENV{SYSTEMD_USER_WANTS}="hotplug-keyboard.service"
   '';
 
   powerManagement.resumeCommands = ''
