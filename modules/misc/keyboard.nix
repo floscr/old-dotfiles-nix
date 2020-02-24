@@ -56,9 +56,6 @@ in
       ExecStart = "${pkgs.bash}/bin/bash ${pkgs.writeScript "setup-keyboard.sh" ''
         #!${pkgs.stdenv.shell}
 
-        echo "start"
-        sleep 2;
-
         # Stop previous xcape processes, otherwise xcape is launched multiple times
         # And buttons get implemented multiple times
         ${pkgs.killall}/bin/killall xcape
