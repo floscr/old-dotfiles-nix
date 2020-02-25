@@ -49,21 +49,3 @@
 *.color241: #665c54
 
 st.opacity: 245
-
-
-!! Fonts
-rofi.font: Fira Code 15
-st.font: Fira Code:pixelsize=12
-st-scratch.font: Fira Code:pixelsize=15
-
-
-!! Rofi
-rofi.padding: 12
-!                  bg             fg       bgalt    hlbg     hlfg
-rofi.color-normal: argb:00131519, #bbc2cf, #131519, #191b1f, #f0c674
-rofi.color-urgent: argb:00131519, #bbc2cf, #131519, #191b1f, #f0c674
-rofi.color-active: argb:00131519, #bbc2cf, #131519, #191b1f, #f0c674
-!                  bg             border   sep
-rofi.color-window: argb:ee131519, argb:00bbc2cf, #292d35
-! Separator style (none, dash, solid)
-rofi.separator-style: solid

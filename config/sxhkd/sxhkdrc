@@ -56,7 +56,7 @@ super + t
 	~/bin/toggle-polybar
 
 super + apostrophe
-	rofi-pass
+	rofi-pass -dmenu -theme theme/passmenu.rasi
 
 XF86Bluetooth
 	bluetooth-toggle

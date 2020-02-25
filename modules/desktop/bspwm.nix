@@ -17,7 +17,7 @@
       })
       (writeScriptBin "rofi" ''
         #!${stdenv.shell}
-        exec ${rofi}/bin/rofi -config "$XDG_CONFIG_HOME/rofi/config" $@
+        exec ${rofi}/bin/rofi -config "$XDG_CONFIG_HOME/rofi/config.rasi" $@
       '')
     ];
   };
