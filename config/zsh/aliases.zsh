@@ -52,6 +52,12 @@ zman() {
   PAGER="less -g -s '+/^       "$1"'" man zshall;
 }
 
+emptytrash() {
+  rm -rf ~/.Trash
+  mkdir ~/.Trash
+  notify-send "Trash emptied"
+}
+
 r() {
   local time=$1; shift
   sched "$time" "notify-send --urgency=critical 'Reminder' '$@'; ding";
