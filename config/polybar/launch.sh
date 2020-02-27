@@ -20,4 +20,7 @@ if type "xrandr"; then
 else
 	polybar --reload main &
 fi
+
+bspc config top_padding 35
+
 echo "Polybar launched..."
