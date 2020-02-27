@@ -37,7 +37,6 @@ in {
     ./modules/dev/cpp.nix
     ./modules/dev/docker.nix
     ./modules/dev/reasonml.nix
-    ./modules/dev/rust.nix
 
     ./modules/graphics/gimp.nix
     ./modules/graphics/inkscape.nix
