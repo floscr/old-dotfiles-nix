@@ -61,6 +61,10 @@ super + apostrophe
 XF86Bluetooth
 	bluetooth-toggle
 
+super + XF86MonBrightnessDown
+	light -S 0.01
+super + XF86MonBrightnessUp
+	light -S 100
 XF86MonBrightnessUp
 	light -A 5
 XF86MonBrightnessDown
