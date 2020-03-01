@@ -32,6 +32,7 @@ in {
     # Dev
     ./modules/dev/default.nix
     ./modules/editors/emacs.nix
+    ./modules/editors/emacs-calctex.nix
     ./modules/editors/vim.nix
     ./modules/dev/node.nix
     ./modules/dev/cpp.nix

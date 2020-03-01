@@ -9,7 +9,7 @@
     # Doom Emacs + dependencies
     emacs
     sqlite                          # :tools (lookup +docsets)
-    texlive.combined.scheme-medium  # :lang org -- for latex previews
+    # texlive.combined.scheme-medium  # :lang org -- for latex previews
     ccls                            # :lang (cc +lsp)
     nodePackages.javascript-typescript-langserver # :lang (javascript +lsp)
     gnutls # :tools irc
