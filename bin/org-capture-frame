@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 # Open an org-capture popup frame from the shell. This opens a temporary emacs
 # daemon if emacs isn't already running.
@@ -33,7 +33,7 @@ shift $((OPTIND-1))
 if [ $daemon ]; then
   emacsclient -a "" \
     -c -F '((name . "org-capture") (width . 90) (height . 15) (transient . t))' \
-    -e "(+org-capture/open-frame \"$str\" ${key:-nil})"
+    -e "(progn (+ui|adjust-ui-to-display) (+org-capture/open-frame \"$str\" ${key:-nil}))"
 else
   # Non-daemon servers flicker a lot if frames are created from terminal, so we
   # do it internally instead.
