@@ -17,10 +17,13 @@
       "config=/etc/dotfiles/config"
     ];
   };
+
+  nixpkgs.overlays = import ./overlays.nix;
   nixpkgs.config.allowUnfree = true;
 
   environment = {
     systemPackages = with pkgs; [
+      my.cached-nix-shell
       # fan control
       s-tui
       # thinkfan
