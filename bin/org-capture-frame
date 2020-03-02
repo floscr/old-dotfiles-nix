@@ -9,10 +9,6 @@
 
 set -e
 
-cleanup() {
-  emacsclient --eval '(let (kill-emacs-hook) (kill-emacs))'
-}
-
 # org-capture key mapped to argument flags
 # keys=$(emacsclient -e "(+org-capture-available-keys)" | cut -d '"' -f2)
 while getopts "hk:" opt; do
@@ -24,5 +20,5 @@ shift $((OPTIND-1))
 [ -t 0 ] && str="$*" || str=$(cat)
 
 emacsclient -a "" \
-  -c -F '((name . "org-capture") (transient . t))' \
-  -e "(progn (+org-capture/open-frame \"$str\" ${key:-nil}))"
+  -c -F '((name . "doom-capture") (transient . t))' \
+  -e "(progn (global-auto-revert-mode t) (+org-capture/open-frame \"$str\" ${key:-nil}))"
