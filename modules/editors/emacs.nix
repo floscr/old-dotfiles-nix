@@ -21,7 +21,10 @@
 
   services.emacs.enable = true;
 
-  fonts.fonts = [ pkgs.emacs-all-the-icons-fonts ];
+  fonts.fonts = [
+    pkgs.emacs-all-the-icons-fonts
+    pkgs.overpass
+  ];
 
   home-manager.users.floscr.xdg.configFile = {
     "zsh/rc.d/aliases.emacs.zsh".source = <config/emacs/aliases.zsh>;
