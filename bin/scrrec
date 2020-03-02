@@ -58,7 +58,7 @@ countdown() {
 
 recording-start() {
   local ffmpeg_opts="-y -f x11grab -show_region 1 -ss $delay -s ${4}x${5} -i :0.0+${2},${3} -framerate ${fps}"
-  local dest=${1:-./rec.mp4}
+  local dest=${1:-~/Media/Screenrecording}
   local mp4dest=
   [[ $dest == *.gif ]] && mp4dest="${dest%.*}.mp4"
   countdown
