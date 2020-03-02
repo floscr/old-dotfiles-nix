@@ -19,8 +19,7 @@
     aspellDicts.en-science
   ];
 
-  # services.emacs.enable = true;
-  # services.emacs.install = true;
+  services.emacs.enable = true;
 
   fonts.fonts = [ pkgs.emacs-all-the-icons-fonts ];
 
