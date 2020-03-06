@@ -2,6 +2,13 @@
 
 {
   imports = [ ./. ];
+
+  # Support for more filesystems
+  environment.systemPackages = with pkgs; [
+    exfat
+    ntfs3g
+    hfsprogs
+  ];
   boot.extraModulePackages = [ config.boot.kernelPackages.exfat-nofuse ];
 
   # Nothing in /tmp should survive a reboot
