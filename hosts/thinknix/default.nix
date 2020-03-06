@@ -118,7 +118,6 @@ in {
   services.batteryNotifier.enable = true;
 
   # Networking
-  networking.hostName = "thinknix";
   networking.networkmanager.enable = true;
 
   # Printing

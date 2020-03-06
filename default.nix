@@ -3,10 +3,26 @@
 device:
 { config, pkgs, options, lib, ...}:
 {
+  networking.hostName = lib.mkDefault device;
+
   imports = [
     ./options.nix
     "${./hosts}/${device}"
   ] ++ lib.optional (builtins.pathExists /etc/dotfiles-private/private.nix) /etc/dotfiles-private/private.nix;
+
+  ### NixOS
+  nix.autoOptimiseStore = true;
+  nix.trustedUsers = [ "root" "@wheel" ];
+  nix.nixPath = options.nix.nixPath.default ++ [
+    # So we can use absolute import paths
+    "bin=/etc/dotfiles/bin"
+    "config=/etc/dotfiles/config"
+    "modules=/etc/dotfiles/modules"
+  ];
+  # ...but we still need to set nixpkgs.overlays to make them visible to the
+  # rebuild process, however...
+  nixpkgs.overlays = import ./overlays.nix;
+  nixpkgs.config.allowUnfree = true;
 
   # Nothing in /tmp should survive a reboot
   boot.cleanTmpDir = true;
@@ -15,18 +31,6 @@ device:
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.extraModulePackages = [ config.boot.kernelPackages.exfat-nofuse ];
-
-  nix = {
-    autoOptimiseStore = true;
-    trustedUsers = [ "root" "@wheel" ];
-    nixPath = options.nix.nixPath.default ++ [
-      "config=/etc/dotfiles/config"
-      "modules=/etc/dotfiles/modules"
-    ];
-  };
-
-  nixpkgs.overlays = import ./overlays.nix;
-  nixpkgs.config.allowUnfree = true;
 
   environment = {
     systemPackages = with pkgs; [
