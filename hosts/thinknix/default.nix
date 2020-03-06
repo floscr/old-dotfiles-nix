@@ -4,6 +4,7 @@ let nixos-hardware = builtins.fetchTarball https://github.com/NixOS/nixos-hardwa
 
 in {
   imports = [
+    ../personal.nix   # common settings
     ./hardware-configuration.nix
     
     # Hardware specific

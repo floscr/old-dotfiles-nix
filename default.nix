@@ -98,19 +98,6 @@ sh ~/.config/polybar/launch.sh&
     '';
   };
 
-  users.users.floscr = {
-    isNormalUser = true;
-    uid = 1000;
-    extraGroups = [
-      "wheel"
-      "video"
-      "networkmanager"
-      "docker"
-      "vboxusers"
-    ];
-    shell = pkgs.zsh;
-  };
-
   home-manager.users.floscr = {
     xdg.enable = true;
     home.file."bin" = {
