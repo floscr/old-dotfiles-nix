@@ -33,27 +33,7 @@ device:
   boot.extraModulePackages = [ config.boot.kernelPackages.exfat-nofuse ];
 
   environment = {
-    systemPackages = with pkgs; [
-      my.cached-nix-shell
-      # fan control
-      s-tui
-      # thinkfan
-      udiskie
-      bc
-      coreutils
-      tree
-      git
-      htop
-      killall
-      networkmanager
-      networkmanagerapplet
-      rofi
-      unzip
-      vim
-      wget
-      neofetch
-      (ripgrep.override { withPCRE2 = true; })
-    ];
+    systemPackages = with pkgs; [my.cached-nix-shell];
     variables = {
       XDG_CONFIG_HOME = "$HOME/.config";
       XDG_CACHE_HOME = "$HOME/.cache";

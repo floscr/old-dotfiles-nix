@@ -2,6 +2,18 @@
 
 { config, lib, pkgs, ... }:
 {
+  # Just the bear necessities~
+  environment.systemPackages = with pkgs; [
+    coreutils
+    git
+    killall
+    networkmanager
+    networkmanagerapplet
+    unzip
+    vim
+    wget
+  ];
+
   ### My user settings
   my.user = {
     isNormalUser = true;

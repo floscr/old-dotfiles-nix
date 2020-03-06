@@ -12,6 +12,7 @@ in
     systemPackages = with pkgs; [
       zsh
       bat
+      bc
       nix-zsh-completions
       fzf
       fasd
@@ -19,6 +20,10 @@ in
       fd
       tmux
       htop
+      (ripgrep.override { withPCRE2 = true; })
+      neofetch
+      s-tui
+      udiskie
       tree
       zip
     ];
