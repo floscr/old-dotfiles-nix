@@ -1,6 +1,13 @@
+# default.nix --- my dotfile bootstrapper
+
+device:
 { config, pkgs, options, lib, ...}:
 {
-  imports = [<home-manager/nixos>];
+  imports = [
+    ./options.nix
+    "${./hosts}/${device}/hardware.thinknix.nix"
+    ./configuration.thinknix.nix
+  ];
 
   # Nothing in /tmp should survive a reboot
   boot.cleanTmpDir = true;

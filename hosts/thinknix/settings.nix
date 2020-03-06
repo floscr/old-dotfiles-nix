@@ -4,6 +4,8 @@ let nixos-hardware = builtins.fetchTarball https://github.com/NixOS/nixos-hardwa
 
 in {
   imports = [
+    ./.  # import common settings
+
     # Hardware specific
     "${nixos-hardware}/common/cpu/intel"
     "${nixos-hardware}/common/pc/laptop/acpi_call.nix"
