@@ -24,14 +24,6 @@ device:
   nixpkgs.overlays = import ./overlays.nix;
   nixpkgs.config.allowUnfree = true;
 
-  # Nothing in /tmp should survive a reboot
-  boot.cleanTmpDir = true;
-
-  # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.extraModulePackages = [ config.boot.kernelPackages.exfat-nofuse ];
-
   environment = {
     systemPackages = with pkgs; [my.cached-nix-shell];
     variables = {
