@@ -7,4 +7,5 @@
             https://github.com/xzfc/cached-nix-shell/archive/master.tar.gz) {});
     };
   })
+  (import ./overlays/chromium.nix)
 ]

@@ -5,9 +5,8 @@ device:
 {
   imports = [
     ./options.nix
-    "${./hosts}/${device}/hardware.thinknix.nix"
-    ./configuration.thinknix.nix
-  ];
+    "${./hosts}/${device}"
+  ] ++ lib.optional (builtins.pathExists /etc/dotfiles-private/private.nix) /etc/dotfiles-private/private.nix;
 
   # Nothing in /tmp should survive a reboot
   boot.cleanTmpDir = true;
@@ -22,6 +21,7 @@ device:
     trustedUsers = [ "root" "@wheel" ];
     nixPath = options.nix.nixPath.default ++ [
       "config=/etc/dotfiles/config"
+      "modules=/etc/dotfiles/modules"
     ];
   };
 
@@ -63,7 +63,7 @@ device:
       ne = "nix-env";
       nu = "sudo nix-channel --update && sudo nixos-rebuild -I config=$HOME/.dotfiles/config switch";
       ngc = "nix-collect-garbage -d && sudo nix-collect-garbage -d";
-      nre = "sudo nixos-rebuild switch -I config=/etc/dotfiles/config";
+      nre = "sudo nixos-rebuild switch -I config=/etc/dotfiles/config -I modules=/etc/dotfiles/modules";
       ns = "nix-env -qaP .\*$1.\*";
       sudo = "sudo ";
     };
