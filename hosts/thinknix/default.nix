@@ -73,6 +73,7 @@ in {
     <modules/themes/glimpse>
   ];
 
+  time.timeZone = "Europe/Vienna";
 
   i18n = {
     consoleFont = "Lat2-Terminus16";

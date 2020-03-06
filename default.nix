@@ -73,8 +73,6 @@ device:
     };
   };
 
-  time.timeZone = "Europe/Vienna";
-
   sound.enable = true;
 
   services.xserver = {
