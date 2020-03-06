@@ -29,6 +29,12 @@ let
       amsfonts # amssym
       amsmath
       siunitx
+      # Display math in org mode
+      dvisvgm
+      unicode-math
+      ulem
+      collection-latex
+      subfigure
       ;
   };
 in {
