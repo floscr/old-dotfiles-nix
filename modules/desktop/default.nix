@@ -1,9 +1,19 @@
 { config, lib, pkgs, ... }:
 
 {
+  imports = [
+    ## Desktop apps
+    ./apps/redshift.nix
+    ./apps/rofi.nix
+
+    # I often need a thumbnail browser to show off, peruse or organize photos,
+    # design work, or digital art.
+    # ./apps/nautilus.nix
+    # ./apps/thunar.nix
+  ];
+
+
   environment.systemPackages = with pkgs; [
-    rofi
-    redshift
     xclip
     xdotool
     ffmpeg
@@ -38,18 +48,6 @@
     '';
   };
 
-  services.redshift = {
-    enable = true;
-    temperature = {
-      day = 5500;
-      night = 3000;
-    };
-  };
-
-  location = {
-    longitude = 12.5;
-    latitude = 55.88;
-  };
 
   fonts = {
     enableFontDir = true;
