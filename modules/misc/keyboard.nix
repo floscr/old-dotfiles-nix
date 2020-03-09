@@ -30,9 +30,6 @@ in
   services.xserver = {
     autoRepeatDelay = 190;
     autoRepeatInterval = 30;
-    displayManager.sessionCommands = ''
-        sh ~/bin/setup-keyboard&
-        '';
   };
 
   systemd.user.services."hotplug-keyboard" = {
@@ -86,9 +83,5 @@ in
 
   services.udev.extraRules = ''
         ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="1d50", ATTRS{idProduct}=="6122", TAG+="systemd", ENV{SYSTEMD_USER_WANTS}="hotplug-keyboard.service"
-  '';
-
-  powerManagement.resumeCommands = ''
-    ~/bin/setup-keyboard&
   '';
 }

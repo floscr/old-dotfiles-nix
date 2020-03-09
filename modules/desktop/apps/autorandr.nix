@@ -80,7 +80,6 @@
         };
         hooks.postswitch = ''
           ~/.config/bspwm/bspwmrc
-          ~/bin/setup-keyboard
         '';
       };
     };

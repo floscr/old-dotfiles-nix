@@ -1,5 +1,5 @@
 F12
-	~/bin/monitor-hotplug
+	monitor-hotplug
 
 super + e
 	emacs-atomic-edit-here
@@ -23,7 +23,7 @@ super + shift + x
 	org-capture-frame
 
 super + shift + Tab
-	~/bin/rofi/app_switch
+	/etc/dotfiles/bin/rofi/app_switch
 
 super + {grave,Tab}
 	bspc {node,desktop} -f last
@@ -53,7 +53,7 @@ super + Escape
 	pkill -USR1 -x sxhkd
 
 super + t
-	~/bin/toggle-polybar
+	toggle-polybar
 
 super + apostrophe
 	rofi-pass -dmenu -theme theme/passmenu.rasi

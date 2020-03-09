@@ -18,7 +18,6 @@ function connectLG(){
   killall compton
 
   xcape
-  ~/bin/setup-keyboard
 }
 
 function disconnect(){
