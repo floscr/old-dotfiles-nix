@@ -26,13 +26,6 @@ device:
 
   environment = {
     systemPackages = with pkgs; [my.cached-nix-shell];
-    variables = {
-      XDG_CONFIG_HOME = "$HOME/.config";
-      XDG_CACHE_HOME = "$HOME/.cache";
-      XDG_DATA_HOME = "$HOME/.local/share";
-      XDG_BIN_HOME = "$HOME/.local/bin";
-      DOTFILES = "$HOME/.dotfiles";
-    };
     shellAliases = {
       q = "exit";
       nix-env = "NIXPKGS_ALLOW_UNFREE=1 nix-env";
