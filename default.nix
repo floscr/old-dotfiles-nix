@@ -27,14 +27,9 @@ device:
   environment = {
     systemPackages = with pkgs; [my.cached-nix-shell];
     shellAliases = {
-      q = "exit";
       nix-env = "NIXPKGS_ALLOW_UNFREE=1 nix-env";
-      ne = "nix-env";
-      nu = "sudo nix-channel --update && sudo nixos-rebuild -I config=$HOME/.dotfiles/config switch";
       ngc = "nix-collect-garbage -d && sudo nix-collect-garbage -d";
       nre = "sudo nixos-rebuild switch -I config=/etc/dotfiles/config -I modules=/etc/dotfiles/modules";
-      ns = "nix-env -qaP .\*$1.\*";
-      sudo = "sudo ";
     };
   };
 
