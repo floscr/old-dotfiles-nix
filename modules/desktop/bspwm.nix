@@ -22,6 +22,13 @@
     ];
   };
 
+  services = {
+    xserver = {
+      windowManager.default = "bspwm";
+      windowManager.bspwm.enable = true;
+    };
+  };
+
   home-manager.users.floscr = {
     programs.rofi = {
       enable = true;

@@ -17,15 +17,32 @@
   sound.enable = true;
   hardware.pulseaudio.enable = true;
 
-  services = {
-    xserver.enable = true;
+  services.xserver = {
+    enable = true;
+    desktopManager.xterm.enable = lib.mkDefault false;
+    displayManager.lightdm.greeters.mini.user = config.my.username;
+    displayManager.lightdm.enable = true;
+    displayManager.lightdm.greeters.mini.enable = true;
+    displayManager.sessionCommands = ''
+      # disable Display Power Managing Signaling
+      xset -dpms
 
-    redshift = {
-      enable = true;
-      temperature = {
-        day = 5500;
-        night = 3000;
-      };
+      # Trackpad settings
+      xinput set-prop 13 317 0.7 # Speed
+      xinput set-prop 13 318 3, 3 # Sensitivity
+
+      greenclip daemon&
+      dunst&
+
+      sh ~/.config/polybar/launch.sh&
+    '';
+  };
+
+  services.redshift = {
+    enable = true;
+    temperature = {
+      day = 5500;
+      night = 3000;
     };
   };
 

@@ -38,31 +38,6 @@ device:
     };
   };
 
-  sound.enable = true;
-
-  services.xserver = {
-    enable = true;
-    autorun = true;
-
-    desktopManager.xterm.enable = false;
-    windowManager.bspwm.enable = true;
-    displayManager.lightdm.enable = true;
-
-    displayManager.sessionCommands = ''
-# disable Display Power Managing Signaling
-xset -dpms
-
-# Trackpad settings
-xinput set-prop 13 317 0.7 # Speed
-xinput set-prop 13 318 3, 3 # Sensitivity
-
-greenclip daemon&
-dunst&
-
-sh ~/.config/polybar/launch.sh&
-    '';
-  };
-
   home-manager.users.floscr = {
     xdg.enable = true;
     home.file."bin" = {
