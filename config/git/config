@@ -1,6 +1,6 @@
 [user]
-  email = flo.schroedl@gmail.com
   name = Florian Schroedl
+  email = flo.schroedl@gmail.com
 [core]
 	whitespace = trailing-space
 [github]
