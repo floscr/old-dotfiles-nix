@@ -1,34 +1,24 @@
-#!/usr/bin/env bash
-DOTFILES="$(cd $(dirname "${BASH_SOURCE:-${(%):-%x}}") && pwd -P)"
-PREFIX="${PREFIX:-/mnt}"
-NIXOSPREFIX="${PREFIX}/etc/nixos"
-HOST=${1:-${HOST:-kuro}}
+#!/usr/bin/env nix-shell
+#! nix-shell -i bash -p git gnumake
 
-set -e
-if [[ ! -f "$DOTFILES/configuration.$HOST.nix" ]]; then
-  >&2 echo "No configuration exists for host '$HOST'"
+set -e   # bail if an error occurs
+if [ $EUID -nq 0 ]; then
+  >&2 echo "Must be run as root"
   exit 1
-elif [[ ! -f "$NIXOSPREFIX/hardware-configuration.nix" ]]; then
-  >&2 echo "No hardware-configuration.nix file exists in $NIXOSPREFIX"
-  >&2 echo "Did you forget to set up your partitions?"
-  exit 2
 fi
 
-mkdir -p "$NIXOSPREFIX"
-cat << EOF > "$NIXOSPREFIX/configuration.nix"
-{ config, ... }:
-{
-  imports = [
-    ../dotfiles/configuration.$HOST.nix
-    ./hardware-configuration.nix
-  ]
-}
-EOF
+USER=${USER:-hlissner}
+HOST=${1:-${HOST:-$(hostname)}}
 
-nix-channel --add https://nixos.org/channels/nixos-19.03 nixos
-nix-channel --add https://github.com/rycee/home-manager/archive/master.tar.gz home-manager
-nix-channel --add https://nixos.org/channels/nixpkgs-unstable nixpkgs-unstable
-nix-channel --update
+DOTFILES="/home/$USER/.dotfiles"
+if [ ! -d /etc/dotfiles ]; then
+  git clone -b nixos https://github.com/hlissner/dotfiles "$DOTFILES"
+  chown -R $USER:users "$DOTFILES"
+fi
+ln -sf "$DOTFILES" /etc/dotfiles
 
-nixos-generate-config --root "$PREFIX"
-nixos-install --root "$PREFIX" -I "config=$DOTFILES"
+if [ ! -f "$DOTFILES/machines/$HOST.nix" ]; then
+  >&2 echo "No configuration exists for host '$HOST'"
+  exit 1
+fi
+make -C "$DOTFILES" install
