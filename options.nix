@@ -24,8 +24,9 @@ in
 
   options.my.packages = mkOption
     { type = types.listOf types.package;
+      default = [];
       description = "The set of packages to appear in the user environment."; };
-  # config.my.user.packages = config.my.packages;
+  config.my.user.packages = config.my.packages;
 
 
   ## Shell/Environment
