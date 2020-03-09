@@ -5,7 +5,7 @@
 
 
 restore() {
-  setup-keyboard
+  echo "Restore"
 }
 
 
