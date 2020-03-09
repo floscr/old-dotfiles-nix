@@ -3,13 +3,23 @@
 {
   imports = [ ../. ]; # Load framework for themes
 
+  theme.wallpaper = ./wallpaper.png;
+
   environment.systemPackages = with pkgs; [ arc-theme ];
 
   # Has to be enabled for gnome applications settings to work
   services.dbus.packages = with pkgs; [ gnome3.dconf ];
 
-  services.xserver.displayManager.lightdm.background = "${./wallpaper.png}";
-  home-manager.users.floscr = {
+  services.xserver.displayManager.lightdm = {
+    greeters.mini.extraConfig = ''
+      text-color = "#ff79c6"
+      password-background-color = "#1E2029"
+      window-color = "#181a23"
+      border-color = "#181a23"
+    '';
+  };
+
+  my.home = {
     home.file.".background-image".source = ./wallpaper.png;
 
     dconf.settings = {
@@ -23,9 +33,7 @@
       "xtheme/90-theme".source = ./Xresources;
       "dunst/dunstrc".source = ./dunstrc;
       "bspwm/rc.d/polybar".source = ./polybar/run.sh;
-      "rofi/theme".source = ./rofi.theme;
       "gtk-3.0/gtk.css".source = ./gtk.css;
-      # "polybar" = { source = ./polybar; recursive = true; };
 
       # GTK
       "gtk-3.0/settings.ini".text = ''
