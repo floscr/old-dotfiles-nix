@@ -39,6 +39,8 @@
       greenclip daemon&
       dunst&
 
+      systemctl --user start setup-keyboard.service
+
       sh ~/.config/polybar/launch.sh&
     '';
   };
