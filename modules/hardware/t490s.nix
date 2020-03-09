@@ -2,7 +2,6 @@
 
 {
   imports = [
-    # ../misc/throttled.nix
     ./monitor.nix
   ];
 
