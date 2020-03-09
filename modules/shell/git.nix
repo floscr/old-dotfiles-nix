@@ -5,10 +5,10 @@
     gitAndTools.hub
     gitAndTools.diff-so-fancy
   ];
+  my.zsh.rc = lib.readFile <config/git/aliases.zsh>;
 
-  home-manager.users.floscr.xdg.configFile = {
+  my.home.xdg.configFile = {
     "git/config".source = <config/git/config>;
     "git/ignore".source = <config/git/ignore>;
-    "zsh/rc.d/aliases.git.zsh".source = <config/git/aliases.zsh>;
   };
 }

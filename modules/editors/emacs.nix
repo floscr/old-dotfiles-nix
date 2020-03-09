@@ -26,8 +26,6 @@
     pkgs.overpass
   ];
 
-  home-manager.users.floscr.xdg.configFile = {
-    "zsh/rc.d/aliases.emacs.zsh".source = <config/emacs/aliases.zsh>;
-    "zsh/rc.d/env.emacs.zsh".source = <config/emacs/env.zsh>;
-  };
+  my.env.PATH = [ "$HOME/.emacs.d/bin" ];
+  my.zsh.rc = lib.readFile <config/emacs/aliases.zsh>;
 }
