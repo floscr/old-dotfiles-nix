@@ -18,7 +18,6 @@ fi
 source $ZDOTDIR/config.zsh
 if [[ $TERM != dumb ]]; then
   source $ZDOTDIR/prompt.zsh
-  source $ZDOTDIR/config.zsh
   source $ZDOTDIR/keybinds.zsh
   source $ZDOTDIR/completion.zsh
   source $ZDOTDIR/aliases.zsh
