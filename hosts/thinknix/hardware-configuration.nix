@@ -3,10 +3,14 @@
 # to /etc/nixos/configuration.nix instead.
 { config, lib, pkgs, ... }:
 
-{
-  imports =
-    [ <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
-    ];
+let nixos-hardware = builtins.fetchTarball https://github.com/NixOS/nixos-hardware/archive/master.tar.gz;
+
+in {
+  imports = [
+      <nixpkgs/nixos/modules/installer/scan/not-detected.nix>
+      "${nixos-hardware}/common/cpu/intel"
+      "${nixos-hardware}/common/pc/laptop/acpi_call.nix"
+  ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "sd_mod" "sdhci_pci" ];
   boot.initrd.kernelModules = [ "dm-snapshot" ];

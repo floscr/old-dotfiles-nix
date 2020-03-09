@@ -1,15 +1,9 @@
 { config, lib, pkgs, ... }:
 
-let nixos-hardware = builtins.fetchTarball https://github.com/NixOS/nixos-hardware/archive/master.tar.gz;
-
-in {
+{
   imports = [
     ../personal.nix   # common settings
     ./hardware-configuration.nix
-    
-    # Hardware specific
-    "${nixos-hardware}/common/cpu/intel"
-    "${nixos-hardware}/common/pc/laptop/acpi_call.nix"
 
     <modules/hardware/t490s.nix>
     <modules/hardware/mouse.nix>
