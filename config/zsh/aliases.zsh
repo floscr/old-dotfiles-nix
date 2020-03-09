@@ -1,4 +1,4 @@
-### ReDefs
+### Better Defaults
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
@@ -12,7 +12,6 @@ alias egrep='egrep --color=auto'
 
 alias rg='noglob rg'
 alias ag='noglob ag -p $HOME/.config/ag/agignore'
-
 
 ### convenience
 alias ..='cd ..'
