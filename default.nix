@@ -29,7 +29,7 @@ device:
     shellAliases = {
       nix-env = "NIXPKGS_ALLOW_UNFREE=1 nix-env";
       ngc = "nix-collect-garbage -d && sudo nix-collect-garbage -d";
-      nre = "sudo nixos-rebuild switch -I config=/etc/dotfiles/config -I modules=/etc/dotfiles/modules";
+      nre = "cd /etc/dotfiles; make switch";
     };
   };
 
