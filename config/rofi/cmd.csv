@@ -20,3 +20,4 @@ Capture (Emacs Org),org-capture-frame
 drun (Rofi drun),rofi -modi drun -show drun
 Kill all docker containers,docker-killall
 Empty Trash,emptytrash
+Hue: Living Room Center 100%,hue 8 brightness 100%
