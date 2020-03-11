@@ -31,21 +31,22 @@ configuration {
   border-color: @bg-dark;
 }
 
-
 /**** Layout ****/
 window {
   width:    43%;
-  y-offset: -25%;
-  anchor:   north;
-  location: center;
+  /* max-height: 30; */
+  /* y-offset: -25%; */
+  /* anchor:   north; */
+  /* location: center; */
   border: 5px;
   /* border-radius: 6px; */
   border-color: @bg-light;
   children: [ inputbar, listview ];
 }
+
+
 listview {
-  lines: 16;
-  fixed-height: false;
+  fixed-height: 1;
   /* reverse: true; */
   margin: -2px 0 0;
   columns: 1;
