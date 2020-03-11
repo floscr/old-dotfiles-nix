@@ -1,22 +1,38 @@
 { config, lib, pkgs, ... }:
 
 {
-  environment.systemPackages = with pkgs; [
-    (lib.mkIf (config.programs.gnupg.agent.enable) pinentry_emacs)
-
-    editorconfig-core-c
+  my.packages = with pkgs; [
+    ## Doom dependencies
+    emacsGit
+    git
     (ripgrep.override {withPCRE2 = true;})
-    # Doom Emacs + dependencies
-    emacs
-    sqlite                          # :tools (lookup +docsets)
-    # texlive.combined.scheme-medium  # :lang org -- for latex previews
-    ccls                            # :lang (cc +lsp)
-    nodePackages.javascript-typescript-langserver # :lang (javascript +lsp)
-    gnutls # :tools irc
+
+    ## Optional dependencies
+    editorconfig-core-c # per-project style config
+    fd                  # faster projectile indexing
+    gnutls              # for TLS connectivity
+    imagemagick         # for image-dired
+    (lib.mkIf (config.programs.gnupg.agent.enable)
+      pinentry_emacs)   # in-emacs gnupg prompts
+    zstd                # for undo-tree compression
+
+    (lib.mkIf (config.programs.gnupg.agent.enable)
+      pinentry_emacs)   # in-emacs gnupg prompts
+
+    ## Module dependencies
+    # :checkers spell
     aspell
     aspellDicts.en
     aspellDicts.en-computers
     aspellDicts.en-science
+    # :checkers grammar
+    languagetool
+    # :tools lookup
+    sqlite
+    # :lang cc
+    ccls
+    # :lang javascript
+    nodePackages.javascript-typescript-langserver
   ];
 
   services.emacs.enable = true;
