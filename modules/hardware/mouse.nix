@@ -2,12 +2,8 @@
 
 {
   imports = [
-    ../services/hhpc.nix
     ../services/syndaemon.nix
   ];
-
-  # Hide the mouse cursor after idle
-  systemd.user.services.hhpc.enable = true;
 
   # Disable touchpad while typing
   systemd.user.services.syndaemon.enable = true;
