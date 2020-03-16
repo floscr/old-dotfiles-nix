@@ -13,6 +13,7 @@ Greenclip (Clipboard Manager),~/.config/rofi/modules/greenclip
 Web Search (Browser Search),~/.config/rofi/modules/web_search
 PulseAudio Volume Control (Volume Control),pavucontrol
 Toggle Monitor Brightness (Script),toggle_external_display_brightness
+Max Monitor Brightness (Script),ddcutil setvcp 10 100
 Connect Bluetooth Headphones (Script),bose_connect
 htop (Activity Monitor),termite -e htop
 s-tui (Heat Sensors),termite -e s-tui
