@@ -53,6 +53,8 @@
     <modules/services/greenclip.nix>
     <modules/services/battery-notifier.nix>
     <modules/services/wireguard.nix>
+    <modules/services/emacsGit.nix>
+    <modules/services/emacs-caldav-sync.nix>
 
     <modules/misc/disk-management.nix>
     <modules/misc/android.nix>
