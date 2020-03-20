@@ -82,6 +82,11 @@
       "ch" = builtins.toString "/etc/dotfiles-private/mullvad/ch1.conf";
     };
   };
+  security.sudo.enable = true;
+  security.sudo.extraConfig = ''
+    %wheel      ALL=(ALL:ALL) NOPASSWD: ${pkgs.systemd}/bin/systemctl start wg-quicker-ch.service
+    %wheel      ALL=(ALL:ALL) NOPASSWD: ${pkgs.systemd}/bin/systemctl stop wg-quicker-ch.service
+  '';
 
   fonts = {
     enableFontDir = true;
