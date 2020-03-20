@@ -34,6 +34,8 @@ in {
       "eimadpbcbfnmbkopoojfekhnkhdbieeh" # Dark Reader
       "kbmfpngjjgdllneeigpgjifpgocmfgmb" # Reddit Enhancment Suite
       "ofjfdfaleomlfanfehgblppafkijjhmi" # Georgify - Hacker News Theme
+      "gbmdgpbipfallnflgajpaliibnhdgobh" # JSON Viewer
+      "fipfgiejfpcdacpjepkohdlnjonchnal" # Tab Shortcuts
     ];
   };
 }
