@@ -33,6 +33,7 @@ alias rsyncd='rsync -vaP --delete'
 alias gurl='curl --compressed'
 
 alias sc=systemctl
+alias scu='systemctl --user'
 alias ssc='sudo systemctl'
 
 alias y='xclip -selection clipboard -in'
