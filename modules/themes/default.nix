@@ -13,4 +13,10 @@
     source "$XDG_CONFIG_HOME"/xsession/*.sh
     xrdb -merge "$XDG_CONFIG_HOME"/xtheme/*
   '';
+
+  my.env.XCURSOR_PATH = [
+    "${config.system.path}/share/icons"
+    "$HOME/.config/icons"
+    "$HOME/.nix-profile/share/icons/"
+  ];
 }

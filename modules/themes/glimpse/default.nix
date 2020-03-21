@@ -30,6 +30,10 @@
     };
 
     xdg.configFile = {
+      "icons" = {
+        source = ./icons;
+        recursive = true;
+      };
       "xtheme/90-theme".source = ./Xresources;
       "dunst/dunstrc".source = ./dunstrc;
       "bspwm/rc.d/polybar".source = ./polybar/run.sh;
@@ -42,7 +46,7 @@
         gtk-icon-theme-name=Arc-Dark
         gtk-fallback-icon-theme=gnome
         gtk-application-prefer-dark-theme=true
-        gtk-cursor-theme-name=Numix
+        gtk-cursor-theme-name=McMojave
         gtk-xft-hinting=1
         gtk-xft-hintstyle=hintfull
         gtk-xft-rgba=none

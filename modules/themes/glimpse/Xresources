@@ -1,3 +1,5 @@
+Xcursor.size: 16
+
 !! Colors
 #define blk  #131519
 #define bblk #969896
@@ -47,5 +49,3 @@
 *.color239: #504945
 *.color240: #544c49
 *.color241: #665c54
-
-st.opacity: 245
