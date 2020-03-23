@@ -53,7 +53,7 @@ in
       script = ''
         export battery_capacity=$(${pkgs.coreutils}/bin/cat /sys/class/power_supply/${cfg.device}/capacity)
         export battery_status=$(${pkgs.coreutils}/bin/cat /sys/class/power_supply/${cfg.device}/status)
-        export cache_file = $XDG_CACHE_HOME/${cfg.cacheFile}
+        export cache_file=$XDG_CACHE_HOME/${cfg.cacheFile}
 
         # Remove cache file once the machine is charged again
         if [[ ( $battery_status = "Charging" || $battery_capacity -ge ${builtins.toString cfg.notifyCapacity} ) && -f $cache_file ]]; then
