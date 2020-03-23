@@ -16,6 +16,8 @@
       htop
       (ripgrep.override { withPCRE2 = true; })
       neofetch
+      # Bandwidth tui
+      bandwhich
       s-tui
       udiskie
       tree
