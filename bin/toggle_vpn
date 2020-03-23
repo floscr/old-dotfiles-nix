@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-# Toggle the monitor brightness
+service="wg-quicker-ch.service"
 
-if [[ $(systemctl is-active sshd >/dev/null 2>&1) ]]; then
-    sudo systemctl stop wg-quicker-ch.service
+if $(systemctl is-active --quiet $service); then
+    sudo systemctl stop $service
     notify-send "Stopped VPN Service"
 else
-    sudo systemctl start wg-quicker-ch.service
+    sudo systemctl start $service
     notify-send "Started VPN Service"
 fi
