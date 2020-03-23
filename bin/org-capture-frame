@@ -23,6 +23,6 @@ shift $((OPTIND-1))
 bspc rule -a Emacs state=floating sticky=on
 emacsclient -a "" \
   -c -F '((name . "doom-capture") (transient . t))' \
-  -e "(progn (+ui|adjust-ui-to-display) (+org-capture/open-frame))"
+  -e "(+org-capture|my-open-frame)"
 # Restore Emacs rules
 bspc rule -a Emacs state=tiled sticky=off
