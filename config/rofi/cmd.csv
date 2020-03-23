@@ -1,6 +1,7 @@
 Chromium (Browser),launch-chrome
 Emacs Client (Editor),e
 Toggle VPN (Script),toggle_vpn
+Toggle Redshift (Script),toggle_redshift
 Emacs Standalone (Editor),emacs
 Nautilus (File Explorer),nautilus
 Pass (Password Manager),rofi-pass
