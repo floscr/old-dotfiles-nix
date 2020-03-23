@@ -16,8 +16,9 @@
       htop
       (ripgrep.override { withPCRE2 = true; })
       neofetch
-      # Bandwidth tui
-      bandwhich
+      # Badnwith monitor tui
+      unstable.bandwhich
+      # Cpu temperature tui
       s-tui
       udiskie
       tree
