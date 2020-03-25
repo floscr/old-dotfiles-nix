@@ -10,6 +10,7 @@
     networkmanager
     networkmanagerapplet
     unzip
+    unrar
     vim
     wget
   ];
