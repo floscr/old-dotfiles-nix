@@ -35,6 +35,7 @@ in {
       "kbmfpngjjgdllneeigpgjifpgocmfgmb" # Reddit Enhancment Suite
       "ofjfdfaleomlfanfehgblppafkijjhmi" # Georgify - Hacker News Theme
       "gbmdgpbipfallnflgajpaliibnhdgobh" # JSON Viewer
+      "ndiaggkadcioihmhghipjmgfeamgjeoi" # Add URL to window title
       "fipfgiejfpcdacpjepkohdlnjonchnal" # Tab Shortcuts
     ];
   };
