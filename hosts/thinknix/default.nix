@@ -93,10 +93,7 @@
     enableGhostscriptFonts = true;
     fontconfig = {
       dpi = 180;
-      enable = true;
-      antialias = true;
       defaultFonts.monospace = [ "Iosevka" ];
-      allowBitmaps = true;
       useEmbeddedBitmaps = true;
       ultimate = {
         enable = true;
