@@ -95,10 +95,10 @@
       dpi = 180;
       defaultFonts.monospace = [ "Iosevka" ];
       useEmbeddedBitmaps = true;
-      ultimate = {
-        enable = true;
-        substitutions = "combi";
-      };
+      # ultimate = {
+      #   enable = true;
+      #   substitutions = "combi";
+      # };
     };
     fonts = with pkgs; [
       fira-code
