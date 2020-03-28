@@ -37,7 +37,6 @@
       xinput set-prop 13 318 3, 3 # Sensitivity
 
       greenclip daemon&
-      dunst&
 
       systemctl --user start setup-keyboard.service
 
