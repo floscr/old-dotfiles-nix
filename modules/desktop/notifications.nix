@@ -79,4 +79,5 @@
       };
     };
   };
+  systemd.user.services.dunst.wantedBy = [ "graphical.target" ];
 }
