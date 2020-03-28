@@ -32,6 +32,9 @@
       # disable Display Power Managing Signaling
       xset -dpms
 
+      # Set default cursor
+      xsetroot -cursor_name left_ptr
+
       # Trackpad settings
       xinput set-prop 13 317 0.7 # Speed
       xinput set-prop 13 318 3, 3 # Sensitivity
