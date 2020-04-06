@@ -277,37 +277,6 @@ in
         nodePackages.peerflix
       ];
 
-  systemd.user = {
-    timers.mpv-thumbnail-delete = {
-      wantedBy = [ "timers.target" ];
-      partOf = [ "mpv-thumbnail-delete.service" ];
-      timerConfig = {
-        OnCalendar = "daily";
-      };
-    };
-
-    services.mpv-thumbnail-delete = {
-      description = "Service to delete mpv thumbnails";
-
-      serviceConfig.Type = "oneshot";
-
-      # delete anything older than 1 day
-      script = ''
-        [ -d "${mpv-thumbs-cache}" ] && \
-          find ${mpv-thumbs-cache} -mtime +1 -exec rm {} \;
-
-        [ -d "${mpv-gallery-thumb-dir}" ] && \
-          find ${mpv-gallery-thumb-dir} -mtime +1 -exec rm {} \;
-
-        exit 0
-      '';
-
-      path = with pkgs; [
-        config.system.path
-      ];
-    };
-  };
-
   home-manager.users."${username}" = {
     xdg.configFile =
       # mpv-gallery-view
