@@ -39,6 +39,26 @@
     XDG_VIDEOS_DIR="$HOME/Media/Videos"
     XDG_TEMPLATES_DIR="$HOME/Documents/Templates"
   '';
+  my.home.xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "inode/directory" = "emacs.desktop";
+      "text/english" = "emacs.desktop";
+      "text/plain" = "emacs.desktop";
+      "text/x-c" = "emacs.desktop";
+      "text/x-c++" = "emacs.desktop";
+      "text/x-c++hdr" = "emacs.desktop";
+      "text/x-c++src" = "emacs.desktop";
+      "text/x-chdr" = "emacs.desktop";
+      "text/x-csrc" = "emacs.desktop";
+      "text/x-java" = "emacs.desktop";
+      "text/x-makefile" = "emacs.desktop";
+      "text/x-moc" = "emacs.desktop";
+      "text/x-pascal" = "emacs.desktop";
+      "text/x-tcl" = "emacs.desktop";
+      "text/x-tex" = "emacs.desktop";
+    };
+  };
 
   # Conform more programs to XDG conventions. The rest are handled by their
   # respective modules.
