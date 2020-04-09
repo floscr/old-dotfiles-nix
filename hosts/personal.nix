@@ -30,6 +30,16 @@
     DOTFILES = "$HOME/.dotfiles";
   };
 
+  my.home.xdg.configFile."user-dirs.dirs".text = ''
+    XDG_DESKTOP_DIR="$HOME/Desktop"
+    XDG_DOWNLOAD_DIR="$HOME/Downloads"
+    XDG_DOCUMENTS_DIR="$HOME/Documents"
+    XDG_MUSIC_DIR="$HOME/Media/Music"
+    XDG_PICTURES_DIR="$HOME/Media/Images"
+    XDG_VIDEOS_DIR="$HOME/Media/Videos"
+    XDG_TEMPLATES_DIR="$HOME/Documents/Templates"
+  '';
+
   # Conform more programs to XDG conventions. The rest are handled by their
   # respective modules.
   my.env = {
