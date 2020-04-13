@@ -12,19 +12,19 @@ let
   fullscreen-lock = "/tmp/mpv-scratchpad-fullscreen.lock";
 in
 
-{
+let
+  mpv-scratchpad = (pkgs.writeShellScriptBin "mpv-scratchpad" ''
+    SOCKET=${mpv-socket}
+    FULLSCREEN=${fullscreen-lock}
+    rm -f $FULLSCREEN
+
+    mkdir -p ${mpv-gallery-thumb-dir}
+
+    ${pkgs.mpv}/bin/mpv --input-ipc-server=$SOCKET --x11-name=mpvscratchpad --title=mpvscratchpad --geometry=384x216-32+62 --no-terminal --force-window --keep-open=yes --idle=yes
+    '');
+in {
   environment.systemPackages =
     let
-      mpv-scratchpad = (pkgs.writeShellScriptBin "mpv-scratchpad" ''
-        SOCKET=${mpv-socket}
-        FULLSCREEN=${fullscreen-lock}
-        rm -f $FULLSCREEN
-
-        mkdir -p ${mpv-gallery-thumb-dir}
-
-        mpv --input-ipc-server=$SOCKET --x11-name=mpvscratchpad --title=mpvscratchpad --geometry=384x216-32+62 --no-terminal --force-window --keep-open=yes --idle=yes
-        '');
-
       mpv-scratchpad-toggle = (pkgs.writeShellScriptBin "mpv-scratchpad-toggle" ''
         VISIBLE_IDS=$(xdotool search --onlyvisible --classname 'mpvscratchpad')
         ALL_IDS=$(xdotool search --classname 'mpvscratchpad')
@@ -276,6 +276,16 @@ in
         socat
         nodePackages.peerflix
       ];
+
+   systemd.user.services.mpv-scratchpad = {
+    enable = true;
+    description = "MPV Scratchpad";
+    wantedBy = [ "default.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${mpv-scratchpad}/bin/mpv-scratchpad";
+    };
+  };
 
   home-manager.users."${username}" = {
     xdg.configFile =
