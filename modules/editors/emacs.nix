@@ -33,6 +33,18 @@
     ccls
     # :lang javascript
     nodePackages.javascript-typescript-langserver
+    (makeDesktopItem {
+      terminal = "False";
+      name = "emacs-dired";
+      genericName = "Text editor";
+      desktopName = "Emacs Dired";
+      mimeType = "inode/directory;application/x-directory";
+      extraEntries = "NoDisplay=true";
+      icon = "emacs";
+      exec = "${emacsUnstable}/bin/emacsclient -c";
+      categories = "Development";
+      type = "Application";
+    })
   ];
 
   fonts.fonts = [

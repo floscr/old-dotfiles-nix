@@ -42,7 +42,8 @@
   my.home.xdg.mimeApps = {
     enable = true;
     defaultApplications = {
-      "inode/directory" = "emacs.desktop";
+      "application/x-directory" = "emacs-dired.desktop";
+      "inode/directory" = "emacs-dired.desktop";
       "text/english" = "emacs.desktop";
       "text/plain" = "emacs.desktop";
       "text/x-c" = "emacs.desktop";
