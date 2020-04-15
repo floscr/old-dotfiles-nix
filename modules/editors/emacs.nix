@@ -3,7 +3,7 @@
 {
   my.packages = with pkgs; [
     ## Doom dependencies
-    emacsGit
+    emacsUnstable
     git
     (ripgrep.override {withPCRE2 = true;})
 

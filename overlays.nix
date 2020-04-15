@@ -1,4 +1,5 @@
-[
+let emacsOverlaySha = "076246e7d209313112f13f03a9ee92534f0bbf0a";
+in [
   (self: super: with super; {
     my = {
       cached-nix-shell =
@@ -12,6 +13,8 @@
     unstable = import <nixpkgs-unstable> { inherit config; };
   })
 
-  (import (builtins.fetchTarball https://github.com/nix-community/emacs-overlay/archive/7fa4cedbe32254657abf6e5f4561efff6e64828a.tar.gz))
+  (import (builtins.fetchTarball {
+    url = "https://github.com/nix-community/emacs-overlay/archive/${emacsOverlaySha}.tar.gz";
+  }))
   (import ./overlays/chromium.nix)
 ]
