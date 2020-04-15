@@ -10,9 +10,6 @@ let
   mpv-thumbs-cache = "/tmp/mpv_thumbs_cache";
   mpv-gallery-thumb-dir = "/tmp/mpv_gallery_cache";
   fullscreen-lock = "/tmp/mpv-scratchpad-fullscreen.lock";
-in
-
-let
   mpv-scratchpad = (pkgs.writeShellScriptBin "mpv-scratchpad" ''
     SOCKET=${mpv-socket}
     FULLSCREEN=${fullscreen-lock}
@@ -20,7 +17,7 @@ let
 
     mkdir -p ${mpv-gallery-thumb-dir}
 
-    ${pkgs.mpv}/bin/mpv --input-ipc-server=$SOCKET --x11-name=mpvscratchpad --title=mpvscratchpad --geometry=384x216-32+62 --no-terminal --force-window --keep-open=yes --idle=yes
+    ${pkgs.mpv}/bin/mpv --input-ipc-server=$SOCKET --x11-name=mpvscratchpad --title=mpvscratchpad --geometry=384x216-32+62 --no-terminal --force-window --keep-open=yes --idle=yes&
     '');
 in {
   environment.systemPackages =
@@ -283,6 +280,7 @@ in {
     wantedBy = [ "default.target" ];
     serviceConfig = {
       Type = "oneshot";
+      RemainAfterExit = true;
       ExecStart = "${mpv-scratchpad}/bin/mpv-scratchpad";
     };
   };
