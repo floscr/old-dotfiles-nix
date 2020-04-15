@@ -1,0 +1,12 @@
+#!/usr/bin/env zsh
+
+_yt720p="136+140"
+_yt1080p="137+140"
+
+url=`bash -c 'echo ${0:1:-1}' $(emacsclient -e "(-last-item (+wm/last-chrome-window-url-title))")`
+
+echo "$url"
+
+playerctl pause
+
+mpv-scratchpad-open $url
