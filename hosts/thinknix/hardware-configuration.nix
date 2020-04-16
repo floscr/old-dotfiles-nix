@@ -22,6 +22,10 @@ in {
   powerManagement.cpuFreqGovernor = lib.mkDefault "performance";
   hardware.cpu.intel.updateMicrocode = true;
 
+  ## SSDs
+  services.fstrim.enable = true;
+
+  ### Harddrives
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/1256e32a-46cd-443e-9bb7-8fd910cc5b32";
       fsType = "ext4";
