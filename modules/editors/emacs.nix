@@ -33,6 +33,9 @@
     ccls
     # :lang javascript
     nodePackages.javascript-typescript-langserver
+    # :private system
+    wmctrl
+    # Emacsclient as the default file explorer
     (makeDesktopItem {
       terminal = "False";
       name = "emacs-dired";
