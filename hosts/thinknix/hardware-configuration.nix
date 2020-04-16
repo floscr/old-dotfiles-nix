@@ -30,16 +30,11 @@ in {
     { device = "/dev/disk/by-uuid/1256e32a-46cd-443e-9bb7-8fd910cc5b32";
       fsType = "ext4";
     };
-
   fileSystems."/boot" =
     { device = "/dev/disk/by-uuid/18B0-385A";
       fsType = "vfat";
     };
-
   swapDevices =
     [ { device = "/dev/disk/by-uuid/03ad0fe9-be47-438f-a5c0-88eca0287fde"; }
     ];
-
-  nix.maxJobs = lib.mkDefault 4;
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
 }
