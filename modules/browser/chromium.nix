@@ -11,7 +11,19 @@ in {
     systemPackages = with pkgs; [
       chromium
 
-      # brotab
+      (pkgs.writeScriptBin "launch-chrome" ''
+        #! ${pkgs.bash}/bin/bash
+        # start chromium depending on which display is connected
+
+        export DEFAULT_ARGS="--enable-native-notifications --disable-gpu-driver-bug-workarounds --restore-last-session --enable-native-gpu-memory-buffers"
+
+        if [[ $(xrandr | grep "^eDP1 connected primary") ]]; then
+          chromium-browser $DEFAULT_ARGS --force-device-scale-factor=1.2
+        else
+          chromium-browser $DEFAULT_ARGS --force-device-scale-factor=1.5
+        fi
+      '')
+
       (pkgs.writeScriptBin "chromium-private" ''
         #! ${pkgs.bash}/bin/bash
         chromium-browser --incognito "$@"

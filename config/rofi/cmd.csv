@@ -29,3 +29,4 @@ MM: Start (Work Docker),cd ~/Code/Meisterlabs/docker-dev-environment; ./mindmeis
 MM: ReStart (Work Docker),cd ~/Code/Meisterlabs/docker-dev-environment; ./mindmeister/restart; notify-send "MM Docker ReStarted"
 MM: Migrate (Work Docker),cd ~/Code/Meisterlabs/docker-dev-environment; ./mindmeister/rake db:migrate; notify-send "Migration Finished"
 Scratchify (Media),scratchify-browser
+Chromium Incognito Private (Browser),chromium-private
