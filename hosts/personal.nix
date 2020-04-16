@@ -3,8 +3,11 @@
 {
   imports = [ ./. ];
 
-  # Support for more filesystems
   environment.systemPackages = with pkgs; [
+    # Use nix-run to test applications instead of littering you base
+    nix-bundle
+
+    # Support for more filesystems
     exfat
     ntfs3g
     hfsprogs
