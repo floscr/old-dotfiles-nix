@@ -6,16 +6,18 @@ let
 in
 
 let
-  mpv-socket = "/tmp/mpv-scratchpad-socket";
-  mpv-thumbs-cache = "/tmp/mpv_thumbs_cache";
-  mpv-gallery-thumb-dir = "/tmp/mpv_gallery_cache";
-  fullscreen-lock = "/tmp/mpv-scratchpad-fullscreen.lock";
+  mpv-socket = "~/.cache/mpv-scratchpad-socket";
+  mpv-thumbs-cache = "~/.cache/mpv_thumbs_cache";
+  mpv-gallery-thumb-dir = "~/.cache/mpv_gallery_cache";
+  fullscreen-lock = "~/.cache/mpv-scratchpad-fullscreen.lock";
   mpv-scratchpad = (pkgs.writeShellScriptBin "mpv-scratchpad" ''
     SOCKET=${mpv-socket}
     FULLSCREEN=${fullscreen-lock}
     rm -f $FULLSCREEN
 
     mkdir -p ${mpv-gallery-thumb-dir}
+
+    echo ${mpv-socket}
 
     ${pkgs.mpv}/bin/mpv --input-ipc-server=$SOCKET --x11-name=mpvscratchpad --title=mpvscratchpad --geometry=384x216-32+62 --no-terminal --force-window --keep-open=yes --idle=yes&
     '');
@@ -526,7 +528,7 @@ in {
           #opengl-shaders="~/.mpv/shaders/SSimSuperRes.glsl,~/.mpv/shaders/adaptive-sharpen-2pass.glsl"
           #opengl-shaders="~/.mpv/shaders/adaptive-sharpen-2pass.glsl"
           icc-profile-auto=yes
-          icc-cache-dir=/tmp/mpv-icc
+          icc-cache-dir=~/.cache/mpv-icc
           # target-brightness=100
           interpolation
           tscale=oversample
