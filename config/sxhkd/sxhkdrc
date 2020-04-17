@@ -10,6 +10,13 @@ super + Return
 alt + Return
 	bspc node -n @/
 
+# Select previous / next desktop
+super + m
+	bspc subscribe node_{remove,add} | while read _; do /etc/dotfiles/bin/bspc/master-stack-mode; done
+
+super + shift + m
+	pkill -f /etc/dotfiles/bin/bspc/master-stack-mode && bspc node @/ -E
+
 super + shift + v
 	rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
 #
