@@ -7,8 +7,27 @@ super + e
 super + Return
 	termite
 
+alt + Return
+	bspc node -n @/
+
 super + shift + v
 	rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
+#
+# Toggle tiling mode of window
+super + shift + t
+	bspc node -t {pseudo_tiled,tiled}
+
+# Force all windows of the desktop to tile
+super + ctrl + t
+	bspcp tile
+
+# Balance tree
+super + b
+	bspc node @/ -B
+
+# Balance brother node. If you do this on biggest window of the desktop, it usually means balancing all windows with except the biggest.
+super + alt + b
+	bspc node @brother -B
 
 super + P
 	mpv-scratchpad-toggle
