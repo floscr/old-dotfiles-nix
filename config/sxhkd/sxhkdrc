@@ -108,6 +108,8 @@ XF86MonBrightnessDown
 	playerctl previous
 { XF86AudioMute, super + alt + m }
 	amixer -q set Master toggle
+super + alt + c
+	amixer set Capture toggle
 
 # turn off screen
 super + BackSpace
