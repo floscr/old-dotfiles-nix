@@ -516,6 +516,7 @@ in {
           x11-bypass-compositor=yes # bypass compositor
           demuxer-thread=yes
 
+          gpu-api=vulkan
           script-opts=osc-layout=box
           profile=opengl-hq
           scale=ewa_lanczossharp
