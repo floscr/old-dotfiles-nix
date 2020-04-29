@@ -7,9 +7,6 @@ super + e
 super + Return
 	termite
 
-alt + Return
-	bspc node -n @/
-
 # Select previous / next desktop
 super + m
 	bspc subscribe node_{remove,add} | while read _; do /etc/dotfiles/bin/bspc/master-stack-mode; done
