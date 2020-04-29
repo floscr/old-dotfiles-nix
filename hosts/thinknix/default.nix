@@ -13,6 +13,7 @@
     <modules/desktop/sound.nix>
     <modules/desktop/notifications.nix>
     <modules/desktop/lock.nix>
+    <modules/desktop/autorandr.nix>
     <modules/browser/chromium.nix>
 
     <modules/work/meisterlabs.nix>
