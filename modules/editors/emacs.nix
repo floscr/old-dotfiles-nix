@@ -33,6 +33,7 @@
     ccls
     # :lang javascript
     nodePackages.javascript-typescript-langserver
+    nodePackages.eslint_d
     # :private system
     wmctrl
     # Emacsclient as the default file explorer
