@@ -15,6 +15,22 @@
     ];
   };
 
+  systemd.user.services.polybar = {
+    description = "Polybar daemon";
+    wantedBy = [ "multi-user.target" ];
+    partOf = [ "multi-user.target" ];
+    serviceConfig = {
+      Type = "forking";
+    };
+    script = let
+      polybar = "${pkgs.polybar}/bin/polybar";
+      xrandr = "${pkgs.xorg.xrandr}/bin/xrandr";
+      grep = "${pkgs.gnugrep}/bin/grep";
+    in lib.mkDefault ''
+${polybar} main &
+      '';
+  };
+
   services = {
     xserver = {
       windowManager.default = "bspwm";
