@@ -36,6 +36,8 @@ alias sc=systemctl
 alias scu='systemctl --user'
 alias ssc='sudo systemctl'
 
+alias jc='journalctl'
+
 alias y='xclip -selection clipboard -in'
 alias p='xclip -selection clipboard -out'
 
