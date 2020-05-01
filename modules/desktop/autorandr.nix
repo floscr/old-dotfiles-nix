@@ -8,6 +8,26 @@
 
   my.home.programs.autorandr = {
     enable = true;
+    hooks = {
+      postswitch = {
+        # "change-background" = readFile ./change-background.sh;
+        "change-dpi" = ''
+          case "$AUTORANDR_CURRENT_PROFILE" in
+            mobile)
+              DPI=110
+              ;;
+            work)
+              DPI=186
+              ;;
+            *)
+              echo "Unknown profle: $AUTORANDR_CURRENT_PROFILE"
+              exit 1
+          esac
+
+          echo "Xft.dpi: $DPI" | ${pkgs.xorg.xrdb}/bin/xrdb -merge
+        '';
+      };
+    };
     profiles = {
       mobile = {
         fingerprint = {
@@ -28,12 +48,6 @@
           HDMI2 = { enable = false; };
           VIRTUAL1 = { enable = false; };
         };
-          hooks.postswitch = ''
-            ${pkgs.bspwm}/bin/bspc config window_gap 8
-            ${pkgs.bspwm}/bin/bspc monitor \^1 -d {1,2,3,4,5,6,7}
-            ${pkgs.feh}/bin/feh --no-fehbg --bg-scale /etc/dotfiles/modules/themes/glimpse/wallpaper.png
-            ${pkgs.polybar}/bin/polybar --reload main
-          '';
       };
       work = {
         fingerprint = {
@@ -58,7 +72,7 @@
         };
       hooks.postswitch = ''
             ${pkgs.bspwm}/bin/bspc config window_gap 8
-            ${pkgs.bspwm}/bin/bspc monitor \^1 -d {1,2,3,4,5,6,7}
+            ${pkgs.bspwm}/bin/bspc monitor DP2 -d {1,2,3,4,5,6,7}
             ${pkgs.feh}/bin/feh --no-fehbg --bg-scale /etc/dotfiles/modules/themes/glimpse/wallpaper.png
             ${pkgs.polybar}/bin/polybar --reload main
           '';
