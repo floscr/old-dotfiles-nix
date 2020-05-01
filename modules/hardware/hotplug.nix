@@ -1,21 +1,18 @@
 { config, pkgs, ... }:
 
-with pkgs;
-
-
 let
   xrandr = "${pkgs.xorg.xrandr}/bin/xrandr";
   grep = "${pkgs.gnugrep}/bin/grep";
   bspc = "${pkgs.bspwm}/bin/bspc";
 in {
-  systemd.user.services."hotplug-monitor" = {
+  systemd.user.services."hotplug-monitor@" = {
     enable = true;
     description = "Hotplug Monitor";
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       Type = "oneshot";
       RemainAfterExit = false;
-      ExecStart = "${pkgs.systemd}/bin/systemctl --user start setup-monitor";
+      ExecStart = "${pkgs.systemd}/bin/systemctl --user restart setup-monitor.service";
     };
   };
 
@@ -56,23 +53,20 @@ function disconnect(){
     --primary \
     --dpi 92 \
     --auto
-
-  # ${bspc} config window_gap 0
 }
 
 if [[ $(${xrandr} | ${grep} "^DP2 connected") ]]; then
-echo "Connect"
-${xrandr}
-  # connectLG
+  connectLG
 else
-echo "Disconnect"
-  # disconnect
+  disconnect
 fi
       ''}";
     };
   };
 
+  # Jesus christ udev
+  # https://superuser.com/a/1401322
   services.udev.extraRules = ''
-    KERNEL=="card0", SUBSYSTEM=="drm", TAG+="systemd", ENV{SYSTEMD_USER_WANTS}="hotplug-monitor.service"
+    ACTION=="change", KERNEL=="card0", SUBSYSTEM=="drm", ENV{HOTPLUG}=="1", ENV{SYSTEMD_USER_WANTS}+="hotplug-monitor@$env{SEQNUM}.service", TAG+="systemd"
   '';
 }
