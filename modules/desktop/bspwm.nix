@@ -31,6 +31,18 @@ ${polybar} main &
       '';
   };
 
+  systemd.user.services.wallpaper = {
+    description = "Feh Daemon";
+    wantedBy = [ "multi-user.target" ];
+    partOf = [ "multi-user.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+    };
+    script = let
+      feh = "${pkgs.feh}/bin/feh";
+    in lib.mkDefault "${feh} --no-fehbg --bg-scale /etc/dotfiles/modules/themes/glimpse/wallpaper.png";
+  };
+
   services = {
     xserver = {
       windowManager.default = "bspwm";

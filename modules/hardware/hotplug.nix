@@ -69,6 +69,7 @@ else
 fi
 
 ${pkgs.systemd}/bin/systemctl --user restart polybar.service;
+${pkgs.systemd}/bin/systemctl --user restart wallpaper.service;
 
 # Reset windows overlaying polybar
 ${sleep} 1
