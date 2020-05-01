@@ -4,6 +4,7 @@ let
   xrandr = "${pkgs.xorg.xrandr}/bin/xrandr";
   grep = "${pkgs.gnugrep}/bin/grep";
   bspc = "${pkgs.bspwm}/bin/bspc";
+  sleep = "${pkgs.coreutils}/bin/sleep";
 in {
   systemd.user.services."hotplug-monitor@" = {
     enable = true;
@@ -39,6 +40,8 @@ function connectLG(){
     --pos 0x0 \
     --rotate normal \
     --auto
+
+  ${pkgs.bspwm}/bin/bspc window_gap 8
 }
 
 function disconnect(){
@@ -53,6 +56,10 @@ function disconnect(){
     --primary \
     --dpi 92 \
     --auto
+
+
+  ${pkgs.bspwm}/bin/bspc window_gap 0
+
 }
 
 if [[ $(${xrandr} | ${grep} "^DP2 connected") ]]; then
@@ -60,6 +67,12 @@ if [[ $(${xrandr} | ${grep} "^DP2 connected") ]]; then
 else
   disconnect
 fi
+
+${pkgs.systemd}/bin/systemctl --user restart polybar.service;
+
+# Reset windows overlaying polybar
+${sleep} 1
+${bspc} config borderless_monocle true
       ''}";
     };
   };
