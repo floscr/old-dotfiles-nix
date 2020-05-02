@@ -54,6 +54,12 @@ super + {grave,Tab}
 super + d
 	rofi -show
 
+super + bracket{left,right}
+  desk=`bspc query -D -d focused`; \
+  bspc desktop -m {prev,next}; \
+  bspc monitor -f {prev,next}; \
+  bspc desktop -f $desk
+
 super + shift + f
 	/etc/dotfiles/bin/bspc/toggle_desktop_mode
 
