@@ -8,7 +8,6 @@ in
 {
   imports = [ <home-manager/nixos> ];
 
-
   ## Personal settings
   options.my.username = mkOptionStr "floscr";
   options.my.email = mkOptionStr "hello@florianschroedl.com";

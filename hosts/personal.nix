@@ -1,8 +1,6 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports = [ ./. ];
-
   environment.systemPackages = with pkgs; [
     # Use nix-run to test applications instead of littering you base
     nix-bundle
