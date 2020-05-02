@@ -14,7 +14,7 @@
     <modules/desktop/sound.nix>
     <modules/desktop/notifications.nix>
     <modules/desktop/lock.nix>
-    <modules/browser/chromium.nix>
+    <modules/browsers/chromium.nix>
 
     <modules/work/meisterlabs.nix>
 
