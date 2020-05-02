@@ -1,8 +1,16 @@
+### convenience
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias -- -='cd -'
+
 ### Better Defaults
+alias q=exit
+alias clr=clear
+alias sudo='sudo '
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
-
 alias mkdir='mkdir -p'
 alias wget='wget -c'
 
@@ -12,16 +20,6 @@ alias egrep='egrep --color=auto'
 
 alias rg='noglob rg'
 alias ag='noglob ag -p $HOME/.config/ag/agignore'
-
-### convenience
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-alias -- -='cd -'
-
-alias q=exit
-alias clr=clear
-alias sudo='sudo '
 
 alias exa='exa --group-directories-first'
 alias l='exa -1'
@@ -35,7 +33,6 @@ alias gurl='curl --compressed'
 alias sc=systemctl
 alias scu='systemctl --user'
 alias ssc='sudo systemctl'
-
 alias jc='journalctl'
 
 alias y='xclip -selection clipboard -in'
