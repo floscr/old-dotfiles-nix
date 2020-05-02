@@ -3,6 +3,7 @@
 # Not working yet: Regular numbers (fonts missing)
 { config, lib, pkgs, ... }:
 
+with lib;
 let
   tex = pkgs.unstable.texlive.combine {
     inherit (pkgs.unstable.texlive)
@@ -32,10 +33,19 @@ let
       ulem
       collection-latex
       subfigure
-      ;
+    ;
   };
 in {
-  environment.systemPackages = with pkgs; [
-    tex
-  ];
+  options.modules.editors.emacsCalcTex = {
+    enable = mkOption {
+      type = types.bool;
+      default = false;
+    };
+  };
+
+  config = mkIf config.modules.editors.emacsCalcTex.enable {
+    my.packages = with pkgs; [
+      tex
+    ];
+  };
 }

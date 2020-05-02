@@ -69,6 +69,7 @@
     editors = {
       default = "nvim";
       emacs.enable = true;
+      emacsCalcTex.enable = true;
       vim.enable = true;
     };
   };
