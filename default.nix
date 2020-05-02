@@ -19,9 +19,8 @@ device:
     "config=/etc/dotfiles/config"
     "modules=/etc/dotfiles/modules"
   ];
-  # ...but we still need to set nixpkgs.overlays to make them visible to the
-  # rebuild process, however...
-  nixpkgs.overlays = import ./overlays.nix;
+  # Add custom packages & unstable channel, so they can be accessed via pkgs.*
+  nixpkgs.overlays = import ./packages;
   nixpkgs.config.allowUnfree = true;
 
   environment = {

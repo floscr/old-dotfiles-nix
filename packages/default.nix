@@ -16,5 +16,5 @@ in [
   (import (builtins.fetchTarball {
     url = "https://github.com/nix-community/emacs-overlay/archive/${emacsOverlaySha}.tar.gz";
   }))
-  (import ./overlays/chromium.nix)
+  (import ./chromium.nix)
 ]
