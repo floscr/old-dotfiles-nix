@@ -6,7 +6,7 @@ device:
   networking.hostName = lib.mkDefault device;
 
   imports = [
-    ./options.nix
+    ./modules
     "${./hosts}/${device}"
   ] ++ lib.optional (builtins.pathExists /etc/dotfiles-private/private.nix) /etc/dotfiles-private/private.nix;
 
