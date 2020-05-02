@@ -17,4 +17,10 @@
   environment.shellAliases = {
     docker-killall = "docker stop $(docker ps -q)";
   };
+
+  my.user = {
+    extraGroups = [
+      "docker"
+    ];
+  };
 }

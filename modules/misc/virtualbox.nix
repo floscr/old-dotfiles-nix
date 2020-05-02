@@ -7,4 +7,10 @@
     enable = true;
     enableExtensionPack = true;
   };
+
+  my.user = {
+    extraGroups = [
+      "vboxusers"
+    ];
+  };
 }

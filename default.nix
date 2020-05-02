@@ -55,8 +55,6 @@ device:
       "wheel"
       "video"
       "networkmanager"
-      "docker"
-      "vboxusers"
     ];
     shell = pkgs.zsh;
   };
