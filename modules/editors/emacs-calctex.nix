@@ -4,11 +4,8 @@
 { config, lib, pkgs, ... }:
 
 let
-  unstable = import <nixpkgs-unstable> {
-    config.allowUnfree = true;
-  };
-  tex = unstable.texlive.combine {
-    inherit (unstable.texlive)
+  tex = pkgs.unstable.texlive.combine {
+    inherit (pkgs.unstable.texlive)
       scheme-basic
       # Undocumented CalcTex Packages
       collection-fontsrecommended
