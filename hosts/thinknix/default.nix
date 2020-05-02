@@ -21,8 +21,6 @@
     <modules/media/default.nix>
     <modules/media/mpv.nix>
 
-    # <modules/apps/nautilus.nix>
-
     # Dev
     <modules/dev/default.nix>
     <modules/editors/emacs.nix>
