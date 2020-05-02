@@ -36,6 +36,9 @@ with lib;
         (lib.mkIf (config.programs.gnupg.agent.enable)
           pinentry_emacs)   # in-emacs gnupg prompts
 
+        # Convert stuff
+        pandoc
+
         ## Module dependencies
         # :checkers spell
         aspell
