@@ -35,6 +35,7 @@ device:
     unrar
     vim
     wget
+    jq
   
     gnumake               # for our own makefile
     my.cached-nix-shell   # for instant nix-shell scripts
