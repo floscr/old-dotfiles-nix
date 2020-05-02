@@ -21,13 +21,6 @@
     <modules/media/default.nix>
     <modules/media/mpv.nix>
 
-    # Dev
-    <modules/dev/default.nix>
-    <modules/dev/node.nix>
-    <modules/dev/cpp.nix>
-    <modules/dev/docker.nix>
-    <modules/dev/reasonml.nix>
-
     <modules/graphics/gimp.nix>
     <modules/graphics/inkscape.nix>
     <modules/graphics/krita.nix>
@@ -71,6 +64,15 @@
       emacs.enable = true;
       emacsCalcTex.enable = true;
       vim.enable = true;
+    };
+
+    dev = {
+      # Work
+      docker.enable = true;
+      mysql.enable = true;
+      node.enable = true;
+
+      reasonml.enable = true;
     };
   };
 

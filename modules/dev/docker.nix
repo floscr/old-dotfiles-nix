@@ -1,26 +1,37 @@
-{ config, lib, pkgs, ... }:
+# docker
 
+{ config, lib, pkgs, ... }:
+with lib;
 {
-  virtualisation = {
-    docker = {
-      enable = true;
-      autoPrune.enable = true;
-      enableOnBoot = false;
+  options.modules.dev.docker = {
+    enable = mkOption {
+      type = types.bool;
+      default = false;
     };
   };
 
-  environment.systemPackages = [
-    pkgs.docker
-    pkgs.docker-compose
-  ];
+  config = mkIf config.modules.dev.docker.enable {
+    virtualisation = {
+      docker = {
+        enable = true;
+        autoPrune.enable = true;
+        enableOnBoot = false;
+      };
+    };
 
-  environment.shellAliases = {
-    docker-killall = "docker stop $(docker ps -q)";
-  };
-
-  my.user = {
-    extraGroups = [
-      "docker"
+    my.packages = with pkgs; [
+      docker
+      docker-compose
     ];
+
+    environment.shellAliases = {
+      docker-killall = "docker stop $(docker ps -q)";
+    };
+
+    my.user = {
+      extraGroups = [
+        "docker"
+      ];
+    };
   };
 }

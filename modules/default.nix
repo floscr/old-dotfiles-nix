@@ -8,6 +8,7 @@ in {
     <home-manager/nixos>
 
     ./editors
+    ./dev
   ];
 
   options = {
