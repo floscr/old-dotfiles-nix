@@ -4,7 +4,11 @@ let mkOptionStr = value: mkOption
   { type = types.str;
     default = value; };
 in {
-  imports = [ <home-manager/nixos> ];
+  imports = [
+    <home-manager/nixos>
+
+    ./editors
+  ];
 
   options = {
     my = {
@@ -19,7 +23,7 @@ in {
 
       ## Environment
       env = mkOption {
-        type = with types; attrsOf (either (either str  ath) (listOf (either str path)));
+        type = with types; attrsOf (either (either str path) (listOf (either str path)));
         apply = mapAttrs
           (n: v: if isList v
                  then concatMapStringsSep ":" (x: toString x) v

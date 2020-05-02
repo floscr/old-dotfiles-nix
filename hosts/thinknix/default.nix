@@ -23,9 +23,6 @@
 
     # Dev
     <modules/dev/default.nix>
-    <modules/editors/emacs.nix>
-    <modules/editors/emacs-calctex.nix>
-    <modules/editors/vim.nix>
     <modules/dev/node.nix>
     <modules/dev/cpp.nix>
     <modules/dev/docker.nix>
@@ -67,6 +64,14 @@
     # Themes
     <modules/themes/glimpse>
   ];
+
+  modules = {
+    editors = {
+      default = "nvim";
+      emacs.enable = true;
+      vim.enable = true;
+    };
+  };
 
   time.timeZone = "Europe/Vienna";
 
