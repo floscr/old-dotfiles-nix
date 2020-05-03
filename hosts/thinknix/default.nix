@@ -5,15 +5,11 @@
     ../personal.nix   # common settings
     ./hardware-configuration.nix
 
-    <modules/desktop/bspwm.nix>
-
     <modules/hardware/t490s.nix>
     <modules/hardware/mouse.nix>
     <modules/hardware/hotplug.nix>
 
     <modules/desktop/sound.nix>
-    <modules/desktop/notifications.nix>
-    <modules/desktop/lock.nix>
 
     <modules/work/meisterlabs.nix>
 

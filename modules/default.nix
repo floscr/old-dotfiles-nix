@@ -8,7 +8,7 @@ in {
     <home-manager/nixos>
 
     ./editors
-    ./browsers
+    ./desktop
     ./dev
   ];
 
