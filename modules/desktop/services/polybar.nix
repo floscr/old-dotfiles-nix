@@ -14,7 +14,7 @@
     wantedBy = [ "multi-user.target" ];
     partOf = [ "multi-user.target" ];
     serviceConfig = {
-      ExecStart = "${pkgs.polybar}/bin/polybar main &";
+      ExecStart = "${pkgs.polybar}/bin/polybar main";
       Restart = "always";
       Type = "forking";
     };
