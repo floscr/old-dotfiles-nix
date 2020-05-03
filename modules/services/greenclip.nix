@@ -1,6 +1,8 @@
-{ pkgs, ... }:
+{ config, options, lib, pkgs, ... }:
+with lib;
 
 let greenclip = pkgs.haskellPackages.greenclip;
+    utils = import <modules/utils.nix>;
 in {
   my.packages = [
     greenclip
@@ -22,22 +24,9 @@ in {
     };
   };
 
-
-  my.home.xdg.configFile = {
-    "greenclip/cfg".text = ''
-Config {
-  maxHistoryLength           = 512,
-  historyPath                = "~/.cache/greenclip.history",
-  staticHistoryPath          = "~/.cache/greenclip.staticHistory",
-  imageCachePath             = "/tmp/",
-  usePrimarySelectionAsInput = True,
-  blacklistedApps            = [ ],
-  trimSpaceFromSelection     = False
-}
-'';
-    "sxhkd/sxhkdrc".text = ''
-super + shift + v
-    rofi-greenclip
-'';
+  my.home.xdg.configFile = utils.mkBinding {
+    binding = "super + shift + v";
+    command = "rofi-greenclip";
+    description = "Clipboard Manager";
   };
 }
