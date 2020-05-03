@@ -3,7 +3,6 @@
 {
   imports = [
     ./common.nix
-    ./apps/rofi.nix
     ./services/lock.nix
     ./services/notifications.nix
     ./services/polybar.nix

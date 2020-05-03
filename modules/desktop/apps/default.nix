@@ -2,9 +2,7 @@
 
 {
   imports = [
-    ./bspwm.nix
-
-    ./browsers
-    ./apps
+    ./rofi.nix
+    ./spotify.nix
   ];
 }

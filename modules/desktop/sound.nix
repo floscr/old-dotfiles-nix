@@ -1,25 +1,7 @@
 #Enables bluetooth headset using bluez5 and pulseaudio
 { pkgs, ... }:
 
-let
-  unstable = import <nixpkgs-unstable> {
-    config.allowUnfree = true;
-  };
-  # Spotify is terrible on hidpi screens (retina, 4k); this small wrapper
-  # passes a command-line flag to force better scaling.
-  spotify-4k = pkgs.symlinkJoin {
-    name = "spotify";
-    paths = [ unstable.spotify ];
-    nativeBuildInputs = [ pkgs.makeWrapper ];
-    postBuild = ''
-      wrapProgram $out/bin/spotify \
-        --add-flags "--force-device-scale-factor=1.5"
-    '';
-  };
-
-in
 {
-  #sudo rfkill unblock bluetooth
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
@@ -37,12 +19,13 @@ in
         Enable=Source,Sink,Media,Socket
         '';
   };
+
   hardware.pulseaudio = {
     enable = true;
     support32Bit = true;
     package = pkgs.pulseaudioFull;
     extraModules = [
-      unstable.pulseaudio-modules-bt
+      pkgs.unstable.pulseaudio-modules-bt
     ];
     # https://medium.com/@gamunu/enable-high-quality-audio-on-linux-6f16f3fe7e1f
     daemon.config = {
@@ -82,6 +65,5 @@ in
     playerctl
     pavucontrol
     blueman
-    spotify-4k
   ];
 }

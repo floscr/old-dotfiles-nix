@@ -57,6 +57,8 @@
     desktop = {
       browsers.default = "chromium";
       browsers.chromium.enable = true;
+      apps.rofi.enable = true;
+      apps.spotify.enable = true;
     };
 
     editors = {
