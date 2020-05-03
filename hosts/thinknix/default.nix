@@ -14,7 +14,6 @@
     <modules/desktop/sound.nix>
     <modules/desktop/notifications.nix>
     <modules/desktop/lock.nix>
-    <modules/browsers/chromium.nix>
 
     <modules/work/meisterlabs.nix>
 
@@ -59,6 +58,11 @@
   ];
 
   modules = {
+    desktop = {
+      browsers.default = "chromium";
+      browsers.chromium.enable = true;
+    };
+
     editors = {
       default = "nvim";
       emacs.enable = true;
@@ -67,11 +71,9 @@
     };
 
     dev = {
-      # Work
       docker.enable = true;
       mysql.enable = true;
       node.enable = true;
-
       reasonml.enable = true;
     };
   };

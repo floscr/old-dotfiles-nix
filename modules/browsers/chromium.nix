@@ -1,14 +1,15 @@
-{ config, lib, pkgs, ... }:
-
-let
-  # brotab = pkgs.callPackages ../../packages/brotab.nix { };
-in {
-  environment = {
-    sessionVariables = {
-      BROWSER = "chromium";
+{ config, options, lib, pkgs, ... }:
+with lib;
+{
+  options.modules.desktop.browsers.chromium = {
+    enable = mkOption {
+      type = types.bool;
+      default = false;
     };
+  };
 
-    systemPackages = with pkgs; [
+  config = mkIf config.modules.desktop.browsers.chromium.enable {
+    my.packages = with pkgs; [
       chromium
 
       (pkgs.writeScriptBin "launch-chrome" ''
@@ -23,32 +24,32 @@ in {
           chromium-browser $DEFAULT_ARGS --force-device-scale-factor=1.5
         fi
       '')
-
       (pkgs.writeScriptBin "chromium-private" ''
         #! ${pkgs.bash}/bin/bash
         chromium-browser --incognito "$@"
       '')
     ];
-  };
 
-  # Needed for netflix
-  nixpkgs.config.chromium = {
-    enableWideVine = true;
-  };
+    # Needed for netflix
+    nixpkgs.config.chromium = {
+      enableWideVine = true;
+    };
 
-  programs.chromium = {
-    enable = true;
-    extensions = [
-      "gcbommkclmclpchllfjekcdonpmejbdp" # HTTPS Everywhere
-      "cjpalhdlnbpafiamejdnhcphjbkeiagm" # uBlock Origin
-      "dbepggeogbaibhgnhhndojpepiihcmeb" # Vimium
-      "lhaoghhllmiaaagaffababmkdllgfcmc" # Atomic Chrome, edit inputs in emacs
-      "eimadpbcbfnmbkopoojfekhnkhdbieeh" # Dark Reader
-      "kbmfpngjjgdllneeigpgjifpgocmfgmb" # Reddit Enhancment Suite
-      "ofjfdfaleomlfanfehgblppafkijjhmi" # Georgify - Hacker News Theme
-      "gbmdgpbipfallnflgajpaliibnhdgobh" # JSON Viewer
-      "ndiaggkadcioihmhghipjmgfeamgjeoi" # Add URL to window title
-      "fipfgiejfpcdacpjepkohdlnjonchnal" # Tab Shortcuts
-    ];
+    # Extensions
+    programs.chromium = {
+      enable = true;
+      extensions = [
+        "gcbommkclmclpchllfjekcdonpmejbdp" # HTTPS Everywhere
+        "cjpalhdlnbpafiamejdnhcphjbkeiagm" # uBlock Origin
+        "dbepggeogbaibhgnhhndojpepiihcmeb" # Vimium
+        "lhaoghhllmiaaagaffababmkdllgfcmc" # Atomic Chrome, edit inputs in emacs
+        "eimadpbcbfnmbkopoojfekhnkhdbieeh" # Dark Reader
+        "kbmfpngjjgdllneeigpgjifpgocmfgmb" # Reddit Enhancment Suite
+        "ofjfdfaleomlfanfehgblppafkijjhmi" # Georgify - Hacker News Theme
+        "gbmdgpbipfallnflgajpaliibnhdgobh" # JSON Viewer
+        "ndiaggkadcioihmhghipjmgfeamgjeoi" # Add URL to window title
+        "fipfgiejfpcdacpjepkohdlnjonchnal" # Tab Shortcuts
+      ];
+    };
   };
 }
