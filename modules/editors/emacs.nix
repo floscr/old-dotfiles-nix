@@ -12,10 +12,6 @@ with lib;
     };
   };
 
-  imports = [
-    ./emacs-calctex.nix
-  ];
-
   config = mkIf config.modules.editors.emacs.enable {
     my = {
       packages = with pkgs; [

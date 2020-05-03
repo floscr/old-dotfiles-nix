@@ -3,6 +3,7 @@ with lib;
 {
   imports = [
     ./emacs.nix
+    ./emacs-calctex.nix
     ./vim.nix
     ./vscode.nix
   ];
