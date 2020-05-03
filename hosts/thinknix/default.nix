@@ -45,8 +45,6 @@
     <modules/misc/virtualbox.nix>
     <modules/misc/transmission.nix>
 
-    <modules/gaming/emulators.nix>
-
     # Themes
     <modules/themes/glimpse>
   ];
