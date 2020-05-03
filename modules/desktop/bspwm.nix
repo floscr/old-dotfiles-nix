@@ -3,6 +3,7 @@
 {
   imports = [
     ./common.nix
+    ./sound.nix
     ./services/lock.nix
     ./services/notifications.nix
     ./services/polybar.nix

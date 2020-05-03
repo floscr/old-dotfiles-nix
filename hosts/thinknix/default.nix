@@ -9,8 +9,6 @@
     <modules/hardware/mouse.nix>
     <modules/hardware/hotplug.nix>
 
-    <modules/desktop/sound.nix>
-
     <modules/work/meisterlabs.nix>
 
     <modules/media/default.nix>
