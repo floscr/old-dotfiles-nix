@@ -23,9 +23,9 @@ in {
     script = ''
         polybar main &
       '';
+    path = with pkgs; [ polybar pulseaudio gawk ];
     serviceConfig = {
       Type = "forking";
-      Environment = "PATH=${polybar}/bin:/run/wrappers/bin:${pkgs.pulseaudio}/bin:${pkgs.gawk}/bin";
       Restart = "on-failure";
     };
   };
