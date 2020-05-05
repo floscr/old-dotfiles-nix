@@ -31,9 +31,6 @@
 F12
 	monitor-hotplug
 
-super + e
-	emacs-atomic-edit-here
-
 super + Return
 	termite
 
