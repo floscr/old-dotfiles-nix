@@ -25,6 +25,69 @@
     };
   };
 
+  my.bindings = [
+    {
+      binding = "super + shift + v";
+      command = "/etc/dotfiles/bin/bspc/toggle_desktop_mode";
+      description = "Toggle Floating Desktop Mode";
+    }
+    {
+      binding = "super + grave";
+      command = "bspc node -f last";
+      description = "Switch to previous window";
+    }
+    {
+      binding = "super + Tab";
+      command = "bspc desktop -f last";
+      description = "Switch to previous desktop";
+    }
+    {
+      binding = "super + shift + v";
+      command = "/etc/dotfiles/bin/bspc/toggle_desktop_mode";
+      description = "Toggle Floating Desktop Mode";
+    }
+    {
+      binding = "super + w";
+      command = "bspc node --close";
+      description = "Close window";
+    }
+    {
+      binding = "super + shift + w";
+      command = "bspc node --kill";
+      description = "Kill process";
+    }
+    {
+      binding = "super + {_,shift +}{1-9,0}";
+      command = "bspc {desktop -f,node -d} {1-9,10}";
+      description = "Switch to desktop";
+    }
+    {
+      binding = "super + {_,ctrl +}{h,j,k,l}";
+      command = "/etc/dotfiles/bin/bspc/focus {_,-m }{west,south,north,east}";
+      description = "Focus/Swap the node in the given direction";
+    }
+    {
+      binding = "super + shift + {_,ctrl +}{h,j,k,l}";
+      command = "/etc/dotfiles/bin/bspc/swap {_,-m }{west,south,north,east}";
+      description = "Focus/Swap the node in the given direction";
+    }
+    {
+      binding = "super + {_,ctrl + }f";
+      command = "bspc node -t ~{floating,fullscreen}";
+      description = "Toggle floating/fullscreen";
+    }
+    {
+      binding = "super + ctrl + {_,shift + }v";
+      command = "bspc node @/ --flip {vertical,horizontal}";
+      description = "Flip Splits";
+    }
+    {
+      binding = "super + alt + b";
+      command = "bspc node @brother -B";
+      description = "Flip Splits";
+    }
+  ];
+
   my.home.xdg.configFile = {
     "bspwm" = { source = <config/bspwm>; recursive = true; };
     "sxhkd/sxhkdrc".text = ''
@@ -37,17 +100,6 @@ super + Return
 super + P
 	mpv-scratchpad-toggle
 
-
-super + bracket{left,right}
-  desk=`bspc query -D -d focused`; \
-  bspc desktop -m {prev,next}; \
-  bspc monitor -f {prev,next}; \
-  bspc desktop -f $desk
-
-super + shift + f
-	/etc/dotfiles/bin/bspc/toggle_desktop_mode
-
-
 super + t
 	toggle-polybar
 
@@ -57,47 +109,11 @@ super + apostrophe
 XF86Bluetooth
 	bluetooth-toggle
 
-
-
-# Balance tree
-super + b
-	bspc node @/ -B
-
-# Balance brother node. If you do this on biggest window of the desktop, it usually means balancing all windows with except the biggest.
-super + alt + b
-	bspc node @brother -B
-
 super + @space
 	~/.config/rofi/modules/main
 
-super + {_,shift + }w
-	bspc node -{c,k}
-
 super + shift + x
 	org-capture-frame
-
-super + shift + Tab
-	/etc/dotfiles/bin/rofi/app_switch
-
-super + {grave,Tab}
-	bspc {node,desktop} -f last
-
-super + d
-	rofi -show
-
-super + {_,shift +}{1-9,0}
-	bspc {desktop -f,node -d} {1-9,10}
-
-# focus/swap the node in the given direction
-super + {_,ctrl +}{h,j,k,l}
-	 /etc/dotfiles/bin/bspc/focus {_,-m }{west,south,north,east}
-
-super + shift + {_,ctrl +}{h,j,k,l}
-	/etc/dotfiles/bin/bspc/swap {_,-m }{west,south,north,east}
-
-# Toggle floating/fullscreen
-super + {_,ctrl + }f
-	bspc node -t ~{floating,fullscreen}
 
 # sxhkd config reload
 super + Escape
@@ -146,23 +162,6 @@ super + alt + s
 # screencast region to gif
 super + ctrl + s
 	scrrec -s ~/Media/Screenrecording/$(date +%F-%T).gif
-
-# Circulate the leaves of the tree
-# super + {_,shift + }x
-# 	bspc node @/ --circulate {backward,forward}
-
-# flip
-super + ctrl + {_,shift + }v
-	bspc node @/ --flip {vertical,horizontal}
-
-# super + shift + {_,ctrl +}{h,j,k,l}
-# 	/etc/dotfiles/bin/bspc/swap {_,-m }{west,south,north,east}
-
-super + ctrl + h
-	bspc node @east -r +100
-
-# super + ctrl + {h,j,k,l}
-# 	bspc node {@west,@south,@north,@east} -r +100
 
 '';
   };
