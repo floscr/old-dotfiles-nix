@@ -1,19 +1,15 @@
 { config, pkgs, ... }:
 
-let
-  xrandr = "${pkgs.xorg.xrandr}/bin/xrandr";
-  grep = "${pkgs.gnugrep}/bin/grep";
-  bspc = "${pkgs.bspwm}/bin/bspc";
-  sleep = "${pkgs.coreutils}/bin/sleep";
-in {
+{
   systemd.user.services."hotplug-monitor@" = {
     enable = true;
     description = "Hotplug Monitor";
     wantedBy = [ "multi-user.target" ];
+    path = [ pkgs.systemd ];
     serviceConfig = {
       Type = "oneshot";
       RemainAfterExit = false;
-      ExecStart = "${pkgs.systemd}/bin/systemctl --user restart setup-monitor.service";
+      ExecStart = "systemctl --user restart setup-monitor.service";
     };
   };
 
@@ -21,16 +17,21 @@ in {
     enable = true;
     description = "Load my monitor modifications";
     wantedBy = [ "multi-user.target" ];
+    path = with pkgs; [
+      xorg.xrandr
+      bspwm
+      sleep
+      gnugrep
+      systemd
+    ];
     serviceConfig = {
       Type = "oneshot";
       RemainAfterExit = true;
       ExecStart = "${pkgs.bash}/bin/bash ${pkgs.writeScript "hotplug-monitor.sh" ''
 #!${pkgs.stdenv.shell}
 
-echo "Starting monitor hotplug"
-
 function connectLG(){
-  ${xrandr} \
+  xrandr \
     --output eDP1 --off \
     --output DP2 \
     --primary \
@@ -41,11 +42,11 @@ function connectLG(){
     --rotate normal \
     --auto
 
-  ${pkgs.bspwm}/bin/bspc window_gap 8
+  bpsc config window_gap 8
 }
 
 function disconnect(){
-  ${xrandr} \
+  xrandr \
     --output VIRTUAL1 --off \
     --output DP1 --off \
     --output DP2 --off \
@@ -57,23 +58,21 @@ function disconnect(){
     --dpi 92 \
     --auto
 
-
-  ${pkgs.bspwm}/bin/bspc window_gap 0
-
+  bspc config window_gap 0
 }
 
-if [[ $(${xrandr} | ${grep} "^DP2 connected") ]]; then
+if [[ $(xrandr | grep "^DP2 connected") ]]; then
   connectLG
 else
   disconnect
 fi
 
-${pkgs.systemd}/bin/systemctl --user restart polybar.service;
-${pkgs.systemd}/bin/systemctl --user restart wallpaper.service;
+systemctl --user restart polybar.service;
+systemctl --user restart wallpaper.service;
 
 # Reset windows overlaying polybar
-${sleep} 1
-${bspc} config borderless_monocle true
+sleep 1
+bspc config borderless_monocle true
       ''}";
     };
   };
