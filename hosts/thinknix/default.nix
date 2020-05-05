@@ -84,6 +84,7 @@
     available = true;
     setups = {
       "ch" = builtins.toString "/etc/dotfiles-private/mullvad/ch1.conf";
+      "us" = builtins.toString "/etc/dotfiles-private/mullvad/us1.conf";
     };
   };
   security.sudo.enable = true;
