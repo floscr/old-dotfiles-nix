@@ -57,6 +57,10 @@
       apps.spotify.enable = true;
     };
 
+    services = {
+      greenclip.enable = true;
+    };
+
     editors = {
       default = "nvim";
       emacs.enable = true;
