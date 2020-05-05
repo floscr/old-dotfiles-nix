@@ -18,11 +18,11 @@
     description = "Load my monitor modifications";
     wantedBy = [ "multi-user.target" ];
     path = with pkgs; [
-      xorg.xrandr
       bspwm
-      sleep
+      coreutils
       gnugrep
       systemd
+      xorg.xrandr
     ];
     serviceConfig = {
       Type = "oneshot";
