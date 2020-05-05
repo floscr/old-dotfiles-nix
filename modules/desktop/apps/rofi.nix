@@ -14,6 +14,14 @@ with lib;
         recursive = true;
       };
 
+      bindings = [
+        {
+          binding = "super + shift + Tab";
+          command = "/etc/dotfiles/bin/rofi/app_switch";
+          description = "Switch application";
+        }
+      ];
+
       packages = with pkgs; [
         (writeScriptBin "rofi" ''
           #!${stdenv.shell}
