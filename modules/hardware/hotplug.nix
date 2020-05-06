@@ -5,11 +5,10 @@
     enable = true;
     description = "Hotplug Monitor";
     wantedBy = [ "multi-user.target" ];
-    path = [ pkgs.systemd ];
     serviceConfig = {
       Type = "oneshot";
       RemainAfterExit = false;
-      ExecStart = "systemctl --user restart setup-monitor.service";
+      ExecStart = "${pkgs.systemd}/bin/systemctl --user restart setup-monitor.service";
     };
   };
 
