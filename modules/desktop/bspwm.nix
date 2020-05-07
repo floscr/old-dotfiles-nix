@@ -77,6 +77,11 @@
       description = "Toggle floating/fullscreen";
     }
     {
+      binding = "super + shift + f";
+      command = "/etc/dotfiles/bin/bspc/toggle_desktop_mode";
+      description = "Toggle Desktop Mode";
+    }
+    {
       binding = "super + ctrl + {_,shift + }v";
       command = "bspc node @/ --flip {vertical,horizontal}";
       description = "Flip Splits";
