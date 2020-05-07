@@ -91,43 +91,6 @@
   my.home.xdg.configFile = {
     "bspwm" = { source = <config/bspwm>; recursive = true; };
     "sxhkd/sxhkdrc".text = ''
-F12
-	monitor-hotplug
-
-super + Return
-	termite
-
-super + P
-	mpv-scratchpad-toggle
-
-super + t
-	toggle-polybar
-
-super + apostrophe
-	rofi-pass -dmenu -theme theme/passmenu.rasi
-
-XF86Bluetooth
-	bluetooth-toggle
-
-super + @space
-	~/.config/rofi/modules/main
-
-super + shift + x
-	org-capture-frame
-
-# sxhkd config reload
-super + Escape
-	pkill -USR1 -x sxhkd
-
-super + XF86MonBrightnessDown
-	light -S 0.01
-super + XF86MonBrightnessUp
-	light -S 100
-XF86MonBrightnessUp
-	light -A 5
-XF86MonBrightnessDown
-	light -U 5
-
 
 { XF86AudioLowerVolume, super + alt + j }
 	amixer -q set Master 10%- unmute

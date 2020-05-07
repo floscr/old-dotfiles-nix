@@ -10,6 +10,115 @@
     imagemagickBig
   ];
 
+  my.bindings = [
+    {
+      binding = "F12";
+      command = "monitor-hotplug";
+      description = "Hotplug Monitor (Old script)";
+    }
+    {
+      binding = "super + Return";
+      command = "termite";
+      description = "New Terminal";
+    }
+    {
+      binding = "super + P";
+      command = "mpv-scratchpad-toggle";
+      description = "Toggle MPV Scratchpad";
+    }
+    {
+      binding = "super + t";
+      command = "toggle-polybar";
+      description = "Toggle Polybar";
+    }
+    {
+      binding = "XF86Bluetooth";
+      command = "bluetooth-toggle";
+      description = "Toggle buetooth";
+    }
+    {
+      binding = "super + shift + x";
+      command = "org-capture-frame";
+      description = "Emacs Org Capture";
+    }
+    {
+      binding = "super + Escape";
+      command = "pkill -USR1 -x sxhkd";
+      description = "Reload Shortcuts";
+    }
+    {
+      binding = "super + XF86MonBrightnessDown";
+      command = "light -S 0.01";
+      description = "Screen brightness: Minimum";
+    }
+    {
+      binding = "super + XF86MonBrightnessUp";
+      command = "light -S 100";
+      description = "Screen brightness: Maximum";
+    }
+    {
+      binding = "XF86MonBrightnessUp";
+      command = "light -A 5";
+      description = "Screen brightness: -5%";
+    }
+    {
+      binding = "XF86MonBrightnessDown";
+      command = "light -U 5";
+      description = "Screen brightness: +5%";
+    }
+
+    {
+      binding = "{ XF86AudioLowerVolume, super + alt + j }";
+      command = "amixer -q set Master 10%- unmute";
+      description = "Volume: -10%";
+    }
+    {
+      binding = "XF86MonBrightnessDown";
+      command = "light -U 5";
+      description = "Screen brightness: Decrease 5%";
+    }
+    {
+      binding = "XF86MonBrightnessDown";
+      command = "light -U 5";
+      description = "Screen brightness: Decrease 5%";
+    }
+    {
+      binding = "XF86MonBrightnessDown";
+      command = "light -U 5";
+      description = "Screen brightness: Decrease 5%";
+    }
+    {
+      binding = "XF86MonBrightnessDown";
+      command = "light -U 5";
+      description = "Screen brightness: Decrease 5%";
+    }
+    {
+      binding = "XF86MonBrightnessDown";
+      command = "light -U 5";
+      description = "Screen brightness: Decrease 5%";
+    }
+    {
+      binding = "XF86MonBrightnessDown";
+      command = "light -U 5";
+      description = "Screen brightness: Decrease 5%";
+    }
+    {
+      binding = "XF86MonBrightnessDown";
+      command = "light -U 5";
+      description = "Screen brightness: Decrease 5%";
+    }
+    {
+      binding = "XF86MonBrightnessDown";
+      command = "light -U 5";
+      description = "Screen brightness: Decrease 5%";
+    }
+    {
+      binding = "XF86MonBrightnessDown";
+      command = "light -U 5";
+      description = "Screen brightness: Decrease 5%";
+    }
+  ];
+
   ## Sound
   sound.enable = true;
   hardware.pulseaudio.enable = true;
