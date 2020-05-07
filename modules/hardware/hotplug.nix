@@ -41,7 +41,7 @@ function connectLG(){
     --rotate normal \
     --auto
 
-  bpsc config window_gap 8
+  bspc config window_gap 8
 }
 
 function disconnect(){
