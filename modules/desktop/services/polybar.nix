@@ -23,7 +23,12 @@ in {
     script = ''
         polybar main &
       '';
-    path = with pkgs; [ polybar pulseaudio gawk ];
+    path = with pkgs; [
+      gawk
+      networkmanager
+      polybar
+      pulseaudio
+    ];
     serviceConfig = {
       Type = "forking";
       Restart = "on-failure";
