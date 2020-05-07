@@ -16,9 +16,19 @@ with lib;
 
       bindings = [
         {
+          binding = "super + @space";
+          command = "~/.config/rofi/modules/main";
+          description = "Rofi Main Menu";
+        }
+        {
           binding = "super + shift + Tab";
           command = "/etc/dotfiles/bin/rofi/app_switch";
           description = "Switch application";
+        }
+        {
+          binding = "super + apostrophe";
+          command = "rofi-pass -dmenu -theme theme/passmenu.rasi";
+          description = "Password Manager";
         }
       ];
 
