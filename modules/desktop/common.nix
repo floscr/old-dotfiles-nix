@@ -142,8 +142,6 @@
       xinput set-prop 13 318 3, 3 # Sensitivity
 
       systemctl --user start setup-keyboard.service
-
-      sh ~/.config/polybar/launch.sh&
     '';
   };
 
