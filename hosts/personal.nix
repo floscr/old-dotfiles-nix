@@ -7,6 +7,7 @@
 
     # Support for more filesystems
     exfat
+    exfat-utils
     ntfs3g
     hfsprogs
   ];
