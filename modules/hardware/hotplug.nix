@@ -22,6 +22,7 @@
       gnugrep
       systemd
       xorg.xrandr
+      xorg.xsetroot
     ];
     serviceConfig = {
       Type = "oneshot";
@@ -68,6 +69,9 @@ fi
 
 systemctl --user restart polybar.service;
 systemctl --user restart wallpaper.service;
+
+# Fix the regular cursor for x
+xsetroot -cursor_name left_ptr
 
 # Reset windows overlaying polybar
 sleep 1
