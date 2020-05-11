@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 
-{
+let restartHotplugServiceCmd = "${pkgs.systemd}/bin/systemctl --user restart setup-monitor.service";
+in {
   systemd.user.services."hotplug-monitor@" = {
     enable = true;
     description = "Hotplug Monitor";
@@ -8,7 +9,7 @@
     serviceConfig = {
       Type = "oneshot";
       RemainAfterExit = false;
-      ExecStart = "${pkgs.systemd}/bin/systemctl --user restart setup-monitor.service";
+      ExecStart = restartHotplugServiceCmd;
     };
   };
 
@@ -81,6 +82,14 @@ bspc config borderless_monocle true
       ''}";
     };
   };
+
+  my.bindings = [ 
+    {
+      binding = "F12";
+      command = restartHotplugServiceCmd;
+      description = "Hotplug Monitor (Old script)";
+    }
+  ];
 
   # Jesus christ udev
   # https://superuser.com/a/1401322

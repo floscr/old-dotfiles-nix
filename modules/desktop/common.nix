@@ -55,11 +55,6 @@
 
   my.bindings = [
     {
-      binding = "F12";
-      command = "monitor-hotplug";
-      description = "Hotplug Monitor (Old script)";
-    }
-    {
       binding = "super + Return";
       command = "termite";
       description = "New Terminal";

@@ -7,7 +7,6 @@
 
     <modules/hardware/t490s.nix>
     <modules/hardware/mouse.nix>
-    <modules/hardware/hotplug.nix>
 
     <modules/work/meisterlabs.nix>
 

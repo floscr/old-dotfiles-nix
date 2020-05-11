@@ -9,6 +9,7 @@
     ./services/polybar.nix
     ./services/redshift.nix
     ./services/wallpaper.nix
+    ./services/hotplug.nix
   ];
 
   environment = {
