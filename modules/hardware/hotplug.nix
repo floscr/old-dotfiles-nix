@@ -70,6 +70,8 @@ fi
 systemctl --user restart polybar.service;
 systemctl --user restart wallpaper.service;
 
+bspc monitor $MONITOR -d {1,2,3,4,5,6,7}
+
 # Fix the regular cursor for x
 xsetroot -cursor_name left_ptr
 
