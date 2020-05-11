@@ -5,7 +5,7 @@
     ../personal.nix   # common settings
     ./hardware-configuration.nix
 
-    <modules/hardware/t490s.nix>
+    <modules/hardware/monitor.nix>
     <modules/hardware/mouse.nix>
 
     <modules/work/meisterlabs.nix>
