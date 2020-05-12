@@ -11,7 +11,15 @@ with lib;
       default = false;
     };
   };
+
   config = mkIf config.modules.desktop.term.termite.enable {
+    my.packages = with pkgs; [
+      (pkgs.writeScriptBin "termite-refresh-ui" ''
+        #! ${pkgs.bash}/bin/bash
+        ${pkgs.killall}/bin/killall -USR1 -r termite | true
+      '')
+    ];
+
     my.home.programs = {
       termite = {
         enable = true;
