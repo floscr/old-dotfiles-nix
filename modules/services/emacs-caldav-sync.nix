@@ -10,7 +10,7 @@
     requires = [ "network-online.target" "emacs.service" ];
     serviceConfig.Type = "oneshot";
     script = ''
-        ${pkgs.emacs}/bin/emacsclient -a "" -e '(org-caldav-sync)'
+        ${pkgs.emacsUnstable}/bin/emacsclient -a "" -e '(org-caldav-sync)'
     '';
   };
 }
