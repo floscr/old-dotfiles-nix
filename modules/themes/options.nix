@@ -9,6 +9,15 @@ with lib;
     };
 
     # TODO Colors?
+    font = mkOption {
+      type = with types; submodule({ name, ... }: {
+        options.primary = mkOption { type = str; };
+      });
+      default = {
+        primary = "Iosevka";
+      };
+    };
+
   };
 
   config = {
