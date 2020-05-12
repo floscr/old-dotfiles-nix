@@ -10,6 +10,7 @@
     ./services/redshift.nix
     ./services/wallpaper.nix
     ./services/hotplug.nix
+    ./term/default.nix
   ];
 
   environment = {

@@ -23,7 +23,6 @@
     # Shell
     # <modules/shell/direnv.nix>
     <modules/shell/gnupg.nix>
-    <modules/shell/termite.nix>
     <modules/shell/git.nix>
     <modules/shell/zsh.nix>
     <modules/shell/pass.nix>
@@ -54,6 +53,7 @@
       browsers.chromium.enable = true;
       apps.rofi.enable = true;
       apps.spotify.enable = true;
+      term.termite.enable = true;
     };
 
     services = {
