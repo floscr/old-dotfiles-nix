@@ -14,7 +14,6 @@ with lib;
     my = {
       packages = with pkgs; [
         nodejs-10_x
-        nodePackages.npm
       ];
 
       env.NPM_CONFIG_USERCONFIG = "$XDG_CONFIG_HOME/npm/config";
