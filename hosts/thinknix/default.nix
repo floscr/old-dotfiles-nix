@@ -51,6 +51,8 @@
     desktop = {
       browsers.default = "chromium";
       browsers.chromium.enable = true;
+      browsers.firefox.enable = true;
+
       apps.rofi.enable = true;
       apps.spotify.enable = true;
       term.termite.enable = true;

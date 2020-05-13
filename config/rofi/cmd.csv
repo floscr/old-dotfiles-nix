@@ -1,4 +1,5 @@
 Chromium (Browser),launch-chrome
+Firefox (Browser),firefox
 Emacs Client (Editor),e
 Toggle VPN (Script),toggle_vpn
 Toggle Redshift (Script),toggle_redshift
