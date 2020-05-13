@@ -38,6 +38,8 @@ with lib;
     # Extensions
     programs.chromium = {
       enable = true;
+      defaultSearchProviderSearchURL = "https://duckduckgo.com/?q={searchTerms}";
+      defaultSearchProviderSuggestURL = "https://ac.duckduckgo.com/ac/?q={searchTerms}&type=list";
       extensions = [
         "gcbommkclmclpchllfjekcdonpmejbdp" # HTTPS Everywhere
         "cjpalhdlnbpafiamejdnhcphjbkeiagm" # uBlock Origin
