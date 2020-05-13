@@ -24,7 +24,7 @@ with lib;
         editorconfig-core-c # per-project style config
         fd                  # faster projectile indexing
         gnutls              # for TLS connectivity
-        imagemagick         # for image-dired
+        imagemagickBig      # for image-dired
         (lib.mkIf (config.programs.gnupg.agent.enable)
           pinentry_emacs)   # in-emacs gnupg prompts
         zstd                # for undo-tree compression

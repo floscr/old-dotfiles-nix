@@ -68,7 +68,7 @@ with lib;
     services.xserver.displayManager.lightdm.background =
       let blurredWallpaper =
             with pkgs; runCommand "blurWallpaper"
-              { buildInputs = [ imagemagick ]; } ''
+              { buildInputs = [ imagemagickBig ]; } ''
                 mkdir "$out"
                 convert -gaussian-blur 0x2 -modulate 70 -level 5% \
                   ${config.theme.wallpaper} $out/wallpaper.blurred.png
