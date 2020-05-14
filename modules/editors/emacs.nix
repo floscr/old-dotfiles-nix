@@ -14,6 +14,15 @@ with lib;
 
   config = mkIf config.modules.editors.emacs.enable {
     my = {
+      home.xdg.configFile = {
+        ".aspell.conf".text = ''
+          dict-dir $HOME/.nix-profile/lib/aspell
+          master en_US
+          extra-dicts en-computers.rws
+          add-extra-dicts en_US-science.rws
+        '';
+      };
+
       packages = with pkgs; [
         ## Doom dependencies
         emacsUnstable
@@ -37,10 +46,12 @@ with lib;
 
         ## Module dependencies
         # :checkers spell
-        aspell
-        aspellDicts.en
-        aspellDicts.en-computers
-        aspellDicts.en-science
+        (aspellWithDicts (dicts: with dicts; [
+          de
+          en
+          en-computers
+          en-science
+        ]))
         # :checkers grammar
         languagetool
         # :tools lookup
