@@ -10,9 +10,6 @@
 
     <modules/work/meisterlabs.nix>
 
-    <modules/media/default.nix>
-    <modules/media/mpv.nix>
-
     <modules/graphics/gimp.nix>
     <modules/graphics/inkscape.nix>
     <modules/graphics/krita.nix>
@@ -74,6 +71,10 @@
       mysql.enable = true;
       node.enable = true;
       reasonml.enable = true;
+    };
+
+    media = {
+      youtube-dl.enable = true;
     };
   };
 

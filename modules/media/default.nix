@@ -1,7 +1,8 @@
 { config, lib, pkgs, ... }:
 
 {
-  environment.systemPackages = with pkgs; [
-    youtube-dl
+  imports = [
+    ./youtube-dl.nix
+    ./mpv.nix
   ];
 }

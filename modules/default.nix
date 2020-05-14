@@ -10,6 +10,7 @@ in {
     ./editors
     ./desktop
     ./dev
+    ./media
   ];
 
   options = {
