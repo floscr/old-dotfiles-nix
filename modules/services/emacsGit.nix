@@ -13,8 +13,8 @@
     };
     serviceConfig = {
       Type = "forking";
-      ExecStart = "${pkgs.emacsGit}/bin/emacs --daemon";
-      ExecStop = "${pkgs.emacsGit}/bin/emacsclient --eval '(kill-emacs)'";
+      ExecStart = "${pkgs.emacsUnstable}/bin/emacs --daemon";
+      ExecStop = "${pkgs.emacsUnstable}/bin/emacsclient --eval '(kill-emacs)'";
       Restart = "always";
     };
     wantedBy = [ "default.target" ];
