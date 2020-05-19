@@ -2,12 +2,13 @@
 
 {
   my.packages = with pkgs; [
+    dragon-drop
+    feh
+    ffmpeg
+    imagemagickBig
     xcape
     xclip
     xdotool
-    ffmpeg
-    feh
-    imagemagickBig
   ];
 
   ## Sound
