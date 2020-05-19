@@ -40,7 +40,6 @@
       # GTK
       "gtk-3.0/settings.ini".text = ''
         [Settings]
-        gtk-key-theme-name=Emacs
         gtk-theme-name=Arc-Dark
         gtk-icon-theme-name=Arc-Dark
         gtk-fallback-icon-theme=gnome
