@@ -3,6 +3,7 @@
 {
   imports = [
     ./youtube-dl.nix
+    ./ncmpcpp.nix
     ./mpv.nix
   ];
 }

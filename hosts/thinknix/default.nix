@@ -26,6 +26,7 @@
     <modules/shell/weechat.nix>
 
     # Services
+    <modules/services/mpd.nix>
     <modules/services/syncthing.nix>
     <modules/services/greenclip.nix>
     <modules/services/battery-notifier.nix>
@@ -75,6 +76,7 @@
 
     media = {
       youtube-dl.enable = true;
+      ncmpcpp.enable = true;
     };
   };
 
