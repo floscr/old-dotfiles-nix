@@ -25,6 +25,7 @@ with lib;
       home.xdg.configFile."npm/config".text = ''
         cache=$XDG_CACHE_HOME/npm
         prefix=$XDG_DATA_HOME/npm
+        update-notifier=false # I'll update via nix, thank you.
       '';
     };
   };
