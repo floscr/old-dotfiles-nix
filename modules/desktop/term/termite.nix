@@ -29,6 +29,7 @@ with lib;
         scrollbackLines = -1;
         allowBold = true;
         clickableUrl = true;
+        cursorBlink = "off";
         dynamicTitle = true;
         geometry = "81x20";
         mouseAutohide = true;
