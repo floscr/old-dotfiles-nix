@@ -80,7 +80,9 @@
   systemd.user.services.dunst = {
     enable = true;
     description = "Notification daemon";
-    wantedBy = [ "default.target" ];
+    after = [ "graphical-session-pre.target" ];
+    wantedBy = [ "graphical-session-pre.target" ];
+    partOf = [ "graphical-session-pre.target" ];
     path = [ pkgs.dunst ];
     serviceConfig = {
       Restart = "always";
