@@ -12,6 +12,9 @@ with lib;
 
   config = mkIf config.modules.dev.node.enable {
     my = {
+      # Stop node packages from showing ads in my darn CLI...
+      env.ADBLOCK = "1";
+
       packages = with pkgs; [
         nodejs-10_x
       ];
