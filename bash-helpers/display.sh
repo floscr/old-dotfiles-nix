@@ -8,12 +8,12 @@ function is_laptop_display() {
     [ `display_name` == "eDP1" ]
 }
 
-function current_screen_width {
-    bspc query -T -m $(bspc query -M -d focused) | jq ".rectangle.width"
+function screen-width {
+    xdpyinfo | awk -F'[ x]+' '/dimensions:/{print $3}'
 }
 
-function current_screen_height {
-    bspc query -T -m $(bspc query -M -d focused) | jq ".rectangle.width"
+function screen-height {
+    xdpyinfo | awk -F '[ x]+' '/dimensions:/{print $4}'
 }
 
 function set_window_size () {
