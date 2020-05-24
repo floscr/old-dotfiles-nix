@@ -17,261 +17,212 @@ let
     ${pkgs.mpv}/bin/mpv --input-ipc-server=$SOCKET --x11-name=mpvscratchpad --title=mpvscratchpad --geometry=384x216-32+62 --no-terminal --force-window --keep-open=yes --idle=yes&
     '');
 in {
-  environment.systemPackages =
-    let
-      mpv-scratchpad-toggle = (pkgs.writeShellScriptBin "mpv-scratchpad-toggle" ''
-        VISIBLE_IDS=$(xdotool search --onlyvisible --classname 'mpvscratchpad')
-        ALL_IDS=$(xdotool search --classname 'mpvscratchpad')
-        ID=$(xdotool search --classname 'mpvscratchpad' | head -n1)
-        FULLSCREEN=${fullscreen-lock}
+  environment.systemPackages = with pkgs; [
+    # Gallery-dl
+    unstable.gallery-dl
+    mpvc
 
-        # if hidden, don't do anything
-        [ -z $ALL_IDS ] && exit 0
+    # Peerflix
+    socat
+    nodePackages.peerflix
 
-        # sticky desktop
-        bspc node $ID --flag sticky=on
-
-        # toggle hide
-        bspc node $ID --flag hidden
-
-        ## else toggle fullscreen
-        if [ -e "$FULLSCREEN" ]; then
-          # is marked fullscreen, so should be fullscreen
-          bspc node $ID --state fullscreen
-          bspc node $ID --flag sticky=off
-          bspc node --focus $ID
-        else
-          # is not marked fullscreen, so should be not marked fullscreen
-          bspc node $ID --state floating
-          bspc node $ID --flag sticky=on
-          [ -z $VISIBLE_IDS ] && bspc node --focus $ID
-          [ -z $VISIBLE_IDS ] && bspc node --focus last
-        fi
-        exit 0
-      '');
-
-      mpv-scratchpad-ctl = (pkgs.writeShellScriptBin "mpv-scratchpad-ctl" ''
-        socket=${mpv-socket}
-
-        command() {
-            # JSON preamble.
-            local tosend='{ "command": ['
-            # adding in the parameters.
-            for arg in "$@"; do
-                tosend="$tosend \"$arg\","
-            done
-            # closing it up.
-            tosend=''${tosend%?}' ] }'
-            # send it along and ignore output.
-            # to print output just remove the redirection to /dev/null
-            # echo $tosend | socat - $socket &> /dev/null
-            echo $tosend | socat - $socket
-        }
-
-        # exit mpv
-        [ "$1" = "stop" ] && command 'stop'
-        # toggle play-pause
-        [ "$1" = "play-pause" ] && command 'cycle' 'pause'
-        # start playing
-        [ "$1" = "pause" ] && command 'set' 'pause' 'yes'
-        # stop playing
-        [ "$1" = "play" ] && command 'set' 'pause' 'no'
-        # play next item in playlist
-        [ "$1" = "next" ] && command 'playlist_next'
-        # play previous item in playlist
-        [ "$1" = "previous" ] && command 'playlist_prev'
-        # seek forward
-        [ "$1" = "forward" ] && command 'seek' "$2" 'relative'
-        # seek backward
-        [ "$1" = "backward" ] && command 'seek' "-$2" 'relative'
-        # restart video
-        [ "$1" = "restart" ] && (command 'seek' "0" 'absolute'; command 'set' 'pause' 'no')
-        # end video
-        [ "$1" = "end" ] && (command 'seek' "100" 'absolute-percent+exact'; command 'set' 'pause' 'no')
-        # toggle video status
-        [ "$1" = "video-novideo" ] && command 'cycle' 'video'
-        # video status yes
-        [ "$1" = "video" ] && command 'set' 'video' 'no' && command 'cycle' 'video'
-        # video status no
-        [ "$1" = "novideo" ] && command 'set' 'video' 'no'
-        # add item(s) to playlist
-        [ "$1" = "add" ] && shift &&
-          for video in "$@"; do
-              command 'loadfile' "$video" 'append-play';
-          done;
-        # replace item(s) in playlist
-        [ "$1" = "replace" ] && shift && command 'loadfile' "$1" 'replace';
-      '');
-
-      mpv-scratchpad-open = (pkgs.writeShellScriptBin "mpv-scratchpad-open" ''
-        mpv-scratchpad-ctl add "$@"
-        for i in $(seq 1 1 50)
-        do
-          mpv-scratchpad-ctl next
-        done
-        mpv-scratchpad-ctl play
-        exit 0
-      '');
-
-      mpv-scratchpad-fullscreen-toggle = (pkgs.writeShellScriptBin "mpv-scratchpad-fullscreen-toggle" ''
-        VISIBLE_IDS=$(xdotool search --onlyvisible --classname 'mpvscratchpad')
-        ALL_IDS=$(xdotool search --classname 'mpvscratchpad')
-        ID=$(xdotool search --classname 'mpvscratchpad' | head -n1)
-        FULLSCREEN=${fullscreen-lock}
-
-        # if hidden, don't do anything
-        [ -z $ALL_IDS ] && exit 0
-
-        # move mpv to front
-        bspc node $ID --to-desktop newest
-
-        bspc node $ID --flag hidden=off
-
-        if [ -e "$FULLSCREEN" ]; then
-          # is marked fullscreen, so should unmark (after unfullscreen)
-          bspc node $ID --state floating
-          bspc node $ID --flag sticky=on
-          bspc node --focus $ID
-          bspc node --focus last
-          rm -f $FULLSCREEN
-        else
-          # is not marked fullscreen, so should become fullscreen
-          # bspc node $ID --to-desktop newest
-          bspc node $ID --state fullscreen
-          bspc node $ID --flag sticky=off
-          bspc node --focus $ID
-          touch $FULLSCREEN
-        fi
-        exit 0
-      '');
-
-      mpv-scratchpad-hide = (pkgs.writeShellScriptBin "mpv-scratchpad-hide" ''
-        ID=$(xdotool search --classname 'mpvscratchpad' | head -n1)
-
-        mpv-scratchpad-ctl pause
-        bspc node $ID --flag sticky=on
-        bspc node $ID --flag hidden=on
-        exit 0
-      '');
-
-      mpv-window-open = (pkgs.writeShellScriptBin "mpv-window-open" ''
-        #!/bin/bash
-        # open item in mpv, try different methods
-
-        url="$1"
-
-        # (mpv --force-window "gallery-dl://$@";
-        #   bspc node --focus last) ||
-        (mpv --force-window "gallery-dl://$@") ||
-        xdg-open "$@" ||
-        notify-send "Error opening" "$url"
-      '');
-
-      # this is a plugin
-      mpv-image-viewer = (pkgs.fetchFromGitHub {
-        owner = "occivink";
-        repo = "mpv-image-viewer";
-        rev = "0b1ea8efa965d40c11396d4e75f4ffbc2b1dccaf";
-        sha256 = "1dqwylbvy4c40sjbzwk99vvx7sjj8vs1vsdhhks3vblj4yhfa8pd";
-      });
-
-    in
-
-      with pkgs; [
-        (mpv-with-scripts.override {
-          scripts = [
-            # mpv-image-viewer
-            "${mpv-image-viewer}/scripts/detect-image.lua"
-            # "${mpv-image-viewer}/scripts/freeze-window.lua"
-            "${mpv-image-viewer}/scripts/image-positioning.lua"
-            "${mpv-image-viewer}/scripts/minimap.lua"
-            "${mpv-image-viewer}/scripts/ruler.lua"
-            "${mpv-image-viewer}/scripts/status-line.lua"
-
-            # autosave
-            # (fetchurl {
-            #   url = "https://gist.githubusercontent.com/Hakkin/5489e511bd6c8068a0fc09304c9c5a82/raw/7a19f7cdb6dd0b1c6878b41e13b244e2503c15fc/autosave.lua";
-            #   sha256 = "0jxykk3jis2cplysc0gliv0y961d0in4j5dpd2fabv96pfk6chdd";
-            # })
-
-            # autospeed
-            (fetchurl {
-              url = "https://raw.githubusercontent.com/kevinlekiller/mpv_scripts/master/autospeed/autospeed.lua";
-              sha256 = "18m0lzf0gs3g0mfgwfgih6mz98v5zcciykjl7jmg9rllwsx8syjl";
-            })
-
-            # autoload
-            (fetchurl {
-              url = "https://raw.githubusercontent.com/mpv-player/mpv/master/TOOLS/lua/autoload.lua";
-              sha256 = "0ifml25sc1mxv0m4qy50xshsx75560zmwj4ivys14vnpk1j40m1r";
-            })
-
-            # autoloop
-            (fetchurl {
-              url = "https://raw.githubusercontent.com/zc62/mpv-scripts/master/autoloop.lua";
-              sha256 = "1g60h3c85ladx3ksixqnmg2cmpr68li38sgx167jylmgiavfaa6v";
-            })
-
-            # playlistnoplayback
-            (fetchurl {
-              url = "https://raw.githubusercontent.com/422658476/MPV-EASY-Player/master/portable-data/scripts/playlistnoplayback.lua";
-              sha256 = "035zsm4z349m920b625zly7zaz361972is55mg02xvgpv0awclfl";
-            })
-
-            # reload
-            (fetchurl {
-              url = "https://raw.githubusercontent.com/4e6/mpv-reload/2b8a719fe166d6d42b5f1dd64761f97997b54a86/reload.lua";
-              sha256 = "0dyx22rr1883m2lhnaig9jdp7lpjydha0ad7lj9pfwlgdr2zg4b9";
-            })
-
-            # youtube-quality
-            (fetchurl {
-              url = "https://raw.githubusercontent.com/jgreco/mpv-youtube-quality/d03278f07bd8e202845f4a8a5b7761d98ad71878/youtube-quality.lua";
-              sha256 = "0fi1b4r5znp2k2z590jrrbn6wirx7nggjcl1frkcwsv7gmhjl11l";
-            })
-
-            # gallery-dl_hook
-            (fetchurl {
-              url = "https://gist.githubusercontent.com/isaaclo123/47993f6de088bb55de27fd126f722f2a/raw/1cac024adbffb0d6334bfd3666dea1d56bb4a525/gallery-dl_hook.lua";
-              sha256 = "0rc81bclfydpyil7xjpi560fmsajfc6ixmlsmchmhbb4ajxxavrs";
-            })
-
-            # peerflix-hook
-            (fetchurl {
-              url = "https://gist.githubusercontent.com/floscr/004f4b4d840a6ee0be40328744525c74/raw/903a183827d943abd4a914d0666a337f4e403f9c/peerflix-hook.lua";
-              sha256 = "945c32353f2ee16b4838f9384e8428fff9705dcfb3838ac03b4dab45c58ceef0";
-            })
-
-            # show_filename (shift enter)
-            (fetchurl {
-              url = "https://raw.githubusercontent.com/yuukidach/mpv-scripts/cbcd5b799e37b479aa55cbb8d3bb851e28f39630/show_filename.lua";
-              sha256 = "1h976qymbal199f5z7sz1hban2g2mr4jb1v8zg96g5c537fix8zy";
-            })
-
-            # change-OSD-media-title
-            # (fetchurl {
-            #   url = "https://raw.githubusercontent.com/nmoorthy524/mpv-Change-OSD-Media-Title/62a916ea95da680bad9219313fe7fc102fd85d94/change-OSD-media-title.lua";
-            #   sha256 = "11iyxkpq9nkdmr7zkscnfw5v391dzvcbjdc908snr1d77dr79n9b";
-            # })
-          ];
+    (mpv-with-scripts.override {
+      scripts = [
+        # autospeed
+        (fetchurl {
+          url = "https://raw.githubusercontent.com/kevinlekiller/mpv_scripts/master/autospeed/autospeed.lua";
+          sha256 = "18m0lzf0gs3g0mfgwfgih6mz98v5zcciykjl7jmg9rllwsx8syjl";
         })
 
-        (mpv-scratchpad)
-        (mpv-scratchpad-toggle)
-        (mpv-scratchpad-fullscreen-toggle)
-        (mpv-scratchpad-hide)
-        (mpv-scratchpad-open)
-        (mpv-scratchpad-ctl)
+        # autoload
+        (fetchurl {
+          url = "https://raw.githubusercontent.com/mpv-player/mpv/master/TOOLS/lua/autoload.lua";
+          sha256 = "0ifml25sc1mxv0m4qy50xshsx75560zmwj4ivys14vnpk1j40m1r";
+        })
 
-        (mpv-window-open)
-        unstable.gallery-dl
-        mpvc
+        # playlistnoplayback
+        (fetchurl {
+          url = "https://raw.githubusercontent.com/422658476/MPV-EASY-Player/master/portable-data/scripts/playlistnoplayback.lua";
+          sha256 = "035zsm4z349m920b625zly7zaz361972is55mg02xvgpv0awclfl";
+        })
 
-        socat
-        nodePackages.peerflix
+        # reload
+        (fetchurl {
+          url = "https://raw.githubusercontent.com/4e6/mpv-reload/2b8a719fe166d6d42b5f1dd64761f97997b54a86/reload.lua";
+          sha256 = "0dyx22rr1883m2lhnaig9jdp7lpjydha0ad7lj9pfwlgdr2zg4b9";
+        })
+
+        # youtube-quality
+        (fetchurl {
+          url = "https://raw.githubusercontent.com/jgreco/mpv-youtube-quality/d03278f07bd8e202845f4a8a5b7761d98ad71878/youtube-quality.lua";
+          sha256 = "0fi1b4r5znp2k2z590jrrbn6wirx7nggjcl1frkcwsv7gmhjl11l";
+        })
+
+        # gallery-dl_hook
+        (fetchurl {
+          url = "https://gist.githubusercontent.com/isaaclo123/47993f6de088bb55de27fd126f722f2a/raw/1cac024adbffb0d6334bfd3666dea1d56bb4a525/gallery-dl_hook.lua";
+          sha256 = "0rc81bclfydpyil7xjpi560fmsajfc6ixmlsmchmhbb4ajxxavrs";
+        })
+
+        # peerflix-hook
+        (fetchurl {
+          url = "https://gist.githubusercontent.com/floscr/004f4b4d840a6ee0be40328744525c74/raw/903a183827d943abd4a914d0666a337f4e403f9c/peerflix-hook.lua";
+          sha256 = "945c32353f2ee16b4838f9384e8428fff9705dcfb3838ac03b4dab45c58ceef0";
+        })
+
+        # show_filename (shift+enter)
+        (fetchurl {
+          url = "https://raw.githubusercontent.com/yuukidach/mpv-scripts/cbcd5b799e37b479aa55cbb8d3bb851e28f39630/show_filename.lua";
+          sha256 = "1h976qymbal199f5z7sz1hban2g2mr4jb1v8zg96g5c537fix8zy";
+        })
       ];
+    })
+    (mpv-scratchpad)
+    (pkgs.writeShellScriptBin "mpv-scratchpad-toggle" ''
+      VISIBLE_IDS=$(xdotool search --onlyvisible --classname 'mpvscratchpad')
+      ALL_IDS=$(xdotool search --classname 'mpvscratchpad')
+      ID=$(xdotool search --classname 'mpvscratchpad' | head -n1)
+      FULLSCREEN=${fullscreen-lock}
 
-   systemd.user.services.mpv-scratchpad = {
+      # if hidden, don't do anything
+      [ -z $ALL_IDS ] && exit 0
+
+      # sticky desktop
+      bspc node $ID --flag sticky=on
+
+      # toggle hide
+      bspc node $ID --flag hidden
+
+      ## else toggle fullscreen
+      if [ -e "$FULLSCREEN" ]; then
+        # is marked fullscreen, so should be fullscreen
+        bspc node $ID --state fullscreen
+        bspc node $ID --flag sticky=off
+        bspc node --focus $ID
+      else
+        # is not marked fullscreen, so should be not marked fullscreen
+        bspc node $ID --state floating
+        bspc node $ID --flag sticky=on
+        [ -z $VISIBLE_IDS ] && bspc node --focus $ID
+        [ -z $VISIBLE_IDS ] && bspc node --focus last
+      fi
+      exit 0
+    '')
+    (pkgs.writeShellScriptBin "mpv-scratchpad-fullscreen-toggle" ''
+      VISIBLE_IDS=$(xdotool search --onlyvisible --classname 'mpvscratchpad')
+      ALL_IDS=$(xdotool search --classname 'mpvscratchpad')
+      ID=$(xdotool search --classname 'mpvscratchpad' | head -n1)
+      FULLSCREEN=${fullscreen-lock}
+
+      # if hidden, don't do anything
+      [ -z $ALL_IDS ] && exit 0
+
+      # move mpv to front
+      bspc node $ID --to-desktop newest
+
+      bspc node $ID --flag hidden=off
+
+      if [ -e "$FULLSCREEN" ]; then
+        # is marked fullscreen, so should unmark (after unfullscreen)
+        bspc node $ID --state floating
+        bspc node $ID --flag sticky=on
+        bspc node --focus $ID
+        bspc node --focus last
+        rm -f $FULLSCREEN
+      else
+        # is not marked fullscreen, so should become fullscreen
+        # bspc node $ID --to-desktop newest
+        bspc node $ID --state fullscreen
+        bspc node $ID --flag sticky=off
+        bspc node --focus $ID
+        touch $FULLSCREEN
+      fi
+      exit 0
+    '')
+    (pkgs.writeShellScriptBin "mpv-scratchpad-hide" ''
+      ID=$(xdotool search --classname 'mpvscratchpad' | head -n1)
+
+      mpv-scratchpad-ctl pause
+      bspc node $ID --flag sticky=on
+      bspc node $ID --flag hidden=on
+      exit 0
+    '')
+    (pkgs.writeShellScriptBin "mpv-scratchpad-open" ''
+      mpv-scratchpad-ctl add "$@"
+      for i in $(seq 1 1 50)
+      do
+      mpv-scratchpad-ctl next
+      done
+      mpv-scratchpad-ctl play
+      exit 0
+    '')
+    (pkgs.writeShellScriptBin "mpv-scratchpad-ctl" ''
+      socket=${mpv-socket}
+
+      command() {
+          # JSON preamble.
+          local tosend='{ "command": ['
+          # adding in the parameters.
+          for arg in "$@"; do
+              tosend="$tosend \"$arg\","
+          done
+          # closing it up.
+          tosend=''${tosend%?}' ] }'
+          # send it along and ignore output.
+          # to print output just remove the redirection to /dev/null
+          # echo $tosend | socat - $socket &> /dev/null
+          echo $tosend | socat - $socket
+      }
+
+      # exit mpv
+      [ "$1" = "stop" ] && command 'stop'
+      # toggle play-pause
+      [ "$1" = "play-pause" ] && command 'cycle' 'pause'
+      # start playing
+      [ "$1" = "pause" ] && command 'set' 'pause' 'yes'
+      # stop playing
+      [ "$1" = "play" ] && command 'set' 'pause' 'no'
+      # play next item in playlist
+      [ "$1" = "next" ] && command 'playlist_next'
+      # play previous item in playlist
+      [ "$1" = "previous" ] && command 'playlist_prev'
+      # seek forward
+      [ "$1" = "forward" ] && command 'seek' "$2" 'relative'
+      # seek backward
+      [ "$1" = "backward" ] && command 'seek' "-$2" 'relative'
+      # restart video
+      [ "$1" = "restart" ] && (command 'seek' "0" 'absolute'; command 'set' 'pause' 'no')
+      # end video
+      [ "$1" = "end" ] && (command 'seek' "100" 'absolute-percent+exact'; command 'set' 'pause' 'no')
+      # toggle video status
+      [ "$1" = "video-novideo" ] && command 'cycle' 'video'
+      # video status yes
+      [ "$1" = "video" ] && command 'set' 'video' 'no' && command 'cycle' 'video'
+      # video status no
+      [ "$1" = "novideo" ] && command 'set' 'video' 'no'
+      # add item(s) to playlist
+      [ "$1" = "add" ] && shift &&
+        for video in "$@"; do
+            command 'loadfile' "$video" 'append-play';
+        done;
+      # replace item(s) in playlist
+      [ "$1" = "replace" ] && shift && command 'loadfile' "$1" 'replace';
+    '')
+    (pkgs.writeShellScriptBin "mpv-window-open" ''
+      #!/bin/bash
+      # open item in mpv, try different methods
+
+      url="$1"
+
+      # (mpv --force-window "gallery-dl://$@";
+      #   bspc node --focus last) ||
+      (mpv --force-window "gallery-dl://$@") ||
+      xdg-open "$@" ||
+      notify-send "Error opening" "$url"
+    '')
+  ];
+
+  systemd.user.services.mpv-scratchpad = {
     enable = true;
     description = "MPV Scratchpad";
     wantedBy = [ "default.target" ];
@@ -294,27 +245,27 @@ in {
         });
       in
 
-      {
-        # mpv-gallery-view
-        "mpv/scripts/lib".source = "${mpv-gallery-view}/scripts/lib";
-        "mpv/scripts/gallery-thumbgen.lua".source = "${mpv-gallery-view}/scripts/gallery-thumbgen.lua";
-        "mpv/scripts/playlist-view.lua".source = "${mpv-gallery-view}/scripts/playlist-view.lua";
+        {
+          # mpv-gallery-view
+          "mpv/scripts/lib".source = "${mpv-gallery-view}/scripts/lib";
+          "mpv/scripts/gallery-thumbgen.lua".source = "${mpv-gallery-view}/scripts/gallery-thumbgen.lua";
+          "mpv/scripts/playlist-view.lua".source = "${mpv-gallery-view}/scripts/playlist-view.lua";
 
-        "mpv/scripts/mpv_thumbnail_client-1.lua".source =
-          (pkgs.fetchurl {
-            # mpv thumbnail client
-            url = "https://github.com/TheAMM/mpv_thumbnail_script/releases/download/0.4.2/mpv_thumbnail_script_client_osc.lua";
-            sha256 = "1g8g0l2dfydmbh1rbsxvih8zsyr7r9x630jhw95jwb1s1x8izrr7";
-          });
+          "mpv/scripts/mpv_thumbnail_client-1.lua".source =
+            (pkgs.fetchurl {
+              # mpv thumbnail client
+              url = "https://github.com/TheAMM/mpv_thumbnail_script/releases/download/0.4.2/mpv_thumbnail_script_client_osc.lua";
+              sha256 = "1g8g0l2dfydmbh1rbsxvih8zsyr7r9x630jhw95jwb1s1x8izrr7";
+            });
 
-        "mpv/scripts/mpv_thumbnail_server.lua".source =
-          (pkgs.fetchurl {
-            # mpv thumbnail server
-            url = "https://github.com/TheAMM/mpv_thumbnail_script/releases/download/0.4.2/mpv_thumbnail_script_server.lua";
-            sha256 = "12flp0flzgsfvkpk6vx59n9lpqhb85azcljcqg21dy9g8dsihnzg";
-          });
+          "mpv/scripts/mpv_thumbnail_server.lua".source =
+            (pkgs.fetchurl {
+              # mpv thumbnail server
+              url = "https://github.com/TheAMM/mpv_thumbnail_script/releases/download/0.4.2/mpv_thumbnail_script_server.lua";
+              sha256 = "12flp0flzgsfvkpk6vx59n9lpqhb85azcljcqg21dy9g8dsihnzg";
+            });
 
-        "mpv/script-opts/status_line.conf".text = ''
+          "mpv/script-opts/status_line.conf".text = ''
           # whether to show by default
           enabled=no
           # its position, possible values: (bottom|top)-(left|right)
@@ -328,7 +279,7 @@ in {
           text=''${filename} [''${playlist-pos-1}/''${playlist-count}]
         '';
 
-        "mpv/script-opts/mpv_thumbnail_script.conf".text = ''
+          "mpv/script-opts/mpv_thumbnail_script.conf".text = ''
           cache_directory=${mpv-thumbs-cache}
           autogenerate=yes
           autogenerate_max_duration=1800
@@ -346,11 +297,11 @@ in {
           remote_max_delta=120
         '';
 
-        "mpv/script-opts/gallery_worker.conf".text = ''
+          "mpv/script-opts/gallery_worker.conf".text = ''
           ytdl_exclude=
         '';
 
-        "mpv/script-opts/playlist_view.conf".text = ''
+          "mpv/script-opts/playlist_view.conf".text = ''
           thumbs_dir=${mpv-gallery-thumb-dir}
 
           generate_thumbnails_with_mpv=yes
@@ -410,7 +361,7 @@ in {
           FLAG=SPACE
         '';
 
-        "mpv/input.conf".text = ''
+          "mpv/input.conf".text = ''
           # mouse-centric bindings
           # MBTN_RIGHT script-binding drag-to-pan
           # MBTN_LEFT  script-binding pan-follows-cursor
@@ -475,8 +426,6 @@ in {
           R script-message rotate-video -90; show-text "Counter-clockwise rotation"
           alt+r no-osd set video-rotate 0; show-text "Reset rotation"
 
-          d script-message ruler
-
           # Toggling between pixel-exact reproduction and interpolation
           a cycle-values scale nearest ewa_lanczossharp
 
@@ -495,7 +444,7 @@ in {
           g script-message playlist-view-toggle
         '';
 
-        "mpv/mpv.conf".text = ''
+          "mpv/mpv.conf".text = ''
           # MPV config
 
           # Every possible settings are explained here:
@@ -673,6 +622,6 @@ in {
           [extension.gifv]
           loop-file=inf
         '';
-    };
+        };
   };
 }
