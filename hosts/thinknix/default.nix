@@ -45,6 +45,10 @@
     <modules/themes/glimpse>
   ];
 
+  my.packages = with pkgs; [
+    beancount
+  ];
+
   modules = {
     desktop = {
       browsers.default = "chromium";
