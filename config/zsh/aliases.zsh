@@ -66,3 +66,5 @@ alias o='open'
 function open () {
   xdg-open "$@">/dev/null 2>&1
 }
+
+alias F='feh --scale-down --auto-zoom --image-bg black'
