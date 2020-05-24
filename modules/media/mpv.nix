@@ -1,11 +1,6 @@
 { config, pkgs, ... }:
 
 let
-  username = "floscr";
-  unstable = import <nixpkgs-unstable> {};
-in
-
-let
   mpv-socket = "~/.cache/mpv-scratchpad-socket";
   mpv-thumbs-cache = "~/.cache/mpv_thumbs_cache";
   mpv-gallery-thumb-dir = "~/.cache/mpv_gallery_cache";
@@ -287,7 +282,7 @@ in {
     };
   };
 
-  home-manager.users."${username}" = {
+  my.home = {
     xdg.configFile =
       # mpv-gallery-view
       let
