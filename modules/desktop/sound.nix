@@ -27,6 +27,12 @@
     extraModules = [
       pkgs.unstable.pulseaudio-modules-bt
     ];
+    extraConfig = ''
+      load-module module-udev-detect tsched=0
+      load-module module-bluetooth-policy
+      load-module module-bluetooth-discover
+      load-module module-switch-on-connect
+    '';
     # https://medium.com/@gamunu/enable-high-quality-audio-on-linux-6f16f3fe7e1f
     daemon.config = {
       default-sample-format = "float32le";
