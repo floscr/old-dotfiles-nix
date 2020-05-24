@@ -18,7 +18,6 @@
   ## X
   services.xserver = {
     enable = true;
-    desktopManager.xterm.enable = lib.mkDefault false;
     displayManager.lightdm.greeters.mini.user = config.my.username;
     displayManager.lightdm.enable = true;
     displayManager.lightdm.greeters.mini.enable = true;
@@ -31,6 +30,7 @@
       xinput set-prop 13 318 3, 3 # Sensitivity
 
       systemctl --user start setup-keyboard.service
+      systemctl --user start setup-monitor.service&
     '';
   };
 

@@ -16,7 +16,9 @@ in {
   systemd.user.services."setup-monitor" = {
     enable = true;
     description = "Load my monitor modifications";
-    wantedBy = [ "multi-user.target" ];
+    after = [ "graphical-session-pre.target" ];
+    wantedBy = [ "graphical-session-pre.target" ];
+    partOf = [ "graphical-session-pre.target" ];
     path = with pkgs; [
       bspwm
       coreutils

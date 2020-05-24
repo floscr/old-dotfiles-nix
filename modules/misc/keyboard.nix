@@ -46,6 +46,8 @@ in
   systemd.user.services."setup-keyboard" = {
     enable = true;
     description = "Load my keyboard modifications";
+    after = [ "graphical-session-pre.target" ];
+    partOf = [ "graphical-session-pre.target" ];
     wantedBy = [ "multi-user.target" ];
     serviceConfig = {
       Type = "oneshot";
