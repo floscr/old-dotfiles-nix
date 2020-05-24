@@ -81,9 +81,9 @@ with lib;
       env.PATH = [ "$HOME/.emacs.d/bin" ];
       zsh.rc = lib.readFile <config/emacs/aliases.zsh>;
     };
-    fonts.fonts = [
-      pkgs.emacs-all-the-icons-fonts
-      pkgs.overpass
+    fonts.fonts = with pkgs; [
+      emacs-all-the-icons-fonts
+      overpass
     ];
   };
 }
