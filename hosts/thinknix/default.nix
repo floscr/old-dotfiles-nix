@@ -57,6 +57,8 @@
 
       apps.rofi.enable = true;
       apps.spotify.enable = true;
+
+      term.default = "termite";
       term.termite.enable = true;
     };
 
