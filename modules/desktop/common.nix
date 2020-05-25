@@ -106,54 +106,9 @@
       description = "Screen brightness: -5%";
     }
     {
-      binding = "XF86MonBrightnessDown";
-      command = "light -U 5";
-      description = "Screen brightness: +5%";
-    }
-    {
       binding = "{ XF86AudioLowerVolume, super + alt + j }";
       command = "amixer -q set Master 10%- unmute";
       description = "Volume: -10%";
-    }
-    {
-      binding = "XF86MonBrightnessDown";
-      command = "light -U 5";
-      description = "Screen brightness: Decrease 5%";
-    }
-    {
-      binding = "XF86MonBrightnessDown";
-      command = "light -U 5";
-      description = "Screen brightness: Decrease 5%";
-    }
-    {
-      binding = "XF86MonBrightnessDown";
-      command = "light -U 5";
-      description = "Screen brightness: Decrease 5%";
-    }
-    {
-      binding = "XF86MonBrightnessDown";
-      command = "light -U 5";
-      description = "Screen brightness: Decrease 5%";
-    }
-    {
-      binding = "XF86MonBrightnessDown";
-      command = "light -U 5";
-      description = "Screen brightness: Decrease 5%";
-    }
-    {
-      binding = "XF86MonBrightnessDown";
-      command = "light -U 5";
-      description = "Screen brightness: Decrease 5%";
-    }
-    {
-      binding = "XF86MonBrightnessDown";
-      command = "light -U 5";
-      description = "Screen brightness: Decrease 5%";
-    }
-    {
-      binding = "XF86MonBrightnessDown";
-      command = "light -U 5";
-      description = "Screen brightness: Decrease 5%";
     }
     {
       binding = "XF86MonBrightnessDown";
