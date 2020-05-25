@@ -31,11 +31,6 @@
 
   my.bindings = [
     {
-      binding = "super + shift + v";
-      command = "/etc/dotfiles/bin/bspc/toggle_desktop_mode";
-      description = "Toggle Floating Desktop Mode";
-    }
-    {
       binding = "super + grave";
       command = "bspc node -f last";
       description = "Switch to previous window";
