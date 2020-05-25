@@ -20,10 +20,12 @@
     ];
   };
 
+
   services = {
     xserver = {
-      windowManager.default = "bspwm";
+      desktopManager.xterm.enable = false;
       windowManager.bspwm.enable = true;
+      windowManager.default = "bspwm";
     };
   };
 
