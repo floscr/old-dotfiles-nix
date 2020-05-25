@@ -71,6 +71,11 @@
       description = "Toggle Polybar";
     }
     {
+      binding = "super + i";
+      command = "xcolor | xclip -selection clipboard -in";
+      description = "Get color";
+    }
+    {
       binding = "XF86Bluetooth";
       command = "bluetooth-toggle";
       description = "Toggle buetooth";
