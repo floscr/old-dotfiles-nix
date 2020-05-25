@@ -225,7 +225,8 @@ in {
   systemd.user.services.mpv-scratchpad = {
     enable = true;
     description = "MPV Scratchpad";
-    wantedBy = [ "default.target" ];
+    wantedBy = [ "graphical-session.target" ];
+    after = [ "graphical-session.target" ];
     serviceConfig = {
       Type = "oneshot";
       RemainAfterExit = true;
