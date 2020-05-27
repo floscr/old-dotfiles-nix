@@ -531,7 +531,7 @@ in {
           screenshot-png-filter=0
           screenshot-tag-colorspace=yes
           screenshot-high-bit-depth=yes
-          screenshot-directory=~/Pictures/Screenshots
+          screenshot-directory=/home/${config.my.username}/Media/Screenshots
 
 
           # AUDIO
