@@ -373,6 +373,8 @@ in {
           # pan-image takes the following arguments
           # pan-image AXIS AMOUNT ZOOM_INVARIANT IMAGE_CONSTRAINED
 
+          v cycle sub-visibility
+
           ctrl+j repeatable script-message pan-image y -0.1 yes yes
           ctrl+k repeatable script-message pan-image y +0.1 yes yes
           ctrl+l repeatable script-message pan-image x -0.1 yes yes
