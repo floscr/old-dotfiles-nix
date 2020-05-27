@@ -17,7 +17,7 @@
       savePath=/home/${config.my.username}/Media/Screenshots
       showDesktopNotification=false
       showHelp=false
-      uiColor=${config.theme.colors.black1}
+      uiColor=${config.theme.colors.blue}
     '';
   };
 }
