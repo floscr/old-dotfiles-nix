@@ -55,7 +55,7 @@ with lib;
         # :checkers grammar
         languagetool
         # :tools lookup
-        sqlite
+        sqlite gcc
         # :lang cc
         ccls
         # :lang javascript
