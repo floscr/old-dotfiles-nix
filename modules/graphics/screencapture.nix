@@ -6,7 +6,18 @@
     flameshot
   ];
 
-  home-manager.users.floscr.xdg.configFile = {
-    "Dharkael/flameshot.ini".source = <config/flameshot/flameshot.ini>;
+  my.home.xdg.configFile = {
+    "Dharkael/flameshot.ini".text = ''
+      [General]
+      closeAfterScreenshot=true
+      disabledTrayIcon=true
+      drawColor=${config.theme.colors.bmag}
+      drawThickness=0
+      filenamePattern=Screenshot-%y%m%d-%H%M%S
+      savePath=/home/${config.my.username}/Media/Screenshots
+      showDesktopNotification=false
+      showHelp=false
+      uiColor=${config.theme.colors.black1}
+    '';
   };
 }
