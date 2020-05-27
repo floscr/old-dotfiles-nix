@@ -37,7 +37,7 @@ bspc rule -a Emacs:doom-capture state=floating
 bspc rule -a Chromium split_ratio=0.32 --center
 
 bspc rule -a Pavucontrol state=floating
-bspc rule -a mpv state=floating center=on
+bspc rule -a mpv state=floating center=on border=off
 bspc rule -a Pinentry state=floating center=on
 bspc rule -a GtkFileChooserDialog state=floating rectangle=300x300+190+134 --center --focus
 
