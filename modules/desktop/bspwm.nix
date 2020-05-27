@@ -96,10 +96,6 @@
     "bspwm" = { source = <config/bspwm>; recursive = true; };
     "sxhkd/sxhkdrc".text = ''
 
-{ XF86AudioLowerVolume, super + alt + j }
-	amixer -q set Master 10%- unmute
-{ XF86AudioRaiseVolume, super + alt + k }
-	amixer -q set Master 10%+ unmute
 { XF86AudioPlay, super + alt + p }
 	playerctl play-pause
 { XF86AudioNext, super + alt + l }

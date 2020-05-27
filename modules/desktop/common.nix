@@ -115,6 +115,21 @@
       command = "light -U 5";
       description = "Screen brightness: Decrease 5%";
     }
+    {
+      binding = "{ XF86AudioRaiseVolume, super + alt + k }";
+      command = "amixer -q set Master 10%+ unmute";
+      description = "Volume: +10%";
+    }
+    {
+      binding = "{ XF86AudioPlay, super + alt + p }";
+      command = "playerctl play-pause";
+      description = "Toggle Play Pause";
+    }
+    {
+      binding = "XF86MonBrightnessDown";
+      command = "light -U 5";
+      description = "Screen brightness: Decrease 5%";
+    }
   ];
 
 }
