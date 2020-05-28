@@ -31,56 +31,56 @@ in {
       Type = "oneshot";
       RemainAfterExit = true;
       ExecStart = "${pkgs.bash}/bin/bash ${pkgs.writeScript "hotplug-monitor.sh" ''
-#!${pkgs.stdenv.shell}
+        #!${pkgs.stdenv.shell}
 
-function connectLG(){
-  xrandr \
-    --output eDP1 --off \
-    --output DP2 \
-    --primary \
-    --dpi 110 \
-    --panning 3840x2160 \
-    --mode 3840x2160 \
-    --pos 0x0 \
-    --rotate normal \
-    --auto
+        function connectLG(){
+          xrandr \
+            --output eDP1 --off \
+            --output DP2 \
+            --primary \
+            --dpi 110 \
+            --panning 3840x2160 \
+            --mode 3840x2160 \
+            --pos 0x0 \
+            --rotate normal \
+            --auto
 
-  bspc config window_gap 8
-}
+          bspc config window_gap 8
+        }
 
-function disconnect(){
-  xrandr \
-    --output VIRTUAL1 --off \
-    --output DP1 --off \
-    --output DP2 --off \
-    --output DP1 --off \
-    --output HDMI1 --off \
-    --output HDMI2 --off \
-    --output eDP1 \
-    --primary \
-    --dpi 92 \
-    --auto
+        function disconnect(){
+          xrandr \
+            --output VIRTUAL1 --off \
+            --output DP1 --off \
+            --output DP2 --off \
+            --output DP1 --off \
+            --output HDMI1 --off \
+            --output HDMI2 --off \
+            --output eDP1 \
+            --primary \
+            --dpi 92 \
+            --auto
 
-  bspc config window_gap 0
-}
+          bspc config window_gap 0
+        }
 
-if [[ $(xrandr | grep "^DP2 connected") ]]; then
-  connectLG
-else
-  disconnect
-fi
+        if [[ $(xrandr | grep "^DP2 connected") ]]; then
+          connectLG
+        else
+          disconnect
+        fi
 
-systemctl --user restart polybar.service;
-systemctl --user restart wallpaper.service;
+        systemctl --user restart polybar.service;
+        systemctl --user restart wallpaper.service;
 
-bspc monitor $MONITOR -d {1,2,3,4,5,6,7}
+        bspc monitor $MONITOR -d {1,2,3,4,5,6,7}
 
-# Fix the regular cursor for x
-xsetroot -cursor_name left_ptr
+        # Fix the regular cursor for x
+        xsetroot -cursor_name left_ptr
 
-# Reset windows overlaying polybar
-sleep 1
-bspc config borderless_monocle true
+        # Reset windows overlaying polybar
+        sleep 1
+        bspc config borderless_monocle true
       ''}";
     };
   };
