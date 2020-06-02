@@ -21,14 +21,19 @@ with lib;
     my.packages = with pkgs; [
       firefox-bin
       tridactyl-native # FIXME still have to run in firefox
-      (makeDesktopItem {
-        name = "firefox-private";
-        desktopName = "Firefox (Private)";
-        genericName = "Open a private Firefox window";
-        icon = "firefox";
-        exec = "${firefox-bin}/bin/firefox --private-window";
-        categories = "Network";
-      })
+    ];
+
+    my.bindings = [
+      {
+        description = "Firefox";
+        categories = "Browser";
+        command = "firefox";
+      }
+      {
+        description = "Firefox Private";
+        categories = "Browser";
+        command = "${pkgs.firefox-bin}/bin/firefox --private-window";
+      }
     ];
 
     my.env.XDG_DESKTOP_DIR = "$HOME"; # (try to) prevent ~/Desktop

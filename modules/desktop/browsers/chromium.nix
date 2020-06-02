@@ -30,6 +30,19 @@ with lib;
       '')
     ];
 
+    my.bindings = [
+      {
+        description = "Chromium";
+        categories = "Browser";
+        command = "launch-chrome";
+      }
+      {
+        description = "Chromium Private";
+        categories = "Browser";
+        command = "chromium-private";
+      }
+    ];
+
     # Needed for netflix
     nixpkgs.config.chromium = {
       enableWideVine = true;

@@ -38,6 +38,7 @@ in {
           options.binding = mkOption { type = nullOr str; default = null; };
           options.command = mkOption { type = str; default = ""; };
           options.description = mkOption { type = str; default = ""; };
+          options.categories = mkOption { type = str; default = ""; };
         }));
         default = [];
       };
@@ -97,7 +98,7 @@ in {
     # I avoid programs.zsh.*Init variables because they initialize too soon. My
     # zsh config is particular about load order.
     my.home.xdg.configFile = {
-      "cmder/cmd.csv".text = fold (cur: acc: acc + "${cur.description},${cur.command}\n") "" config.my.bindings;
+      "cmder/cmd.csv".text = fold (cur: acc: acc + "${cur.description},${cur.categories},${cur.command}\n") "" config.my.bindings;
 
       "sxhkd/sxhkdrc".text = fold (cur: acc: if isNull cur.binding then acc else ''
 ${acc}
