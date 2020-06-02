@@ -30,6 +30,11 @@ with lib;
           command = "rofi-pass -dmenu -theme theme/passmenu.rasi";
           description = "Password Manager";
         }
+        {
+          description = "drun";
+          categories = "Rofi drun";
+          command = "rofi -modi drun -show drun";
+        }
       ];
 
       packages = with pkgs; [

@@ -8,6 +8,7 @@
     ./mysql.nix
     ./node.nix
     ./reasonml.nix
+    ./nim.nix
     # ./rust.nix
   ];
 

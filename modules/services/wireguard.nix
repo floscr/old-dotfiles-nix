@@ -72,6 +72,14 @@ in {
     # breaks the wg-quick routing because wireguard packets leave with a fwmark from wireguard.
     networking.firewall.checkReversePath = false;
 
+    my.bindings = [
+      {
+        description = "Toggle VPN";
+        categories = "Script";
+        command = "toggle_vpn";
+      }
+    ];
+
     ## Service
     systemd.services = createServices cfg.setups;
   };

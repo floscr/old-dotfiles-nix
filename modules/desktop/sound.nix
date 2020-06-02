@@ -72,4 +72,17 @@
     pavucontrol
     blueman
   ];
+
+  my.bindings = [
+    {
+      description = "PulseAudio Volume Control";
+      categories = "Volume Control";
+      command = "pavucontrol";
+    }
+    {
+      description = "Connect Bluetooth Headphones";
+      categories = "Script";
+      command = "bose_connect";
+    }
+  ];
 }

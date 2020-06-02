@@ -20,5 +20,13 @@
       '')
     ];
     zsh.rc = lib.readFile ./env.zsh;
+
+    bindings = [
+      {
+        description = "MM: Start";
+        categories = "Work";
+        command = ''cd ~/Code/Meisterlabs/docker-dev-environment; ./mindmeister/restart; notify-send "MM Docker Started"'';
+      }
+    ];
   };
 }

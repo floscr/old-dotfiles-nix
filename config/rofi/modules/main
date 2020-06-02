@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-WORKINGDIR="$HOME/.config/rofi"
+WORKINGDIR="$HOME/.config/cmder"
 MAP="$WORKINGDIR/cmd.csv"
 
 cat "$MAP" \

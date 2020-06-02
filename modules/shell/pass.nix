@@ -13,4 +13,11 @@
 
     variables.PASSWORD_STORE_DIR = "$HOME/.secrets/password-store";
   };
+  my.bindings = [
+    {
+      description = "Pass";
+      categories = "Password Manager";
+      command = "rofi-pass";
+    }
+  ];
 }

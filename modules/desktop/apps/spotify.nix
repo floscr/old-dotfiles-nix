@@ -24,5 +24,13 @@ in {
     my.packages = with pkgs; [
       spotify-4k
     ];
+
+    my.bindings = [
+      {
+        description = "Spotify";
+        categories = "Audio Player";
+        command = "spotify";
+      }
+    ];
   };
 }

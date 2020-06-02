@@ -54,5 +54,22 @@ with lib;
       };
     };
 
+    my.bindings = [
+      {
+        description = "Termite";
+        categories = "Terminal";
+        command = "termite";
+      }
+      {
+        description = "htop";
+        categories = "Activity Monitor";
+        command = "termite -e htop";
+      }
+      {
+        description = "s-tui";
+        categories = "Heat Sensors";
+        command = "termite -e s-tui";
+      }
+    ];
   };
 }

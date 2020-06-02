@@ -23,6 +23,14 @@ with lib;
         '';
       };
 
+      bindings = [
+        {
+          description = "Emacs";
+          categories = "Editor";
+          command = "emacs";
+        }
+      ];
+
       packages = with pkgs; [
         ## Doom dependencies
         emacsUnstable

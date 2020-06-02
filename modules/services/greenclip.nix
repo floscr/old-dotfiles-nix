@@ -27,7 +27,8 @@ in {
         {
           binding = "super + shift + v";
           command = "rofi-greenclip";
-          description = "Clipboard Manager";
+          description = "Greenclip";
+          categories = "Clipboard Manager";
         }
       ];
     };

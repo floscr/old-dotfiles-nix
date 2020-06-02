@@ -36,11 +36,11 @@ with lib;
         categories = "Browser";
         command = "launch-chrome";
       }
-      {
-        description = "Chromium Private";
-        categories = "Browser";
-        command = "chromium-private";
-      }
+      # {
+      #   description = "Private Chromium";
+      #   categories = "Browser";
+      #   command = "chromium-private";
+      # }
     ];
 
     # Needed for netflix

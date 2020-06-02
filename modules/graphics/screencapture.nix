@@ -20,4 +20,16 @@
       uiColor=${config.theme.colors.blue}
     '';
   };
+  my.bindings = [
+    {
+      description = "SimpleScreenRecorder";
+      categories = "Video";
+      command = "simplescreenrecorder";
+    }
+    {
+      description = "Flameshot";
+      categories = "Screenshot";
+      command = "flameshot gui";
+    }
+  ];
 }

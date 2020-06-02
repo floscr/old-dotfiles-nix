@@ -636,4 +636,12 @@ in {
         '';
         };
   };
+
+  my.bindings = [
+    {
+      description = "MPV";
+      categories = "Video Player";
+      command = "mpv";
+    }
+  ];
 }
