@@ -35,7 +35,7 @@ in {
 
       bindings = mkOption {
         type = with types; listOf (submodule({ name, ... }: {
-          options.binding = mkOption { type = str; default = ""; };
+          options.binding = mkOption { type = nullOr str; default = null; };
           options.command = mkOption { type = str; default = ""; };
           options.description = mkOption { type = str; default = ""; };
         }));
@@ -97,12 +97,15 @@ in {
     # I avoid programs.zsh.*Init variables because they initialize too soon. My
     # zsh config is particular about load order.
     my.home.xdg.configFile = {
-      "sxhkd/sxhkdrc".text = fold (cur: acc: ''
+      "cmder/cmd.csv".text = fold (cur: acc: acc + "${cur.description},${cur.command}\n") "" config.my.bindings;
+
+      "sxhkd/sxhkdrc".text = fold (cur: acc: if isNull cur.binding then acc else ''
 ${acc}
 # ${cur.description}
 ${cur.binding}
     ${cur.command}
-      '') "" config.my.bindings;
+'') "" config.my.bindings;
+
       "zsh/extra.zshrc".text =
         let aliasLines = mapAttrsToList (n: v: "alias ${n}=\"${v}\"") config.my.alias;
         in ''
