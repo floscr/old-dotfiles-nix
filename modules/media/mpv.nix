@@ -1,20 +1,29 @@
 { config, pkgs, ... }:
 
 let
+
   mpv-socket = "~/.cache/mpv-scratchpad-socket";
   mpv-thumbs-cache = "~/.cache/mpv_thumbs_cache";
   mpv-gallery-thumb-dir = "~/.cache/mpv_gallery_cache";
   fullscreen-lock = "~/.cache/mpv-scratchpad-fullscreen.lock";
   mpv-scratchpad = (pkgs.writeShellScriptBin "mpv-scratchpad" ''
+    source /etc/dotfiles/bash-helpers/display.sh
+
     SOCKET=${mpv-socket}
     FULLSCREEN=${fullscreen-lock}
     rm -f $FULLSCREEN
+    WIDTH=384
+    HEIGHT=216
+    PADDING=30
+    POLYBAR_HEIGHT=35
 
     mkdir -p ${mpv-gallery-thumb-dir}
 
     echo ${mpv-socket}
 
-    ${pkgs.mpv}/bin/mpv --input-ipc-server=$SOCKET --x11-name=mpvscratchpad --title=mpvscratchpad --geometry=384x216-32+62 --no-terminal --force-window --keep-open=yes --idle=yes&
+    ${pkgs.mpv}/bin/mpv --input-ipc-server=$SOCKET --x11-name=mpvscratchpad --title=mpvscratchpad \
+    --geometry=$WIDTHx$HEIGHT-32+62 --no-terminal --force-window --keep-open=yes --idle=yes&
+    # ${pkgs.xdotool}/bin/xdotool getactivewindow windowmove $(($(screen-width) - $WIDTH - $PADDING)) 0
     '');
 in {
   environment.systemPackages = with pkgs; [
