@@ -6,11 +6,7 @@ export MONITOR=$(display_name)
 export MONITORS=( $(display_name) )
 MONITOR=${MONITOR:-${MONITORS[0]}}
 
-if is_laptop_display; then
-  bspc config window_gap 0
-else
-  bspc config window_gap 8
-fi
+bspc config window_gap 0
 
 bspc config borderless_monocle true
 bspc config gapless_monocle true
