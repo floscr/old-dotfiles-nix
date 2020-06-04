@@ -7,6 +7,7 @@
 
     <modules/hardware/monitor.nix>
     <modules/hardware/mouse.nix>
+    <modules/hardware/scanner.nix>
 
     <modules/work/meisterlabs.nix>
 
