@@ -8,11 +8,11 @@ function is_laptop_display() {
     [ `display_name` == "eDP1" ]
 }
 
-function screen-width {
+function screen_width {
     xdpyinfo | awk -F'[ x]+' '/dimensions:/{print $3}'
 }
 
-function screen-height {
+function screen_height {
     xdpyinfo | awk -F '[ x]+' '/dimensions:/{print $4}'
 }
 
