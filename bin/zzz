@@ -15,7 +15,7 @@ sleep_prepare () {
   # i3lock can't grab the cursor if another application is handling it
   systemctl --user stop hhpc
 
-  lockscreen
+  lockscreen &
   sleep 3
 }
 
