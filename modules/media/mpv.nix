@@ -23,7 +23,7 @@ let
 
     ${pkgs.mpv}/bin/mpv --input-ipc-server=$SOCKET --x11-name=mpvscratchpad --title=mpvscratchpad \
     --geometry=$WIDTHx$HEIGHT-32+62 --no-terminal --force-window --keep-open=yes --idle=yes&
-    # ${pkgs.xdotool}/bin/xdotool getactivewindow windowmove $(($(screen-width) - $WIDTH - $PADDING)) 0
+    # ${pkgs.xdotool}/bin/xdotool getactivewindow windowmove $(($(screen_width) - $WIDTH - $PADDING)) 0
     '');
 in {
   environment.systemPackages = with pkgs; [
