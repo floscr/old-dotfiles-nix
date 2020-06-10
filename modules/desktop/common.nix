@@ -131,6 +131,22 @@
       command = "light -U 5";
       description = "Screen brightness: Decrease 5%";
     }
+    {
+      command = "nautilus ~/Downloads";
+      description = "Nautilus: Downloads";
+    }
+    {
+      command = "nautilus ~/Desktop";
+      description = "Nautilus: Desktop";
+    }
+    {
+      command = "nautilus ~/Media/Pictures/Screenshots";
+      description = "Nautilus: Screenshots";
+    }
+    {
+      command = "nautilus ~/Downloads";
+      description = "Nautilus: Downloads";
+    }
   ];
 
 }
