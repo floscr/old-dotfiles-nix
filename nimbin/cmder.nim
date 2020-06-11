@@ -33,8 +33,9 @@ proc main() =
     .mapIt(it.description)
     .join("\n")
   let response = execProcess(&"echo '{items}'| rofi -i -levenshtein-sort -dmenu -p \"Run\"").replace("\n", "")
-  let item = config.findIt(it.description == response)
-  discard execShellCmd(item.command)
+  if response != "":
+    let item = config.findIt(it.description == response)
+    discard execShellCmd(item.command)
 
 var p = newParser("cmder"):
   command("main"):
