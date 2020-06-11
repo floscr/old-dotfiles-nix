@@ -16,6 +16,7 @@ device:
   nix.nixPath = options.nix.nixPath.default ++ [
     # So we can use absolute import paths
     "bin=/etc/dotfiles/bin"
+    "nimbin=/etc/dotfiles/nimbin"
     "config=/etc/dotfiles/config"
     "modules=/etc/dotfiles/modules"
   ];
