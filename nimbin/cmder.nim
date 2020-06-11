@@ -13,9 +13,7 @@ type
 
 proc parseConfigLine(x:string): ConfigItem =
   let line = x.split(splitChar)
-  return ConfigItem(description : line[0],
-             command : line[1],
-  )
+  return ConfigItem(description : line[0], command : line[1])
 
 proc parseConfig(): seq[ConfigItem] =
   return config
