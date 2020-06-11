@@ -1,9 +1,9 @@
-import os, strutils, sequtils, strformat
+import os, osproc, strutils, sequtils, strformat
 import utils
 import argparse
 import sugar
 
-let config = "/home/floscr/.config/cmder/cmd.csv"
+let config = expandTilde("~/.config/cmder/cmd.csv")
 let splitChar = ","
 
 type
@@ -24,16 +24,19 @@ proc parseConfig(): seq[ConfigItem] =
     .splitLines()
     .map(parseConfigLine)
 
-proc exec(x: string) =
-  let y = parseConfig()
+proc exec(x: string, config = parseConfig()) =
+  let y = config
     .findIt(it.description == x)
   echo y.command
 
 proc main() =
-  let items = parseConfig()
+  let config = parseConfig()
+  let items = config
     .mapIt(it.description)
     .join("\n")
-  discard execShellCmd(&"echo \"{items}\" | rofi -i -dmenu -p \"Run\" ")
+  let response = execProcess(&"echo '{items}'| rofi -i -levenshtein-sort -dmenu -p \"Run\"").replace("\n", "")
+  let item = config.findIt(it.description == response)
+  discard execShellCmd(item.command)
 
 var p = newParser("cmder"):
   command("main"):
