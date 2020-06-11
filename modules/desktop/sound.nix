@@ -84,5 +84,10 @@
       categories = "Script";
       command = "bose_connect";
     }
+    {
+      description = "Toggle Headphone Audio Output";
+      categories = "Script, Audio";
+      command = "nimx /etc/dotfiles/nimbin/toggle-headphone-audio-output";
+    }
   ];
 }
