@@ -5,6 +5,7 @@
       nim
   ];
   my = {
+    # env.PATH = [<nimbin>];
     zsh.rc = lib.readFile <config/nim/aliases.zsh>;
   };
 }
