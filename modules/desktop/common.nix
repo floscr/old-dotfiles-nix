@@ -9,7 +9,6 @@
     xcape
     xclip
     xdotool
-    cmder
   ];
 
   ## Sound
