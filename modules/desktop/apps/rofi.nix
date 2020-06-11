@@ -17,7 +17,7 @@ with lib;
       bindings = [
         {
           binding = "super + @space";
-          command = "~/.config/rofi/modules/main";
+          command = "nimx /etc/dotfiles/nimbin/cmder main";
           description = "Rofi Main Menu";
         }
         {
