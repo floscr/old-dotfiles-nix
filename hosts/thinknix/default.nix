@@ -13,7 +13,6 @@
 
     <modules/misc/android.nix>
     <modules/misc/home.nix>
-    <modules/misc/transmission.nix>
 
     # Themes
     <modules/themes/glimpse>
@@ -35,6 +34,7 @@
         rofi.enable = true;
         spotify.enable = true;
         xcolor.enable = true;
+        transmission.enable = true;
       };
 
       term = {
