@@ -3,11 +3,11 @@
 with lib;
 
 {
-  options.modules.beancount = {
+  options.modules.shell.beancount = {
     enable = mkOption { type = types.bool; default = false; };
   };
 
-  config = mkIf config.modules.beancount.enable {
+  config = mkIf config.modules.shell.beancount.enable {
     my = {
       packages = with pkgs; [
         beancount
