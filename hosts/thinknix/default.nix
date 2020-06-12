@@ -29,7 +29,6 @@
     # Services
     <modules/services/mpd.nix>
     <modules/services/syncthing.nix>
-    <modules/services/greenclip.nix>
     <modules/services/wireguard.nix>
     <modules/services/emacsGit.nix>
 
