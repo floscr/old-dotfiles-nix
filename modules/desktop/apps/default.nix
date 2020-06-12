@@ -5,6 +5,7 @@
     ./blender.nix
     ./flameshot.nix
     ./gimp.nix
+    ./gparted.nix
     ./inkscape.nix
     ./krita.nix
     ./rofi.nix

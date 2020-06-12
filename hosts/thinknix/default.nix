@@ -43,6 +43,7 @@
         gimp.enable = true;
         inkscape.enable = true;
         xcolor.enable = true;
+        gparted.enable = true;
       };
 
       term = {
