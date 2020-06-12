@@ -28,10 +28,6 @@
     <modules/themes/glimpse>
   ];
 
-  my.packages = with pkgs; [
-    beancount
-  ];
-
   modules = {
     desktop = {
       browsers = {
@@ -68,6 +64,7 @@
     };
 
     shell = {
+      beancount.enable = false;
       colorOptimization.enable = false;
       direnv.enable = false;
       git.enable = true;

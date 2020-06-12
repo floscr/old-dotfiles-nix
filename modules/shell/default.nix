@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./beancount.nix
     ./colorOptimization.nix
     ./direnv.nix
     ./git.nix
