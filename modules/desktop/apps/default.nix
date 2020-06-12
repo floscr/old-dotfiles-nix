@@ -9,5 +9,6 @@
     ./krita.nix
     ./rofi.nix
     ./spotify.nix
+    ./xcolor.nix
   ];
 }

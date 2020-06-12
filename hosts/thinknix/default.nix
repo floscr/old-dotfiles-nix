@@ -11,7 +11,6 @@
 
     <modules/work/meisterlabs.nix>
 
-    <modules/graphics/xcolor.nix>
     <modules/graphics/optimization.nix>
 
     # Shell
@@ -57,6 +56,7 @@
         flameshot.enable = true;
         gimp.enable = true;
         inkscape.enable = true;
+        xcolor.enable = true;
       };
 
       term = {
