@@ -2,7 +2,6 @@
 with lib;
 
 let greenclip = pkgs.haskellPackages.greenclip;
-    utils = import <modules/utils.nix>;
 in {
   options.modules.services.greenclip = {
     enable = mkOption {

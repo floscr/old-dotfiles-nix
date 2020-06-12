@@ -20,6 +20,7 @@ in {
       ## Personal details
       username = mkOptionStr "floscr";
       email = mkOptionStr "hello@florianschroedl.com";
+      workEmail = mkOptionStr "";
 
       ## Convenience aliases
       home = mkOption { type = options.home-manager.users.type.functor.wrapped; };

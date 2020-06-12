@@ -64,6 +64,7 @@
       pass.enable = true;
       weechat.enable = true;
       zsh.enable = true;
+      mail.enable = true;
     };
 
     services = {
