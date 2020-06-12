@@ -9,6 +9,7 @@ with lib;
     ./notifications.nix
     ./polybar.nix
     ./redshift.nix
+    ./keyboardTrackpadDisable.nix
     ./wallpaper.nix
   ];
 }

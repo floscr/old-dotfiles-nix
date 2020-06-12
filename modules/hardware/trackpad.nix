@@ -1,13 +1,6 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports = [
-    ../services/syndaemon.nix
-  ];
-
-  # Disable touchpad while typing
-  systemd.user.services.syndaemon.enable = true;
-
   services.xserver.synaptics = {
     enable = true;
     additionalOptions = ''

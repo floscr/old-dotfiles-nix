@@ -6,7 +6,7 @@
     ./hardware-configuration.nix
 
     <modules/hardware/monitor.nix>
-    <modules/hardware/mouse.nix>
+    <modules/hardware/trackpad.nix>
     <modules/hardware/scanner.nix>
 
     <modules/work/meisterlabs.nix>
@@ -60,6 +60,7 @@
       term.termite.enable = true;
 
       services.wallpaper.enable = false;
+      services.keyboardTrackpadDisable.enable = false;
     };
 
     editors = {
