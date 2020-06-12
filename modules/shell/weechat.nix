@@ -1,7 +1,17 @@
-{ config, lib, pkgs, ... }:
+{ config, options, lib, pkgs, ... }:
+
+with lib;
 
 {
-  environment.systemPackages = with pkgs; [
-    weechat
-  ];
+  options.modules.shell.weechat = {
+    enable = mkOption { type = types.bool; default = false; };
+  };
+
+  config = mkIf config.modules.shell.weechat.enable {
+    my = {
+      packages = with pkgs; [
+        weechat
+      ];
+    };
+  };
 }

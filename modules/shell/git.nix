@@ -1,14 +1,23 @@
-{ config, lib, pkgs, ... }:
+{ config, options, lib, pkgs, ... }:
+
+with lib;
 
 {
-  environment.systemPackages = with pkgs; [
-    gitAndTools.hub
-    gitAndTools.diff-so-fancy
-  ];
-  my.zsh.rc = lib.readFile <config/git/aliases.zsh>;
+  options.modules.shell.git = {
+    enable = mkOption { type = types.bool; default = false; };
+  };
 
-  my.home.xdg.configFile = {
-    "git/config".source = <config/git/config>;
-    "git/ignore".source = <config/git/ignore>;
+  config = mkIf config.modules.shell.git.enable {
+    my = {
+      packages = with pkgs; [
+        gitAndTools.hub
+        gitAndTools.diff-so-fancy
+      ];
+      zsh.rc = lib.readFile <config/git/aliases.zsh>;
+      home.xdg.configFile = {
+        "git/config".source = <config/git/config>;
+        "git/ignore".source = <config/git/ignore>;
+      };
+    };
   };
 }

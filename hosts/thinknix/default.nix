@@ -11,14 +11,6 @@
 
     <modules/work/meisterlabs.nix>
 
-    # Shell
-    # <modules/shell/direnv.nix>
-    <modules/shell/gnupg.nix>
-    <modules/shell/git.nix>
-    <modules/shell/zsh.nix>
-    <modules/shell/pass.nix>
-    <modules/shell/weechat.nix>
-
     # Services
     <modules/services/mpd.nix>
     <modules/services/syncthing.nix>
@@ -77,6 +69,13 @@
 
     shell = {
       colorOptimization.enable = false;
+      direnv.enable = false;
+      git.enable = true;
+      gnupg.enable = true;
+      ncmpcpp.enable = false;
+      pass.enable = true;
+      weechat.enable = true;
+      zsh.enable = true;
     };
 
     dev = {

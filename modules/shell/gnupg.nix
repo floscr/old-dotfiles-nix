@@ -1,13 +1,22 @@
-{ config, lib, pkgs, ... }:
+{ config, options, lib, pkgs, ... }:
+
+with lib;
 
 {
-  environment.systemPackages = with pkgs; [
-    gnupg
-    pinentry
-  ];
+  options.modules.shell.gnupg = {
+    enable = mkOption { type = types.bool; default = false; };
+  };
 
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
+  config = mkIf config.modules.shell.gnupg.enable {
+    my = {
+      packages = with pkgs; [
+        gnupg
+        pinentry
+      ];
+    };
+    programs.gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
   };
 }
