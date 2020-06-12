@@ -14,7 +14,6 @@
     <modules/graphics/gimp.nix>
     <modules/graphics/inkscape.nix>
     <modules/graphics/krita.nix>
-    <modules/graphics/screencapture.nix>
     <modules/graphics/xcolor.nix>
     <modules/graphics/optimization.nix>
 
@@ -53,8 +52,11 @@
       browsers.chromium.enable = true;
       browsers.firefox.enable = true;
 
-      apps.rofi.enable = true;
-      apps.spotify.enable = true;
+      apps = {
+        rofi.enable = true;
+        spotify.enable = true;
+        flameshot.enable = true;
+      };
 
       term.default = "termite";
       term.termite.enable = true;
