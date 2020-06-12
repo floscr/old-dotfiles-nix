@@ -371,89 +371,42 @@ in {
           FLAG=SPACE
         '';
 
+          ## Bindings
           "mpv/input.conf".text = ''
-          # mouse-centric bindings
-          # MBTN_RIGHT script-binding drag-to-pan
-          # MBTN_LEFT  script-binding pan-follows-cursor
-          # WHEEL_UP   script-message cursor-centric-zoom 0.1
-          # WHEEL_DOWN script-message cursor-centric-zoom -0.1
+            ### Mouse Bindings
+            WHEEL_UP      add volume 2
+            WHEEL_DOWN    add volume -2
+            WHEEL_LEFT    add volume -2
+            WHEEL_RIGHT   add volume 2
 
-          # panning with the keyboard:
-          # pan-image takes the following arguments
-          # pan-image AXIS AMOUNT ZOOM_INVARIANT IMAGE_CONSTRAINED
+            ### Keyboard Bindings
 
-          v cycle sub-visibility
+            l seek  5
+            h seek -5
+            k seek  60
+            j seek -60
 
-          ctrl+j repeatable script-message pan-image y -0.1 yes yes
-          ctrl+k repeatable script-message pan-image y +0.1 yes yes
-          ctrl+l repeatable script-message pan-image x -0.1 yes yes
-          ctrl+h repeatable script-message pan-image x +0.1 yes yes
+            v cycle sub-visibility
 
-          # now with more precision
-          alt+j   repeatable script-message pan-image y -0.01 yes yes
-          alt+k     repeatable script-message pan-image y +0.01 yes yes
-          alt+l  repeatable script-message pan-image x -0.01 yes yes
-          alt+h   repeatable script-message pan-image x +0.01 yes yes
+            ### Video Modifications
+            + add video-zoom 0.5
+            - add video-zoom -0.5; script-message reset-pan-if-visible
+            = no-osd set video-zoom 0; script-message reset-pan-if-visible
 
-          # replace at will with h,j,k,l if you prefer vim-style bindings
+            # Toggle Pixel Interpolation
+            a cycle-values scale nearest ewa_lanczossharp
 
-          # on a trackpad you may want to use these
-          WHEEL_UP    repeatable script-message pan-image y -0.02 yes yes
-          WHEEL_DOWN  repeatable script-message pan-image y +0.02 yes yes
-          WHEEL_LEFT  repeatable script-message pan-image x -0.02 yes yes
-          WHEEL_RIGHT repeatable script-message pan-image x +0.02 yes yes
-          
-          # Mouse wheels, touchpad or other input devices that have axes
-          # if the input devices supports precise scrolling it will also scale the
-          # numeric value accordingly
-          WHEEL_UP      add volume 2
-          WHEEL_DOWN    add volume -2
-          WHEEL_LEFT    add volume -2
-          WHEEL_RIGHT   add volume 2
+            # Toggle color management on or off
+            c cycle icc-profile-auto
 
-          # align the border of the image to the border of the window
-          # align-border takes the following arguments:
-          # align-border ALIGN_X ALIGN_Y
-          # any value for ALIGN_* is accepted, -1 and 1 map to the border of the window
-          ctrl+shift+l script-message align-border -1 ""
-          ctrl+shift+h  script-message align-border 1 ""
-          ctrl+shift+j  script-message align-border "" -1
-          ctrl+shift+k    script-message align-border "" 1
+            # Screenshot of the window output
+            S screenshot window
 
-          # reset the image
-          ctrl+0  no-osd set video-pan-x 0; no-osd set video-pan-y 0; no-osd set video-zoom 0
+            # Toggle aspect ratio information on and off
+            A cycle-values video-aspect "-1" "no"
 
-          + add video-zoom 0.5
-          - add video-zoom -0.5; script-message reset-pan-if-visible
-          = no-osd set video-zoom 0; script-message reset-pan-if-visible
-
-          # sxiv compatibility
-          w no-osd set video-unscaled yes; keypress =
-          e no-osd set video-unscaled no; keypress =
-
-          # h no-osd vf toggle hflip; show-text "Horizontal flip"
-          # v no-osd vf toggle vflip; show-text "Vertical flip"
-
-          r script-message rotate-video 90; show-text "Clockwise rotation"
-          R script-message rotate-video -90; show-text "Counter-clockwise rotation"
-          alt+r no-osd set video-rotate 0; show-text "Reset rotation"
-
-          # Toggling between pixel-exact reproduction and interpolation
-          a cycle-values scale nearest ewa_lanczossharp
-
-          # Toggle color management on or off
-          c cycle icc-profile-auto
-
-          # Screenshot of the window output
-          S screenshot window
-
-          # Toggle aspect ratio information on and off
-          A cycle-values video-aspect "-1" "no"
-
-          p script-message force-print-filename
-
-          # playlist view
-          g script-message playlist-view-toggle
+            # playlist view
+            g script-message playlist-view-toggle
         '';
 
           "mpv/mpv.conf".text = ''
