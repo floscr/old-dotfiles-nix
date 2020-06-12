@@ -48,9 +48,11 @@
 
   modules = {
     desktop = {
-      browsers.default = "chromium";
-      browsers.chromium.enable = true;
-      browsers.firefox.enable = true;
+      browsers = {
+        default = "chromium";
+        chromium.enable = true;
+        firefox.enable = true;
+      };
 
       apps = {
         rofi.enable = true;
@@ -58,11 +60,15 @@
         flameshot.enable = true;
       };
 
-      term.default = "termite";
-      term.termite.enable = true;
+      term = {
+        default = "termite";
+        termite.enable = true;
+      };
 
-      services.wallpaper.enable = false;
-      services.keyboardTrackpadDisable.enable = false;
+      services = {
+        wallpaper.enable = false;
+        keyboardTrackpadDisable.enable = true;
+      };
     };
 
     editors = {
