@@ -10,6 +10,7 @@ with lib;
   config = mkIf config.modules.shell.git.enable {
     my = {
       packages = with pkgs; [
+        git-lfs
         gitAndTools.hub
         gitAndTools.diff-so-fancy
       ];
