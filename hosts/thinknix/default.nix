@@ -29,13 +29,13 @@
       };
 
       apps = {
-        rofi.enable = true;
-        spotify.enable = true;
         flameshot.enable = true;
         gimp.enable = true;
-        inkscape.enable = true;
-        xcolor.enable = true;
         gparted.enable = true;
+        inkscape.enable = true;
+        rofi.enable = true;
+        spotify.enable = true;
+        xcolor.enable = true;
       };
 
       term = {
