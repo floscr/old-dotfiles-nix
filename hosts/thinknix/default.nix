@@ -13,7 +13,6 @@
 
     <modules/misc/android.nix>
     <modules/misc/home.nix>
-    <modules/misc/virtualbox.nix>
     <modules/misc/transmission.nix>
 
     # Themes
@@ -69,6 +68,7 @@
     };
 
     services = {
+      virtualbox.enable = true;
       emacsGit.enable = true;
       syncthing.enable = true;
     };
