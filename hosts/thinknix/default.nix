@@ -17,7 +17,6 @@
     <modules/services/wireguard.nix>
     <modules/services/emacsGit.nix>
 
-    <modules/misc/disk-management.nix>
     <modules/misc/android.nix>
     <modules/misc/keyboard.nix>
     <modules/misc/home.nix>
