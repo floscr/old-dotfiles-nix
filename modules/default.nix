@@ -12,6 +12,7 @@ in {
     ./dev
     ./media
     ./shell
+    ./services
   ];
 
   options = {

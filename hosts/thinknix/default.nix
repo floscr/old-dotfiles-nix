@@ -11,12 +11,6 @@
 
     <modules/work/meisterlabs.nix>
 
-    # Services
-    <modules/services/mpd.nix>
-    <modules/services/syncthing.nix>
-    <modules/services/wireguard.nix>
-    <modules/services/emacsGit.nix>
-
     <modules/misc/android.nix>
     <modules/misc/keyboard.nix>
     <modules/misc/home.nix>
@@ -73,6 +67,11 @@
       pass.enable = true;
       weechat.enable = true;
       zsh.enable = true;
+    };
+
+    services = {
+      emacsGit.enable = true;
+      syncthing.enable = true;
     };
 
     dev = {
