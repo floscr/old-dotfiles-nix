@@ -1,23 +1,35 @@
 { config, lib, pkgs, ... }:
+
+with lib;
+
 {
-  services.redshift = {
-    enable = true;
-    temperature = {
-      day = 5500;
-      night = 3000;
+  options.modules.desktop.services.redshift = {
+    enable = mkOption {
+      type = types.bool;
+      default = true;
     };
   };
 
-  location = {
-    longitude = 12.5;
-    latitude = 55.88;
-  };
+  config = mkIf config.modules.desktop.services.redshift.enable {
+    services.redshift = {
+      enable = true;
+      temperature = {
+        day = 5500;
+        night = 3000;
+      };
+    };
 
-  my.bindings = [
-    {
-      description = "Toggle Redshift";
-      categories = "Script";
-      command = "toggle_redshift";
-    }
-  ];
+    location = {
+      longitude = 12.5;
+      latitude = 55.88;
+    };
+
+    my.bindings = [
+      {
+        description = "Toggle Redshift";
+        categories = "Script";
+        command = "toggle_redshift";
+      }
+    ];
+  };
 }

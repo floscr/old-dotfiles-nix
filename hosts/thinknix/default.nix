@@ -61,6 +61,8 @@
 
       term.default = "termite";
       term.termite.enable = true;
+
+      services.wallpaper.enable = false;
     };
 
     services = {

@@ -4,12 +4,7 @@
   imports = [
     ./common.nix
     ./sound.nix
-    ./services/lockscreen.nix
-    ./services/notifications.nix
-    ./services/polybar.nix
-    ./services/redshift.nix
-    ./services/wallpaper.nix
-    ./services/hotplug.nix
+    ./services/default.nix
     ./term/default.nix
   ];
 
