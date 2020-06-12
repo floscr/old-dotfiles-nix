@@ -382,9 +382,11 @@ in {
             ### Keyboard Bindings
 
             l seek  5
+            L seek  60
             h seek -5
-            k seek  60
-            j seek -60
+            H seek -60
+            k volume 5
+            j volume -5
 
             v cycle sub-visibility
 
