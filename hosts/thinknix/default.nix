@@ -65,10 +65,6 @@
       services.wallpaper.enable = false;
     };
 
-    services = {
-      greenclip.enable = true;
-    };
-
     editors = {
       default = "nvim";
       emacs.enable = true;

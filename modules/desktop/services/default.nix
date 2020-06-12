@@ -2,6 +2,7 @@
 with lib;
 {
   imports = [
+    ./greenclip.nix
     ./hotplug.nix
     ./lockscreen.nix
     ./notifications.nix

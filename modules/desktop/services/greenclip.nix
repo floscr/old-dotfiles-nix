@@ -7,7 +7,7 @@ in {
   options.modules.services.greenclip = {
     enable = mkOption {
       type = types.bool;
-      default = false;
+      default = true;
     };
   };
 
