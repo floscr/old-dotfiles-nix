@@ -11,7 +11,6 @@
 
     <modules/work/meisterlabs.nix>
 
-    <modules/misc/android.nix>
     <modules/misc/home.nix>
 
     # Themes
@@ -68,9 +67,10 @@
     };
 
     services = {
-      virtualbox.enable = true;
+      android.enable = true;
       emacsGit.enable = true;
       syncthing.enable = true;
+      virtualbox.enable = true;
     };
 
     dev = {

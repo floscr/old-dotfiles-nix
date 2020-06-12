@@ -2,6 +2,7 @@
 
 {
   imports = [
+    ./android.nix
     ./emacsGit.nix
     ./hhpc.nix
     ./mpd.nix
