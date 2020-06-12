@@ -11,6 +11,7 @@ in {
     ./desktop
     ./dev
     ./media
+    ./shell
   ];
 
   options = {

@@ -11,8 +11,6 @@
 
     <modules/work/meisterlabs.nix>
 
-    <modules/graphics/optimization.nix>
-
     # Shell
     # <modules/shell/direnv.nix>
     <modules/shell/gnupg.nix>
@@ -75,6 +73,10 @@
       emacs.enable = true;
       emacsCalcTex.enable = true;
       vim.enable = true;
+    };
+
+    shell = {
+      colorOptimization.enable = false;
     };
 
     dev = {

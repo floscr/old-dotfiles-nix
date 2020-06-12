@@ -8,7 +8,7 @@ with lib;
   };
 
   config = mkIf config.modules.desktop.apps.xcolor.enable (
-    let xcolor = pkgs.callPackages ../../packages/xcolor.nix { };
+    let xcolor = pkgs.callPackages ../../../packages/xcolor.nix { };
     in{
       my = {
         packages = with pkgs; [
