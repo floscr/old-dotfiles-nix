@@ -2,9 +2,9 @@
 
 {
   imports = [
-    ./bspwm.nix
-
-    ./browsers
     ./apps
+    ./browsers
+    ./bspwm.nix
+    ./keyboard.nix
   ];
 }
