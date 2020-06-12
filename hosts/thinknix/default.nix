@@ -11,9 +11,6 @@
 
     <modules/work/meisterlabs.nix>
 
-    <modules/graphics/gimp.nix>
-    <modules/graphics/inkscape.nix>
-    <modules/graphics/krita.nix>
     <modules/graphics/xcolor.nix>
     <modules/graphics/optimization.nix>
 
@@ -58,6 +55,8 @@
         rofi.enable = true;
         spotify.enable = true;
         flameshot.enable = true;
+        gimp.enable = true;
+        inkscape.enable = true;
       };
 
       term = {

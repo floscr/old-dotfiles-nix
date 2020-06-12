@@ -7,11 +7,10 @@ with lib;
   };
 
   config = mkIf config.modules.desktop.apps.flameshot.enable {
-    environment.systemPackages = with pkgs; [
-      flameshot
-    ];
-
     my = {
+      packages = with pkgs; [
+        flameshot
+      ];
       home.xdg.configFile = {
         "Dharkael/flameshot.ini".text = ''
           [General]
