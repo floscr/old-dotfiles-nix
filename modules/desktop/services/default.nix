@@ -2,6 +2,7 @@
 with lib;
 {
   imports = [
+    ./battery-notifier.nix
     ./greenclip.nix
     ./hotplug.nix
     ./lockscreen.nix
