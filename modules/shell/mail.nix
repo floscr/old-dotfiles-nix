@@ -25,7 +25,7 @@ in {
         accounts.email = {
           maildirBasePath = maildir;
           accounts = {
-            Gmail = {
+            Work = {
               address = config.my.workEmail;
               userName = config.my.workEmail;
               flavor = "gmail.com";
