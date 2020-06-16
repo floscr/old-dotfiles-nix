@@ -10,7 +10,7 @@
 
         if [[ ! -f "$bin" || "$src" -nt "$bin" ]]; then
             echo "Compiling $src..."
-            ${pkgs.nim} c --verbosity:0 --hint[Processing]:off --excessiveStackTrace:on $src
+            ${pkgs.nim}/bin/nim c -r --verbosity:0 --hint[Processing]:off --excessiveStackTrace:on -d:release $src
         fi
 
         $bin $@
