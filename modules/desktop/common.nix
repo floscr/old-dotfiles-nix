@@ -2,7 +2,7 @@
 
 {
   my.packages = with pkgs; [
-    dragon-drop
+    unstable.dragon-drop
     feh
     ffmpeg
     imagemagickBig
