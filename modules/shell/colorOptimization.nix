@@ -12,6 +12,7 @@ with lib;
       packages = with pkgs; [
         libjpeg
         optipng
+        gifsicle
       ];
     };
   };
