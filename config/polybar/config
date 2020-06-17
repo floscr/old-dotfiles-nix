@@ -42,7 +42,7 @@ padding-left = 2
 padding-right = 2
 tray-position = left
 
-modules-right = filesystem cpu memory wireguard-status wlan battery date powermenu pulseaudio-rofi-output
+modules-right = mail filesystem cpu memory wireguard-status wlan battery date powermenu pulseaudio-rofi-output
 modules-left = bspwm
 separator = " "
 
@@ -349,3 +349,8 @@ fixed-values = true
 ; Spacing between entries
 ; Default: 2
 spacing = 4
+
+[module/mail]
+type = custom/script
+interval = 10;
+exec = /etc/dotfiles/nimbin/mail;
