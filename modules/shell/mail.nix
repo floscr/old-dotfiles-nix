@@ -29,7 +29,9 @@ in {
               address = config.my.workEmail;
               userName = config.my.workEmail;
               flavor = "gmail.com";
-              passwordCommand = "${pkgs.pass}/bin/pass Services/gmail.com/isync.florian@meisterlabs.com";
+              # Syntax highlighting breaks if I use single quotes inside templates...
+              passwordCommand = "${pkgs.gnupg}/bin/gpg2 -q --for-your-eyes-only --no-tty -d ~/.authinfo.gpg | ${pkgs.gawk}/bin/awk '/machine gmail.com login ${config.my.workEmail}/ {print $NF}'";
+
               primary = true;
               # gpg.encryptByDefault = true;
               mbsync = {
