@@ -39,6 +39,7 @@ alias y='xclip -selection clipboard -in'
 alias p='xclip -selection clipboard -out'
 
 alias dun='notify-send "done"'
+alias dr='dragon --and-exit *'
 
 ### Tools
 autoload -U zmv
