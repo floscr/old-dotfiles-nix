@@ -352,5 +352,5 @@ spacing = 4
 
 [module/mail]
 type = custom/script
-interval = 300 ; Five Minutes
+interval = 30
 exec = /etc/dotfiles/nimbin/mail;
