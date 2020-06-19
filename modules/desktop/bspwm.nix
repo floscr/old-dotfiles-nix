@@ -71,6 +71,11 @@
       description = "Toggle floating/fullscreen";
     }
     {
+      binding = "super + shift + apostrophe";
+      command = "bspc node -g sticky={on,off}";
+      description = "Toggle sticky";
+    }
+    {
       binding = "super + shift + f";
       command = "/etc/dotfiles/bin/bspc/toggle_desktop_mode";
       description = "Toggle Desktop Mode";
