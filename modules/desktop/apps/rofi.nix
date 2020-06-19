@@ -26,11 +26,6 @@ with lib;
           description = "Switch application";
         }
         {
-          binding = "super + apostrophe";
-          command = "rofi-pass -dmenu -theme theme/passmenu.rasi";
-          description = "Password Manager";
-        }
-        {
           description = "drun";
           categories = "Rofi drun";
           command = "rofi -modi drun -show drun";

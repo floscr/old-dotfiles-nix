@@ -23,6 +23,11 @@ with lib;
           categories = "Password Manager";
           command = "rofi-pass";
         }
+        {
+          binding = "super + apostrophe";
+          command = "rofi-pass -dmenu -theme theme/passmenu.rasi";
+          description = "Password Manager";
+        }
       ];
       env.PASSWORD_STORE_DIR = "$HOME/.secrets/password-store";
     };
