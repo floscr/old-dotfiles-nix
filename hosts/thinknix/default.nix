@@ -98,7 +98,7 @@
   services.wg-quicker = {
     available = true;
     setups = {
-      "ch" = builtins.toString "/etc/dotfiles-private/mullvad/ch1.conf";
+      "ch" = builtins.toString "/etc/dotfiles-private/mullvad/ch5.conf";
       "us" = builtins.toString "/etc/dotfiles-private/mullvad/us1.conf";
     };
   };
