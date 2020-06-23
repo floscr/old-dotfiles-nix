@@ -37,6 +37,7 @@ in {
 
     (mpv-with-scripts.override {
       scripts = [
+        pkgs.mpvScripts.mpris # playerctl support
         # autospeed
         (fetchurl {
           url = "https://raw.githubusercontent.com/kevinlekiller/mpv_scripts/master/autospeed/autospeed.lua";
