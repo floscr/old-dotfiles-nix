@@ -36,11 +36,6 @@
       description = "Switch to previous desktop";
     }
     {
-      binding = "super + shift + v";
-      command = "/etc/dotfiles/bin/bspc/toggle_desktop_mode";
-      description = "Toggle Floating Desktop Mode";
-    }
-    {
       binding = "super + w";
       command = "bspc node --close";
       description = "Close window";
