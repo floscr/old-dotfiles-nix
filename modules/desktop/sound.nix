@@ -110,6 +110,16 @@
       command = "playerctl previous";
     }
     {
+      binding = "{ shift + XF86AudioNext, super + alt + shift + l }";
+      description = "Media: Forward 10s";
+      command = "playerctl position 10+";
+    }
+    {
+      binding = "{ shift + XF86AudioPrev, super + alt + shift + h }";
+      description = "Media: Forward 10s";
+      command = "playerctl position 10-";
+    }
+    {
       binding = "{ XF86AudioMute, super + alt + m }";
       description = "Sound: Mute/Unmute";
       command = "amixer -q set Master toggle";
