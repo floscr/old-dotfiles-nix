@@ -89,5 +89,30 @@
       categories = "Script, Audio";
       command = "nimx /etc/dotfiles/nimbin/toggle-headphone-audio-output";
     }
+    {
+      description = "Player: Metadata";
+      categories = "Script, Audio";
+      command = "notify-send \"$(playerctl metadata)\"";
+    }
+    {
+      binding = "{ XF86AudioPlay, super + alt + p }";
+      description = "Media: Play / Pause";
+      command = "playerctl play-pause";
+    }
+    {
+      binding = "{ XF86AudioNext, super + alt + l }";
+      description = "Media: Next";
+      command = "playerctl next";
+    }
+    {
+      binding = "{ XF86AudioPrev, super + alt + h }";
+      description = "Media: Previous";
+      command = "playerctl previous";
+    }
+    {
+      binding = "{ XF86AudioMute, super + alt + m }";
+      description = "Sound: Mute/Unmute";
+      command = "amixer -q set Master toggle";
+    }
   ];
 }

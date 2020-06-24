@@ -91,18 +91,6 @@
     "bspwm" = { source = <config/bspwm>; recursive = true; };
     "sxhkd/sxhkdrc".text = ''
 
-{ XF86AudioPlay, super + alt + p }
-	playerctl play-pause
-{ XF86AudioNext, super + alt + l }
-	playerctl next
-{ XF86AudioPrev, super + alt + h }
-	playerctl previous
-{ XF86AudioMute, super + alt + m }
-	amixer -q set Master toggle
-super + alt + c
-	amixer set Capture toggle
-
-
 # turn off screen
 super + BackSpace
 	zzz
