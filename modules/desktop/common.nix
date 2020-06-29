@@ -6,6 +6,7 @@
     feh
     ffmpeg
     imagemagickBig
+    font-manager
     xcape
     xclip
     xdotool
