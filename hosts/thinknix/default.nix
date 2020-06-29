@@ -55,8 +55,8 @@
     };
 
     shell = {
-      beancount.enable = false;
-      colorOptimization.enable = false;
+      beancount.enable = true;
+      colorOptimization.enable = true;
       direnv.enable = false;
       git.enable = true;
       gnupg.enable = true;
