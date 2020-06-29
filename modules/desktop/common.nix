@@ -47,6 +47,7 @@
       noto-fonts
       noto-fonts-cjk
       font-awesome-ttf
+      my.inriaFont
     ];
     fontconfig.defaultFonts = {
       sansSerif = ["Ubuntu"];

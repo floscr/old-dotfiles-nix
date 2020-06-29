@@ -6,6 +6,7 @@ in [
         (callPackage
           (builtins.fetchTarball
             https://github.com/xzfc/cached-nix-shell/archive/master.tar.gz) {});
+      inriaFont = (callPackage ./inria.nix {});
     };
 
     # Occasionally, "stable" packages are broken or incomplete, so access to the
