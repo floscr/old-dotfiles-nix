@@ -1,4 +1,5 @@
 import macros
+import options
 
 template findIt*(coll, cond): untyped =
   var res: typeof(coll.items, typeOfIter)
@@ -7,6 +8,15 @@ template findIt*(coll, cond): untyped =
     res = it
     break
   res
+
+proc last*[T](s: openArray[T], predicate: proc(el: T): bool): Option[T] =
+    ## Return the last element of openArray s that match the predicate encapsulated as Option[T].
+    ## If no one element match it the function returns none(T)
+    var lastValue: Option[T] = none(T)
+    for el in s:
+        if predicate(el):
+            lastValue = some(el)
+    return lastValue
 
 macro `|>`*(lhs, rhs: untyped): untyped =
   case rhs.kind:
