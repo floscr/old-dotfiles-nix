@@ -2,7 +2,7 @@
 
 {
   environment.systemPackages = with pkgs; [
-      nim
+      unstable.nim
       (pkgs.writeScriptBin "nimx" ''
         bin=$1
         src="$bin.nim"
