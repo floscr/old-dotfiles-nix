@@ -40,15 +40,18 @@
     enableFontDir = true;
     enableGhostscriptFonts = true;
     fonts = with pkgs; [
-      ubuntu_font_family
       dejavu_fonts
       fira-code
       fira-code-symbols
-      symbola
+      my.inriaFont
+      ubuntu_font_family
+      ibm-plex
+
+      # Unicode and Symbols
+      font-awesome-ttf
       noto-fonts
       noto-fonts-cjk
-      font-awesome-ttf
-      my.inriaFont
+      symbola
     ];
     fontconfig.defaultFonts = {
       sansSerif = ["Ubuntu"];
