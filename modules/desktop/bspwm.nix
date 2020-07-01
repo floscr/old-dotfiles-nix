@@ -67,7 +67,7 @@
     }
     {
       binding = "super + shift + apostrophe";
-      command = "bspc node -g sticky={on,off}";
+      command = "bspc node -g sticky";
       description = "Toggle sticky";
     }
     {
