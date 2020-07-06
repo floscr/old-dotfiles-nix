@@ -33,9 +33,14 @@ with lib;
 
       packages = with pkgs; [
         ## Doom dependencies
-        emacsUnstable
         git
         (ripgrep.override {withPCRE2 = true;})
+
+        # Emacs compiled with packages
+        ((emacsPackagesNgGen emacsUnstable).emacsWithPackages (epkgs: [
+          # vterm
+          epkgs.emacs-libvterm
+        ]))
 
         ## Optional dependencies
         editorconfig-core-c # per-project style config
@@ -48,6 +53,9 @@ with lib;
 
         (lib.mkIf (config.programs.gnupg.agent.enable)
           pinentry_emacs)   # in-emacs gnupg prompts
+
+        # vterm
+        cmake
 
         # Convert stuff
         pandoc
