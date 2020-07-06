@@ -27,6 +27,10 @@
         categories = "Work";
         command = ''cd ~/Code/Meisterlabs/docker-dev-environment; ./mindmeister/restart; notify-send "MM Docker Started"'';
       }
+      {
+        command = "dragon --and-exit ~/Code/Meisterlabs/test-data/**/*.*";
+        description = "Dragon: Work D&D Test Data";
+      }
     ];
   };
 }
