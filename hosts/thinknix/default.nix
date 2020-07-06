@@ -42,7 +42,6 @@
       };
 
       services = {
-        wallpaper.enable = false;
         keyboardTrackpadDisable.enable = true;
       };
     };

@@ -10,12 +10,17 @@
   # Has to be enabled for gnome applications settings to work
   services.dbus.packages = with pkgs; [ gnome3.dconf ];
 
-  services.xserver.displayManager.lightdm = {
-    greeters.mini.extraConfig = ''
-      text-color = "#ff79c6"
-      password-background-color = "#1E2029"
-      window-color = "#181a23"
-      border-color = "#181a23"
+  services.xserver.displayManager = {
+    lightdm = {
+      greeters.mini.extraConfig = ''
+        text-color = ${config.theme.colors.bmag}
+        password-background-color = ${config.theme.colors.black2}
+        window-color = ${config.theme.colors.black2}
+        border-color = ${config.theme.colors.black2}
+      '';
+    };
+    sessionCommands = ''
+      xsetroot -solid "${config.theme.colors.black2}"
     '';
   };
 

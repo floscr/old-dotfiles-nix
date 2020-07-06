@@ -82,7 +82,6 @@ with lib;
             fi
 
             systemctl --user restart polybar.service;
-            systemctl --user restart wallpaper.service;
 
             bspc monitor $MONITOR -d {1,2,3,4,5,6,7}
 

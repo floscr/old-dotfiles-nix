@@ -6,7 +6,7 @@ with lib;
   options.modules.desktop.services.wallpaper = {
     enable = mkOption {
       type = types.bool;
-      default = true;
+      default = false;
     };
   };
 
