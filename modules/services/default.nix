@@ -9,5 +9,6 @@
     ./syncthing.nix
     ./virtualbox.nix
     ./wireguard.nix
+    ./suspendFix.nix
   ];
 }

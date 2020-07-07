@@ -71,6 +71,7 @@
       emacsGit.enable = true;
       syncthing.enable = true;
       virtualbox.enable = true;
+      suspendFix.enable = true;
     };
 
     dev = {
