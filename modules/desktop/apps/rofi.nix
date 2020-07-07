@@ -30,6 +30,11 @@ with lib;
           categories = "Rofi drun";
           command = "rofi -modi drun -show drun";
         }
+        {
+          description = "Rofi Emoji Picker";
+          categories = "Rofi drun";
+          command = "rofimoji";
+        }
       ];
 
       packages = with pkgs; [
@@ -37,6 +42,7 @@ with lib;
           #!${stdenv.shell}
           exec ${rofi}/bin/rofi -terminal xst -m -1 "$@"
           '')
+        my.rofimoji
       ];
     };
   };
