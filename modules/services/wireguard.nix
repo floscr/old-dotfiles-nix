@@ -46,14 +46,6 @@ in {
     setups = mkOption {
       description = "Attrset of Wireguard configurations.";
       type = with types; attrsOf path;
-
-      # (submodule {
-      #   conf = {
-      #     description =
-      #       "Location of the configuration file for this Wireguard instance.";
-      #     type = types.path;
-      #   };
-      # });
     };
 
     interface = mkOption {
