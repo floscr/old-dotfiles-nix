@@ -2,10 +2,10 @@
 
 let
 
-  mpv-socket = "~/.cache/mpv-scratchpad-socket";
-  mpv-thumbs-cache = "~/.cache/mpv_thumbs_cache";
-  mpv-gallery-thumb-dir = "~/.cache/mpv_gallery_cache";
-  fullscreen-lock = "~/.cache/mpv-scratchpad-fullscreen.lock";
+  mpv-socket = "/home/${config.my.username}/.cache/mpv-scratchpad-socket";
+  mpv-thumbs-cache = "/home/${config.my.username}/.cache/mpv_thumbs_cache";
+  mpv-gallery-thumb-dir = "/home/${config.my.username}/.cache/mpv_gallery_cache";
+  fullscreen-lock = "/home/${config.my.username}/.cache/mpv-scratchpad-fullscreen.lock";
   mpv-scratchpad = (pkgs.writeShellScriptBin "mpv-scratchpad" ''
     source /etc/dotfiles/bash-helpers/display.sh
 
@@ -437,11 +437,11 @@ in {
           cscale=ewa_lanczossoft
           opengl-pbo=yes
           fbo-format=rgba16f
-          #opengl-shaders="~/.mpv/shaders/SSimSuperRes.glsl"
-          #opengl-shaders="~/.mpv/shaders/SSimSuperRes.glsl,~/.mpv/shaders/adaptive-sharpen-2pass.glsl"
-          #opengl-shaders="~/.mpv/shaders/adaptive-sharpen-2pass.glsl"
+          #opengl-shaders="/home/${config.my.username}/.mpv/shaders/SSimSuperRes.glsl"
+          #opengl-shaders="/home/${config.my.username}/.mpv/shaders/SSimSuperRes.glsl,/home/${config.my.username}/.mpv/shaders/adaptive-sharpen-2pass.glsl"
+          #opengl-shaders="/home/${config.my.username}/.mpv/shaders/adaptive-sharpen-2pass.glsl"
           icc-profile-auto=yes
-          icc-cache-dir=~/.cache/mpv-icc
+          icc-cache-dir=/home/${config.my.username}/.cache/mpv-icc
           # target-brightness=100
           interpolation
           tscale=oversample
@@ -462,7 +462,7 @@ in {
           keep-open=yes
 
           # Video filters
-          #vf=vapoursynth=~/.config/mpv/scripts/mvtools.vpy
+          #vf=vapoursynth=/home/${config.my.username}/.config/mpv/scripts/mvtools.vpy
 
           # Start in fullscreen
           # fullscreen
