@@ -3,7 +3,7 @@
 {
   imports = [ ../. ]; # Load framework for themes
 
-  theme.wallpaper = ./wallpaper.png;
+  # theme.wallpaper = ./wallpaper.png;
 
   environment.systemPackages = with pkgs; [ arc-theme ];
 
@@ -25,8 +25,6 @@
   };
 
   my.home = {
-    home.file.".background-image".source = ./wallpaper.png;
-
     dconf.settings = {
       dconf.enable = true;
       "org/gnome/nautilus/preferences" = {
