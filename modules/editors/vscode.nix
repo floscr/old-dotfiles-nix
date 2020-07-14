@@ -13,7 +13,7 @@ with lib;
   config = mkIf config.modules.editors.vscode.enable {
     my = {
       packages = with pkgs; [
-        vscode
+        vscodium
       ];
     };
   };
