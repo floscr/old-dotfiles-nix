@@ -10,5 +10,6 @@
     ./virtualbox.nix
     ./wireguard.nix
     ./suspendFix.nix
+    ./jellyfin.nix
   ];
 }
