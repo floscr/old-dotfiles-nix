@@ -55,8 +55,6 @@ with lib;
                 --pos 0x0 \
                 --rotate normal \
                 --auto
-
-              bspc config window_gap 8
             }
 
             function disconnect(){
@@ -71,8 +69,6 @@ with lib;
                 --primary \
                 --dpi 92 \
                 --auto
-
-              bspc config window_gap 0
             }
 
             if [[ $(xrandr | grep "^DP2 connected") ]]; then
