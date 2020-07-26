@@ -4,7 +4,7 @@
 
 {
   imports = [
-    ../personal.nix   # common settings
+    ../personal.nix
     ./hardware-configuration.nix
   ];
 
