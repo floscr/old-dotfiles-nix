@@ -2,7 +2,8 @@ import os,
        osproc,
        strutils,
        sequtils,
-       strformat
+       strformat,
+       options
 import utils
 import argparse
 import sugar
@@ -14,10 +15,15 @@ type
   ConfigItem = ref object
     description: string
     command: string
+    binding: Option[string]
 
 proc parseConfigLine(x:string): ConfigItem =
   let line = x.split(splitChar)
-  return ConfigItem(description : line[0], command : line[1])
+  return ConfigItem(
+    description : line[0],
+    command : line[1],
+    binding : optionIndex(line, 2),
+  )
 
 proc parseConfig(): seq[ConfigItem] =
   return config
