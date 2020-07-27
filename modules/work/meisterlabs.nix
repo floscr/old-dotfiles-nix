@@ -29,7 +29,7 @@
       }
       {
         command = "dragon --and-exit ~/Code/Meisterlabs/test-data/**/*.*";
-        description = "Dragon: Work D&D Test Data";
+        description = "Dragon: Work DnD Test Data";
       }
     ];
   };
