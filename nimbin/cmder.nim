@@ -22,6 +22,11 @@ proc commands*(xs: seq[ConfigItem]): string =
     .mapIt(it.description)
     .join("\n")
 
+proc prettyCommands*(xs: seq[ConfigItem]): string =
+  xs
+    .mapIt(&"<span>{it.description}\t<small>{it.binding.orElse(\"\")}</small></span>")
+    .join("\n")
+
 proc parseConfigLine(x:string): ConfigItem =
   let line = x.split(splitChar)
   return ConfigItem(
@@ -38,12 +43,13 @@ proc parseConfig(): seq[ConfigItem] =
     .map(parseConfigLine)
 
 proc exec(x: string, config = parseConfig()) =
-  let y = config.findIt(it.description == x)
+  let y = config
+    .findIt(it.description == x.split("\t")[0])
   echo y.command
 
 proc main() =
   let config = parseConfig()
-  let response = execProcess(&"echo '{config.commands()}'| rofi -i -levenshtein-sort -dmenu -p \"Run\"").replace("\n", "")
+  let response = execProcess(&"echo '{config.prettyCommands()}'| rofi -i -levenshtein-sort -dmenu -p \"Run\" -markup-rows").replace("\n", "")
   if response != "":
     let item = config.findIt(it.description == response)
     discard execShellCmd(item.command)
@@ -51,7 +57,7 @@ proc main() =
 var p = newParser("cmder"):
   command("items"):
     run:
-      parseConfig().commands() |> echo
+      parseConfig().prettyCommands() |> echo
   command("main"):
     run:
       main()
