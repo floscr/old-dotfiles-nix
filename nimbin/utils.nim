@@ -1,4 +1,5 @@
 import macros
+import sequtils
 import options
 
 template findIt*(coll, cond): untyped =
@@ -8,6 +9,9 @@ template findIt*(coll, cond): untyped =
     res = it
     break
   res
+
+proc optionIndex*[T](xs: openArray[T], i: int): Option[T] =
+  if (xs.len > i): return some(xs[i])
 
 proc last*[T](s: openArray[T], predicate: proc(el: T): bool): Option[T] =
     ## Return the last element of openArray s that match the predicate encapsulated as Option[T].
