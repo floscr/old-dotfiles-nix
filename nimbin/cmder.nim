@@ -38,8 +38,7 @@ proc parseConfig(): seq[ConfigItem] =
     .map(parseConfigLine)
 
 proc exec(x: string, config = parseConfig()) =
-  let y = config
-    .findIt(it.description == x)
+  let y = config.findIt(it.description == x)
   echo y.command
 
 proc main() =
