@@ -17,6 +17,11 @@ type
     command: string
     binding: Option[string]
 
+proc commands*(xs: seq[ConfigItem]): string =
+  xs
+    .mapIt(it.description)
+    .join("\n")
+
 proc parseConfigLine(x:string): ConfigItem =
   let line = x.split(splitChar)
   return ConfigItem(
@@ -39,15 +44,15 @@ proc exec(x: string, config = parseConfig()) =
 
 proc main() =
   let config = parseConfig()
-  let items = config
-    .mapIt(it.description)
-    .join("\n")
-  let response = execProcess(&"echo '{items}'| rofi -i -levenshtein-sort -dmenu -p \"Run\"").replace("\n", "")
+  let response = execProcess(&"echo '{config.commands()}'| rofi -i -levenshtein-sort -dmenu -p \"Run\"").replace("\n", "")
   if response != "":
     let item = config.findIt(it.description == response)
     discard execShellCmd(item.command)
 
 var p = newParser("cmder"):
+  command("items"):
+    run:
+      parseConfig().commands() |> echo
   command("main"):
     run:
       main()
