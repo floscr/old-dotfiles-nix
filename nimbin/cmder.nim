@@ -8,7 +8,7 @@ import argparse
 import sugar
 
 let config = expandTilde("~/.config/cmder/cmd.csv")
-let splitChar = ","
+let splitChar = ",,,"
 
 type
   ConfigItem = ref object
