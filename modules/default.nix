@@ -101,7 +101,7 @@ in {
     # I avoid programs.zsh.*Init variables because they initialize too soon. My
     # zsh config is particular about load order.
     my.home.xdg.configFile = {
-      "cmder/cmd.csv".text = fold (cur: acc: acc + "${cur.description},,,${cur.command}\n") "" config.my.bindings;
+      "cmder/cmd.csv".text = fold (cur: acc: acc + "${cur.description},,,${cur.command},,,${if ! isNull(cur.binding) then cur.binding else ""}\n") "" config.my.bindings;
 
       "sxhkd/sxhkdrc".text = fold (cur: acc: if isNull cur.binding then acc else ''
 ${acc}
