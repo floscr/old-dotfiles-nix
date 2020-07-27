@@ -1,4 +1,8 @@
-import os, osproc, strutils, sequtils, strformat
+import os,
+       osproc,
+       strutils,
+       sequtils,
+       strformat
 import utils
 import argparse
 import sugar
