@@ -10,6 +10,7 @@ import sugar
 
 let config = expandTilde("~/.config/cmder/cmd.csv")
 let splitChar = ",,,"
+let commandSplitChar = "​" # Zero Width Space
 
 type
   ConfigItem = ref object
@@ -24,7 +25,7 @@ proc commands*(xs: seq[ConfigItem]): string =
 
 proc prettyCommands*(xs: seq[ConfigItem]): string =
   xs
-    .mapIt(&"<span>{it.description}\t<small>{it.binding.orElse(\"\")}</small></span>")
+    .mapIt(&"<span>{commandSplitChar}{it.description}{commandSplitChar}</span><span gravity=\"east\" size=\"x-small\" font_style=\"italic\" foreground=\"#5c606b\"> {it.binding.orElse(\"\")}</span>")
     .join("\n")
 
 proc parseConfigLine(x:string): ConfigItem =
@@ -44,14 +45,17 @@ proc parseConfig(): seq[ConfigItem] =
 
 proc exec(x: string, config = parseConfig()) =
   let y = config
-    .findIt(it.description == x.split("\t")[0])
+    .findIt(it.description == x.split(splitChar)[1])
   echo y.command
 
 proc main() =
   let config = parseConfig()
   let response = execProcess(&"echo '{config.prettyCommands()}'| rofi -i -levenshtein-sort -dmenu -p \"Run\" -markup-rows").replace("\n", "")
   if response != "":
-    let item = config.findIt(it.description == response)
+    let description = response
+      .split(commandSplitChar)[1]
+
+    let item = config.findIt(it.description == description)
     discard execShellCmd(item.command)
 
 var p = newParser("cmder"):
