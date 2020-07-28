@@ -23,11 +23,12 @@ proc commands*(xs: seq[ConfigItem]): string =
     .mapIt(it.description)
     .join("\n")
 
-proc renderBinding(binding: Option[string]): string =
-  if binding.isSome:
-    &"<span gravity=\"east\" size=\"x-small\" font_style=\"italic\" foreground=\"#5c606b\"> {binding.get}</span>"
-  else:
-    ""
+proc renderBinding(x: Option[string]): string =
+  x
+    .bifold(
+      () => "",
+      (x) => &"<span gravity=\"east\" size=\"x-small\" font_style=\"italic\" foreground=\"#5c606b\"> {x}</span>",
+    )
 
 proc prettyCommands*(xs: seq[ConfigItem]): string =
   xs

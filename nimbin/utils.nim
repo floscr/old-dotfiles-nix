@@ -13,6 +13,10 @@ template findIt*(coll, cond): untyped =
 proc optionIndex*[T](xs: openArray[T], i: int): Option[T] =
   if (xs.len > i): return some(xs[i])
 
+proc bifold*[T](x: Option[T], errFn: proc(): T, succFn: proc(el: T): T): T =
+  if (x.isSome): succFn(x.get)
+  else: errFn()
+
 proc orElse*[T](x: Option[T], noneX: T): T =
   if (x.isSome): return x.get
   else: noneX
