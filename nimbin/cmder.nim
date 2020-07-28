@@ -23,9 +23,15 @@ proc commands*(xs: seq[ConfigItem]): string =
     .mapIt(it.description)
     .join("\n")
 
+proc renderBinding(binding: Option[string]): string =
+  if binding.isSome:
+    &"<span gravity=\"east\" size=\"x-small\" font_style=\"italic\" foreground=\"#5c606b\"> {binding.get}</span>"
+  else:
+    ""
+
 proc prettyCommands*(xs: seq[ConfigItem]): string =
   xs
-    .mapIt(&"<span>{commandSplitChar}{it.description}{commandSplitChar}</span><span gravity=\"east\" size=\"x-small\" font_style=\"italic\" foreground=\"#5c606b\"> {it.binding.orElse(\"\")}</span>")
+    .mapIt(&"<span>{commandSplitChar}{it.description}{commandSplitChar}</span>{renderBinding(it.binding)}")
     .join("\n")
 
 proc parseConfigLine(x:string): ConfigItem =
