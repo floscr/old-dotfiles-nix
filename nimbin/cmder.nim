@@ -40,7 +40,7 @@ proc parseConfigLine(x:string): ConfigItem =
   return ConfigItem(
     description : line[0],
     command : line[1],
-    binding : optionIndex(line, 2),
+    binding : optionIndex(line, 2).filter((x) => x != ""),
   )
 
 proc parseConfig(): seq[ConfigItem] =
