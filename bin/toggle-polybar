@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-# Toggle polybar
-
- if pgrep polybar >/dev/null; then
-     pkill polybar
-     bspc config top_padding 0
- else
-     sh ~/.config/polybar/launch.sh&
- fi

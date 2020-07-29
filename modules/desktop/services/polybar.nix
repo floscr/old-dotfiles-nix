@@ -18,6 +18,14 @@ in {
   config = mkIf config.modules.desktop.services.polybar.enable {
     my.packages = [
       polybar
+      (pkgs.writeScriptBin "toggle-polybar" ''
+        if pgrep polybar >/dev/null; then
+            systemctl --user stop polybar.service
+            bspc config top_padding 0
+        else
+            systemctl --user start polybar.service
+        fi
+      '')
     ];
 
     my.home.xdg.configFile = {
