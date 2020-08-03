@@ -85,9 +85,6 @@ ramp-signal-4-foreground = ${colors.icons}
 
 click-right = nm-applet &
 
-[module/backlight]
-type = internal/xbacklight
-
 [module/bspwm]
 type = internal/bspwm
 format = <label-mode> <label-state>
