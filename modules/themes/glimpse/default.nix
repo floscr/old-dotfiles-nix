@@ -5,7 +5,10 @@
 
   # theme.wallpaper = ./wallpaper.png;
 
-  environment.systemPackages = with pkgs; [ arc-theme ];
+  environment.systemPackages = with pkgs; [
+    arc-theme
+    paper-icon-theme
+  ];
 
   # Has to be enabled for gnome applications settings to work
   services.dbus.packages = with pkgs; [ gnome3.dconf ];
@@ -44,7 +47,7 @@
       "gtk-3.0/settings.ini".text = ''
         [Settings]
         gtk-theme-name=Arc-Dark
-        gtk-icon-theme-name=Arc-Dark
+        gtk-icon-theme-name=Paper
         gtk-fallback-icon-theme=gnome
         gtk-application-prefer-dark-theme=true
         gtk-cursor-theme-name=McMojave
@@ -56,7 +59,7 @@
       # GTK2 global theme (widget and icon theme)
       "gtk-2.0/gtkrc".text = ''
         gtk-theme-name="Arc-Dark"
-        gtk-icon-theme-name="adwaita"
+        gtk-icon-theme-name="Paper"
         gtk-font-name="Sans 10"
       '';
 
