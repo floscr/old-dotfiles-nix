@@ -4,6 +4,8 @@ import utils
 import argparse
 import sugar
 import times
+import macros
+import fp/option
 
 # let cacheDir = "nim_timer"
 # let defaultCacheDir = joinPath(getEnv("XDG_CACHE_HOME", "/tmp"), cacheDir)
@@ -27,7 +29,6 @@ method fromJson(data: JsonNode): TimerData =
 method endsInSec(data: TimerData): Duration =
   now() - data.endTime
 
-
 method toStr(data: TimerData): string =
   let diff = (data.endTime - now()).toParts()
   &"""Name: {data.name}
@@ -39,14 +40,22 @@ proc readDir(): seq[TimerData] =
   toSeq(walkDir(defaultCacheDir, true))
     .map(c => joinPath(defaultCacheDir, c.path) |> readFile |> parseJson |> fromJson)
 
-proc list(): string =
+proc list(showAll: bool): string =
   readDir()
-    .map(x => x.toStr)
-    .join("\n")
+    .some
+    .map(xs => (if showAll: xs else: xs.filterIt(it.endTime > now())))
+    .map(xs => xs
+         .mapIt(it.toStr)
+         .join("\n")
+    )
+    .getOrElse("")
 
 var p = newParser("cmder"):
   command("list"):
+    flag("-a", "--all")
     run:
-      list() |> echo
+      list(opts.all) |> echo
 
-p.run(@["list"])
+p.run()
+
+# echo (now() - 1.hours).format(iso8601format)
