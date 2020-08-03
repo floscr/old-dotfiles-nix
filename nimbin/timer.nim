@@ -1,20 +1,52 @@
 import os, osproc, strutils, sequtils, strformat
+import json
 import utils
 import argparse
 import sugar
+import times
 
 # let cacheDir = "nim_timer"
 # let defaultCacheDir = joinPath(getEnv("XDG_CACHE_HOME", "/tmp"), cacheDir)
-let defaultCacheDir = expandTilde("~/Desktop/Foo")
+let defaultCacheDir = expandTilde "/tmp/nim-timer"
+let iso8601format = initTimeFormat("yyyy-MM-dd'T'hh:mm:sszzz")
+let readableFormat = initTimeFormat("yyyy-MM-dd - hh:mm:ss")
 
-proc list() =
-  let files = toSeq(walkDir(defaultCacheDir, true))
-    .map((c) => joinPath(defaultCacheDir, c.path) |> getFileInfo)
-  echo files
+type
+  TimerData = ref object
+    name: string
+    startTime: DateTime
+    endTime: DateTime
+
+method fromJson(data: JsonNode): TimerData =
+  TimerData(
+    name: data["name"].getStr(),
+    startTime: data["start"].getStr().parse(iso8601format),
+    endTime: data["end"].getStr().parse(iso8601format),
+  )
+
+method endsInSec(data: TimerData): Duration =
+  now() - data.endTime
+
+
+method toStr(data: TimerData): string =
+  let diff = (data.endTime - now()).toParts()
+  &"""Name: {data.name}
+Start: {data.startTime.format(readableFormat)}
+End: {data.endTime.format(readableFormat)}
+Time Left: {diff[Minutes]:02}:{diff[Seconds]:02}"""
+
+proc readDir(): seq[TimerData] =
+  toSeq(walkDir(defaultCacheDir, true))
+    .map(c => joinPath(defaultCacheDir, c.path) |> readFile |> parseJson |> fromJson)
+
+proc list(): string =
+  readDir()
+    .map(x => x.toStr)
+    .join("\n")
 
 var p = newParser("cmder"):
   command("list"):
     run:
-      list()
+      list() |> echo
 
 p.run(@["list"])
