@@ -6,6 +6,7 @@ import sugar
 import times
 import macros
 import fp/option
+import lib/optionUtils
 
 # let cacheDir = "nim_timer"
 # let defaultCacheDir = joinPath(getEnv("XDG_CACHE_HOME", "/tmp"), cacheDir)
@@ -43,7 +44,10 @@ proc readDir(): seq[TimerData] =
 proc list(showAll: bool): string =
   readDir()
     .some
-    .map(xs => (if showAll: xs else: xs.filterIt(it.endTime > now())))
+    .mapWhen(
+      xs => not(showAll),
+      xs => xs.filterIt(it.endTime > now()),
+    )
     .map(xs => xs
          .mapIt(it.toStr)
          .join("\n")

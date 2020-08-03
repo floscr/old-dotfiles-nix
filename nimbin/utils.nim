@@ -2,6 +2,7 @@ import macros
 import sequtils
 import options
 
+
 template findIt*(coll, cond): untyped =
   var res: typeof(coll.items, typeOfIter)
   for it {.inject.} in coll:
