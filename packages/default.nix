@@ -2,10 +2,6 @@ let emacsOverlaySha = "076246e7d209313112f13f03a9ee92534f0bbf0a";
 in [
   (self: super: with super; {
     my = {
-      cached-nix-shell =
-        (callPackage
-          (builtins.fetchTarball
-            https://github.com/xzfc/cached-nix-shell/archive/master.tar.gz) {});
       inriaFont = (callPackage ./inria.nix {});
       rofimoji = (callPackage ./rofimoji.nix {});
     };
