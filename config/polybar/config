@@ -42,7 +42,7 @@ padding-left = 2
 padding-right = 2
 tray-position = right
 
-modules-right = mail filesystem cpu memory wireguard-status wlan battery date powermenu pulseaudio-rofi-output
+modules-right = mail filesystem cpu memory wireguard-status network-up network-down wlan battery date powermenu pulseaudio-rofi-output
 modules-left = bspwm
 separator = " "
 
@@ -351,3 +351,31 @@ spacing = 4
 type = custom/script
 interval = 30
 exec = /etc/dotfiles/nimbin/mail;
+
+[module/network-up]
+type = internal/network
+interface = ${env:WLP:wlp0s20f3}
+interval = 4.0
+label-connected = "%upspeed%"
+format-connected-prefix = " "
+format-connected-prefix-foreground = ${colors.icons}
+format-connected-foreground = ${colors.icons}
+format-connected-background =
+format-connected-underline =
+format-disconnected-prefix = " "
+format-disconnected-prefix-foreground = ${colors.icons}
+format-disconnected-foreground = ${colors.icons}
+
+[module/network-down]
+type = internal/network
+interface = ${env:WLP:wlp0s20f3}
+interval = 4.0
+label-connected = "%downspeed%"
+format-connected-prefix = " "
+format-connected-prefix-foreground = ${colors.icons}
+format-connected-foreground = ${colors.icons}
+format-connected-background =
+format-connected-underline =
+format-disconnected-prefix = " "
+format-disconnected-prefix-foreground = ${colors.icons}
+format-disconnected-foreground = ${colors.icons}
