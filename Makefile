@@ -46,16 +46,16 @@ channels:
 	@sudo nix-channel --add "https://github.com/rycee/home-manager/archive/release-${NIXOS_VERSION}.tar.gz" home-manager
 	@sudo nix-channel --add "https://nixos.org/channels/nixpkgs-unstable" nixpkgs-unstable
 
+$(NIXOS_PREFIX)/configuration.nix:
+	@sudo nixos-generate-config --root "$(PREFIX)"
+	@echo "import /etc/dotfiles \"$${HOST:-$$(hostname)}\" \"$$USER\"" | sudo tee "$(NIXOS_PREFIX)/configuration.nix"
+	@[ -f machines/$(HOST).nix ] || echo "WARNING: hosts/$(HOST)/default.nix does not exist"
+
 $(HOME)/.dotfiles:
 	@mkdir -p $(HOME)
 	@[ -e $(HOME)/.dotfiles ] || sudo mv /etc/dotfiles $(HOME)/.dotfiles
 	@[ -e /etc/dotfiles ] || sudo ln -s $(HOME)/.dotfiles /etc/dotfiles
 	@chown $(USER):users $(HOME) $(HOME)/.dotfiles
-
-$(NIXOS_PREFIX)/configuration.nix:
-	@sudo nixos-generate-config --root "$(PREFIX)"
-	@echo "import /etc/dotfiles \"$$(hostname)\"" | sudo tee "$(NIXOS_PREFIX)/configuration.nix"
-
 
 # Convenience aliases
 i: install
