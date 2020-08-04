@@ -10,7 +10,7 @@ FLAGS         := -I "config=$$(pwd)/config" \
 all: channels
 	@sudo nixos-rebuild $(FLAGS) $(COMMAND)
 
-install: channels update config
+install: channels update config move_to_home
 	@sudo nixos-install --root "$(PREFIX)" $(FLAGS)
 
 upgrade: update switch
@@ -39,6 +39,7 @@ clean:
 
 # Parts
 config: $(NIXOS_PREFIX)/configuration.nix
+move_to_home: $(HOME)/.dotfiles
 
 channels:
 	@sudo nix-channel --add "https://nixos.org/channels/nixos-${NIXOS_VERSION}" nixos
