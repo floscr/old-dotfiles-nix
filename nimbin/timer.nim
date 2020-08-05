@@ -1,12 +1,17 @@
-import os, osproc, strutils, sequtils, strformat
-import json
-import utils
 import argparse
+import fp/option
+import json
+import lib/optionUtils
+import macros
+import os
+import osproc
+import regex
+import sequtils
+import strformat
+import strutils
 import sugar
 import times
-import macros
-import fp/option
-import lib/optionUtils
+import utils
 
 # let cacheDir = "nim_timer"
 # let defaultCacheDir = joinPath(getEnv("XDG_CACHE_HOME", "/tmp"), cacheDir)
