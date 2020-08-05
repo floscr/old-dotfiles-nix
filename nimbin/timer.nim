@@ -47,7 +47,28 @@ proc readDir(): seq[TimerData] =
   toSeq(walkDir(defaultCacheDir, true))
     .map(c => joinPath(defaultCacheDir, c.path) |> readFile |> parseJson |> fromJson)
 
-proc list(showAll: bool): string =
+# proc parseDateString(str: string): Duration =
+#   var m: RegexMatch
+#   discard str.match(re"((?P<hours>\d*)h)? ?((?P<minutes>\d*)m)? ?((?P<seconds>\d*)s)?", m)
+#   let ms  =[
+#     "hours",
+#     "minutes",
+#     "seconds",
+#   ]
+#   .map(x => tryM(m.group(x, str)[0])
+#     .map(y => y.parseInt())
+#     .getOrElse(0)
+#   )
+#   initDuration(hours = ms[0], minutes = ms[1], seconds = ms[2])
+
+
+# proc createTimer(name: string, time.string): string =
+#   createDir(defaultCacheDir)
+#   TimerData(
+#     name
+#   )
+
+proc listTimers(showAll: bool): string =
   readDir()
     .some
     .mapWhen(
@@ -60,11 +81,14 @@ proc list(showAll: bool): string =
     )
     .getOrElse("")
 
-var p = newParser("cmder"):
+import argparse
+
+var p = newParser("My Program"):
   command("list"):
     flag("-a", "--all")
     run:
-      list(opts.all) |> echo
+      echo listTimers(opts.all)
+  #     createTimer(opts.name, opts.time) |> echo
 
 p.run()
 
