@@ -1,5 +1,6 @@
 import argparse
 import fp/option
+import fp/trym except run
 import json
 import lib/optionUtils
 import macros
