@@ -56,7 +56,7 @@
     shell = {
       beancount.enable = true;
       colorOptimization.enable = true;
-      direnv.enable = false;
+      direnv.enable = true;
       git.enable = true;
       gnupg.enable = true;
       ncmpcpp.enable = false;
