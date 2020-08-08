@@ -13,18 +13,17 @@ let fileFormat = initTimeFormat("yyyy-MM-dd-hh:mm-ss")
 proc writeFileEither(name: string, content: string): EitherS[string] =
   try:
     writeFile(name, content)
-    result = "File written".right(string)
+    "File written".right(string)
   except IOError:
-    result = ("Could not write file \n" & getCurrentExceptionMsg()).left(string)
+    ("Could not write file \n" & getCurrentExceptionMsg()).left(string)
 
 proc createTimerFile(name: Option[string], content: string): any =
-  let path = name
+  let filename = name
     .orElse(() => now().format(fileFormat).some)
     .map(x => &"{x}.json")
     .map(x => joinPath(defaultCacheDir, x))
 
-  discard tryE()
-  # fromEither(tryET do: writeFile(path.get, content))
+  writeFileEither(filename.get, content)
 
 
-echo writeFileEither("/tmp/faaaa/sfdsffd/sdfsf", "bar")
+echo createTimerFile("foooooo".some, "bar")
