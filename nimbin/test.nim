@@ -1,22 +1,30 @@
-import regex
-import fp/trym
-import fp/list
+import fp/either
+import fp/option
+import fp/trym except run
 import sugar
-import strutils
-import sequtils
 import times
+import strformat
+import os
 
-proc parseDateString(x: string): any =
-  var m: RegexMatch
-  discard x.match(re"((?P<hours>\d*)h)?((?P<minutes>\d*)m)?", m)
-  let ms  =[
-    tryM(m.group("hours", x)[0]),
-    tryM(m.group("minutes", x)[0]),
-  ]
-  .map(x => x
-    .map(y => y.parseInt())
-    .getOrElse(0)
-   )
-  initDuration(hours = ms[0], minutes = ms[1])
 
-echo parseDateString "10h20m"
+let defaultCacheDir = expandTilde "/tmp/nim-timer"
+let fileFormat = initTimeFormat("yyyy-MM-dd-hh:mm-ss")
+
+proc writeFileEither(name: string, content: string): EitherS[string] =
+  try:
+    writeFile(name, content)
+    result = "File written".right(string)
+  except IOError:
+    result = ("Could not write file \n" & getCurrentExceptionMsg()).left(string)
+
+proc createTimerFile(name: Option[string], content: string): any =
+  let path = name
+    .orElse(() => now().format(fileFormat).some)
+    .map(x => &"{x}.json")
+    .map(x => joinPath(defaultCacheDir, x))
+
+  discard tryE()
+  # fromEither(tryET do: writeFile(path.get, content))
+
+
+echo writeFileEither("/tmp/faaaa/sfdsffd/sdfsf", "bar")
