@@ -6,7 +6,6 @@ import times
 import strformat
 import os
 
-
 let defaultCacheDir = expandTilde "/tmp/nim-timer"
 let fileFormat = initTimeFormat("yyyy-MM-dd-hh:mm-ss")
 
@@ -17,7 +16,7 @@ proc writeFileEither(name: string, content: string): EitherS[string] =
   except IOError:
     ("Could not write file \n" & getCurrentExceptionMsg()).left(string)
 
-proc createTimerFile(name: Option[string], content: string): any =
+proc createTimerFile(name: Option[string], content: string): EitherS[string] =
   let filename = name
     .orElse(() => now().format(fileFormat).some)
     .map(x => &"{x}.json")

@@ -1,4 +1,3 @@
-import argparse
 import fp/option
 import fp/trym except run
 import json
@@ -19,6 +18,7 @@ import utils
 let defaultCacheDir = expandTilde "/tmp/nim-timer"
 let iso8601format = initTimeFormat("yyyy-MM-dd'T'hh:mm:sszzz")
 let readableFormat = initTimeFormat("yyyy-MM-dd - hh:mm:ss")
+let fileFormat = initTimeFormat("yyyy-MM-dd-hh:mm-ss")
 
 type
   TimerData = ref object
@@ -43,6 +43,21 @@ Start: {data.startTime.format(readableFormat)}
 End: {data.endTime.format(readableFormat)}
 Time Left: {diff[Minutes]:02}:{diff[Seconds]:02}"""
 
+proc writeFileEither(name: string, content: string): EitherS[string] =
+  try:
+    writeFile(name, content)
+    "File written".right(string)
+  except IOError:
+    ("Could not write file \n" & getCurrentExceptionMsg()).left(string)
+
+proc createTimerFile(name: Option[string], content: string): EitherS[string] =
+  let filename = name
+    .orElse(() => now().format(fileFormat).some)
+    .map(x => &"{x}.json")
+    .map(x => joinPath(defaultCacheDir, x))
+
+  writeFileEither(filename.get, content)
+
 proc readDir(): seq[TimerData] =
   toSeq(walkDir(defaultCacheDir, true))
     .map(c => joinPath(defaultCacheDir, c.path) |> readFile |> parseJson |> fromJson)
@@ -61,14 +76,10 @@ proc parseDateString(str: string): Duration =
   )
   initDuration(hours = ms[0], minutes = ms[1], seconds = ms[2])
 
-proc createTimer(name: Option(string), time: ): string =
-  createDir(defaultCacheDir)
-  name
-    .foldLeft()
-  writeFile()
-  TimerData(
-    name
-  )
+# proc createTimer(name: Option(string)): string =
+#   discard createDir(defaultCacheDir)
+#   let name = name
+#     .map(parseDateString)
 
 proc listTimers(showAll: bool): string =
   readDir()
@@ -89,9 +100,9 @@ var p = newParser("My Program"):
   command("list"):
     flag("-a", "--all")
     run:
-      echo listTimers(opts.all)
-  #     createTimer(opts.name, opts.time) |> echo
+      listTimers(opts.all) |> echo
+  command("in"):
+    arg("time", help="", default="")
+    echo opts.argparseCommand
 
 p.run()
-
-# echo (now() - 1.hours).format(iso8601format)
