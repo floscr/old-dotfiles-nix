@@ -38,7 +38,6 @@ bspc rule -a Pinentry state=floating center=on
 bspc rule -a GtkFileChooserDialog state=floating rectangle=300x300+190+134 --center --focus
 
 bspc rule -a feh state=fullscreen
-bspc rule -a st-scratch state=floating sticky=on center=on
 
 for file in $XDG_CONFIG_HOME/bspwm/rc.d/*; do
   source "$file"
