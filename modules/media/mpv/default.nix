@@ -172,6 +172,10 @@ in {
             k volume 5
             j volume -5
 
+            > multiply speed 11:10  # Extra speed
+            < multiply speed 9:10   # v speed
+            0 set speed 1.0         # Controlled speed
+
             v cycle sub-visibility
 
             ### Video Modifications
