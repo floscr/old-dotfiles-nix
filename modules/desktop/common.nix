@@ -66,11 +66,6 @@
       description = "New Terminal";
     }
     {
-      binding = "super + P";
-      command = "mpv-scratchpad-toggle";
-      description = "Toggle MPV Scratchpad";
-    }
-    {
       binding = "super + t";
       command = "toggle-polybar";
       description = "Toggle Polybar";
