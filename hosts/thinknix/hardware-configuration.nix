@@ -14,8 +14,11 @@ in {
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "sd_mod" "sdhci_pci" ];
   boot.initrd.kernelModules = [ "dm-snapshot" ];
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
+  boot.kernelModules = [
+    "kvm-intel"
+    "acpi_call"
+  ];
+  boot.extraModulePackages = with config.boot.kernelPackages; [ acpi_call ];
 
   environment = {
     systemPackages = with pkgs; [
