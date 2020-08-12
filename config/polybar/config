@@ -42,7 +42,7 @@ padding-left = 2
 padding-right = 2
 tray-position = right
 
-modules-right = mail filesystem cpu memory wireguard-status network-up network-down wlan battery date powermenu pulseaudio-rofi-output
+modules-right = mail filesystem cpu memory network-up network-down wireguard-status wlan battery date powermenu pulseaudio-rofi-output
 modules-left = bspwm
 separator = " "
 
