@@ -373,8 +373,9 @@ in {
             [protocol.http]
             force-window=immediate
             [protocol.https]
-            #profile=protocol.http
+            force-window=immediate
             [protocol.ytdl]
+            force-window=immediate
             profile=protocol.http
 
             # Audio-only content
