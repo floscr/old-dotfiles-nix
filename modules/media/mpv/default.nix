@@ -261,43 +261,33 @@ in {
             #no-deband
             temporal-dither=yes
             # no-border                               # no window title bar
+
+            script-opts=osc-layout=box
+            scale-radius=3
+
+            fbo-format=rgba16f
+            icc-profile-auto=yes
+            icc-cache-dir=/home/${config.my.username}/.cache/mpv-icc
             msg-module                              # prepend module name to log messages
             msg-color                               # color log messages on terminal
-            # term-osd-bar                            # display a progress bar on the terminal
             use-filedir-conf                        # look for additional config files in the directory of the opened file                        # 'auto' does not imply interlacing-detection
-            cursor-autohide-fs-only                 # don't autohide the cursor in window mode, only fullscreen
-            cursor-autohide=1000                    # autohide the curser after 1s
-            # fs-black-out-screens
+
+            cursor-autohide-fs-only
+            cursor-autohide=1000
             keep-open=yes
 
-            # Video filters
-            #vf=vapoursynth=/home/${config.my.username}/.config/mpv/scripts/mvtools.vpy
-
-            # Start in fullscreen
-            # fullscreen
-
-            # Activate autosync
+            save-position-on-quit
             autosync=30
-
-            # Skip some frames to maintain A/V sync on slow systems
-            framedrop=vo
+            framedrop=vo # Skip some frames to maintain A/V sync on slow systems
+            ontop=yes # Keep the player window on top of all other windows.
 
             # Force starting with centered window
             geometry=50%:50%
             autofit-larger=60%x60%
             autofit-smaller=10%x10%
 
-            # Keep the player window on top of all other windows.
-            ontop=yes
-
             # Disable screensaver
             stop-screensaver=yes
-
-            # save position on quit
-            save-position-on-quit
-
-            # Enable hardware decoding if available.
-            #hwdec=cuda
 
             # Screenshot format
             screenshot-format=png
@@ -307,49 +297,23 @@ in {
             screenshot-high-bit-depth=yes
             screenshot-directory=/home/${config.my.username}/Media/Screenshots
 
-
-            # AUDIO
-            alsa-resample=no
-            audio-channels=2
-            af=format=channels=2
-            # volume=100
-            # volume-max=230
-            audio-pitch-correction=yes
-            # audio-normalize-downmix=yes
-            audio-display=no
-
             #user agent for playback
             user-agent = "Mozilla/5.0"
 
             # osd
             osd-on-seek=bar
 
-            # SUBTITLES
+            ## SUBTITLES
 
-            demuxer-mkv-subtitle-preroll            # try to correctly show embedded subs when seeking
-            sub-auto=fuzzy                          # external subs don't have to match the file name exactly to autoload
-            sub-file-paths=ass:srt:sub:subs:subtitles    # search for external subs in the listed subdirectories
-            embeddedfonts=yes                       # use embedded fonts for SSA/ASS subs
-            sub-fix-timing=no                       # do not try to fix gaps (which might make it worse in some cases)
-            sub-ass-force-style=Kerning=yes             # allows you to override style parameters of ASS scripts
+            demuxer-mkv-subtitle-preroll              # try to correctly show embedded subs when seeking
+            sub-auto=fuzzy                            # external subs don't have to match the file name exactly to autoload
+            sub-file-paths=ass:srt:sub:subs:subtitles # search for external subs in the listed subdirectories
+            embeddedfonts=yes                         # use embedded fonts for SSA/ASS subs
+            sub-fix-timing=no                         # do not try to fix gaps (which might make it worse in some cases)
+            sub-ass-force-style=Kerning=yes           # allows you to override style parameters of ASS scripts
 
             sub-scale-by-window=yes
-
-            #1
-            # sub-font='Montara'
-            # sub-font-size=54
-            # sub-margin-y=45
-            # sub-color="#ffffffff"
-            # sub-border-color="#000000"
-            # sub-border-size=2.4
-            # sub-shadow-offset=0
-            # sub-shadow-color="#000000"
-            #2
-            # sub-text-font='PT Sans Tight'
-            # sub-text-bold=yes
             sub-font-size=45
-            # sub-text-margin-y=40
-            ## sub-text-margin-x=160
             sub-color="#ffffffff"
             sub-border-color="#000000"
             sub-border-size=3.0
@@ -361,11 +325,11 @@ in {
             sub-codepage=utf8
 
             # Languages
+            slang=en,eng,enm,de,deu,ger # automatically select these subtitles (decreasing priority)
+            alang=en,eng,de,deu,ger     # automatically select these audio tracks (decreasing priority)
 
-            slang=en,eng,enm,de,deu,ger             # automatically select these subtitles (decreasing priority)
-            alang=en,eng,de,deu,ger       # automatically select these audio tracks (decreasing priority)
+            ## YTDL
 
-            # ytdl
             ytdl=yes
             hls-bitrate=max                         # use max quality for HLS streams
             ytdl-format=bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best
@@ -378,13 +342,21 @@ in {
             force-window=immediate
             profile=protocol.http
 
-            # Audio-only content
+            ## AUDIO
+
+            alsa-resample=no
+            audio-channels=2
+            af=format=channels=2
+            audio-pitch-correction=yes
+            audio-display=no
+
             [audio]
             force-window=no
             no-video
             ytdl-format=bestaudio/best
 
-            # Extension config, mostly for .webm loop
+            ## IMAGES
+
             [extension.webm]
             loop-file=inf
             [extension.gif]
