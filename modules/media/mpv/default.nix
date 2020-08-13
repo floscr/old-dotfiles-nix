@@ -237,30 +237,32 @@ in {
             x11-bypass-compositor=yes # bypass compositor
             demuxer-thread=yes
 
+            #The default profile you use for your stuff. Always use this one
+            profile=gpu-hq
+
+            #The called API. Vulkan is highly recommended.
+            #Use "opengl" if you have compatibility problems
             gpu-api=vulkan
-            script-opts=osc-layout=box
-            profile=opengl-hq
+
+            #The backend with the API. Leave it "auto"
+            #Or use "winvk" with "gpu-api=vulkan" or "win" / "angle" with "gpu-api=opengl"
+            gpu-context=x11vk
+
+            #Choose the compiler for translating glsl code for Vulkan. Leave it "auto"
+            #Or use "shaderc" with a nVidia/AMD/Intel GPU or "nvidia" with a nVidia GPU
+            spirv-compiler=auto
+
+            hwdec=no
             scale=ewa_lanczossharp
-            #scale=haasnsoft
-            scale-radius=3
             cscale=ewa_lanczossoft
-            opengl-pbo=yes
-            fbo-format=rgba16f
-            #opengl-shaders="/home/${config.my.username}/.mpv/shaders/SSimSuperRes.glsl"
-            #opengl-shaders="/home/${config.my.username}/.mpv/shaders/SSimSuperRes.glsl,/home/${config.my.username}/.mpv/shaders/adaptive-sharpen-2pass.glsl"
-            #opengl-shaders="/home/${config.my.username}/.mpv/shaders/adaptive-sharpen-2pass.glsl"
-            icc-profile-auto=yes
-            icc-cache-dir=/home/${config.my.username}/.cache/mpv-icc
-            # target-brightness=100
+            video-sync=display-resample
             interpolation
             tscale=oversample
-            hwdec=no
-            video-sync=display-resample
+
             deband-iterations=2
             deband-range=12
-            #no-deband
             temporal-dither=yes
-            # no-border                               # no window title bar
+
 
             script-opts=osc-layout=box
             scale-radius=3
@@ -268,6 +270,7 @@ in {
             fbo-format=rgba16f
             icc-profile-auto=yes
             icc-cache-dir=/home/${config.my.username}/.cache/mpv-icc
+
             msg-module                              # prepend module name to log messages
             msg-color                               # color log messages on terminal
             use-filedir-conf                        # look for additional config files in the directory of the opened file                        # 'auto' does not imply interlacing-detection
