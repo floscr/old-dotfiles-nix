@@ -227,84 +227,87 @@ in {
             # Every possible settings are explained here:
             # https://github.com/mpv-player/mpv/tree/master/DOCS/man
 
-            ##################
-            # VIDEO
-            ##################
-            # Video output
+            ## VIDEO
 
-            osc=no # disable osc for custom osc
-            # vo=xv # simpler rendering for reducing tearing
-            x11-bypass-compositor=yes # bypass compositor
+            # X11
+            x11-bypass-compositor=yes
             demuxer-thread=yes
 
-            #The default profile you use for your stuff. Always use this one
+            # The default profile you use for your stuff. Always use this one
             profile=gpu-hq
 
-            #The called API. Vulkan is highly recommended.
-            #Use "opengl" if you have compatibility problems
+            # The called API. Vulkan is highly recommended.
+            # Use "opengl" if you have compatibility problems
             gpu-api=vulkan
 
-            #The backend with the API. Leave it "auto"
-            #Or use "winvk" with "gpu-api=vulkan" or "win" / "angle" with "gpu-api=opengl"
+            # The backend with the API. Leave it "auto"
+            # Or use "winvk" with "gpu-api=vulkan" or "win" / "angle" with "gpu-api=opengl"
             gpu-context=x11vk
 
-            #Choose the compiler for translating glsl code for Vulkan. Leave it "auto"
-            #Or use "shaderc" with a nVidia/AMD/Intel GPU or "nvidia" with a nVidia GPU
+            # Choose the compiler for translating glsl code for Vulkan. Leave it "auto"
+            # Or use "shaderc" with a nVidia/AMD/Intel GPU or "nvidia" with a nVidia GPU
             spirv-compiler=auto
 
-            hwdec=no
+            # Scaling method
+            # ewa_lanczossharp is the most processor heavy, but also the prettiest
             scale=ewa_lanczossharp
             cscale=ewa_lanczossoft
+            # scale-radius=3
+            fbo-format=rgba16f
+
+            # Reduce stuttering caused by mismatches in the video fps
             video-sync=display-resample
             interpolation
             tscale=oversample
 
-            deband-iterations=2
-            deband-range=12
-            temporal-dither=yes
-
-
-            script-opts=osc-layout=box
-            scale-radius=3
-
-            fbo-format=rgba16f
-            icc-profile-auto=yes
-            icc-cache-dir=/home/${config.my.username}/.cache/mpv-icc
-
-            msg-module                              # prepend module name to log messages
-            msg-color                               # color log messages on terminal
-            use-filedir-conf                        # look for additional config files in the directory of the opened file                        # 'auto' does not imply interlacing-detection
-
-            cursor-autohide-fs-only
-            cursor-autohide=1000
-            keep-open=yes
-
-            save-position-on-quit
+            # Sync up video with audio
             autosync=30
             framedrop=vo # Skip some frames to maintain A/V sync on slow systems
             ontop=yes # Keep the player window on top of all other windows.
 
-            # Force starting with centered window
+            # Reduce banding
+            deband-iterations=2
+            deband-range=12
+            temporal-dither=yes
+
+            # Load the embedded ICC  profile contained in media files such  as PNG  images.
+            icc-profile-auto=yes
+            icc-cache-dir=/home/${config.my.username}/.cache/mpv-icc
+
+            ## UI
+
+            osc=no # Disable on-screen controls
+            script-opts=osc-layout=box
+
+            # Show UI when seeking
+            osd-on-seek=bar
+
+            cursor-autohide-fs-only
+            cursor-autohide=1000
+
+            keep-open=yes
+            save-position-on-quit
+            stop-screensaver=yes
+
+            # Start centered window
             geometry=50%:50%
             autofit-larger=60%x60%
             autofit-smaller=10%x10%
 
-            # Disable screensaver
-            stop-screensaver=yes
+            ## CLI OUTPUT
 
-            # Screenshot format
+            msg-module       # prepend module name to log messages
+            msg-color        # color log messages on terminal
+            use-filedir-conf # look for additional config files in the directory of the opened file                        # 'auto' does not imply interlacing-detection
+
+            ## SCREENSHOTS
+
             screenshot-format=png
             screenshot-png-compression=0
             screenshot-png-filter=0
             screenshot-tag-colorspace=yes
             screenshot-high-bit-depth=yes
             screenshot-directory=/home/${config.my.username}/Media/Screenshots
-
-            #user agent for playback
-            user-agent = "Mozilla/5.0"
-
-            # osd
-            osd-on-seek=bar
 
             ## SUBTITLES
 
@@ -331,11 +334,17 @@ in {
             slang=en,eng,enm,de,deu,ger # automatically select these subtitles (decreasing priority)
             alang=en,eng,de,deu,ger     # automatically select these audio tracks (decreasing priority)
 
-            ## YTDL
+            ## YOUTUBE-DL / STREAMING VIDEO
+
+            # Use this user agent for streaming
+            user-agent = "Mozilla/5.0"
+
+            # Use max bitrate for HLS streaming
+            hls-bitrate=max 
 
             ytdl=yes
-            hls-bitrate=max                         # use max quality for HLS streams
             ytdl-format=bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best
+
             # protocol config
             [protocol.http]
             force-window=immediate
