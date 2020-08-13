@@ -169,14 +169,36 @@ in {
             L seek  60
             h seek -5
             H seek -60
-            k volume 5
-            j volume -5
+
+            Ctrl+h playlist-prev
+            Ctrl+l playlist-next
+
+            BS revert-seek
+            Ctrl+0 seek 0 absolute-percent
+            Ctrl+1 seek 10 absolute-percent
+            Ctrl+2 seek 20 absolute-percent
+            Ctrl+3 seek 30 absolute-percent
+            Ctrl+4 seek 40 absolute-percent
+            Ctrl+5 seek 50 absolute-percent
+            Ctrl+6 seek 60 absolute-percent
+            Ctrl+7 seek 70 absolute-percent
+            Ctrl+8 seek 80 absolute-percent
+            Ctrl+9 seek 90 absolute-percent
+
+            k add volume 5
+            j add volume -5
+            K add volume 10
+            J add volume -10
+
+            n add-chapter 1
+            p add-chapter -1
 
             > multiply speed 11:10  # Extra speed
             < multiply speed 9:10   # v speed
             0 set speed 1.0         # Controlled speed
 
-            v cycle sub-visibility
+            a cycle audio
+            s cycle sub
 
             ### Video Modifications
             + add video-zoom 0.5
