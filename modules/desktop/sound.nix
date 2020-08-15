@@ -68,7 +68,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    playerctl
+    unstable.playerctl
     pavucontrol
     blueman
   ];
