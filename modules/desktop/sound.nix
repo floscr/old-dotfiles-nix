@@ -125,10 +125,5 @@
       description = "Sound: Mute/Unmute";
       command = "amixer -q set Master toggle";
     }
-    {
-      description = "Restart Pulse";
-      categories = "Volume Control";
-      command = "pulseaudio -k";
-    }
   ];
 }
