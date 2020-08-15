@@ -111,12 +111,14 @@
       command = "playerctl previous";
     }
     {
-      description = "Media: Forward 10s";
-      command = "playerctl position 10+";
+      binding = "{ shift + XF86AudioNext, super + alt + shift + l, alt + XF86AudioRaiseVolume  }";
+      description = "Media: Forward 20s";
+      command = "playerctl position 20+";
     }
     {
-      description = "Media: Forward 10s";
-      command = "playerctl position 10-";
+      binding = "{ shift + XF86AudioPrev, super + alt + shift + h, alt + XF86AudioLowerVolume   }";
+      description = "Media: Forward 20s";
+      command = "playerctl position 20-";
     }
     {
       binding = "{ XF86AudioMute, super + alt + m }";
