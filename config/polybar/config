@@ -23,7 +23,7 @@ icons = #555856
 
 [global/wm]
 margin-top = 20
-margin-bottom = 3
+margin-bottom = 1
 
 [bar/main]
 monitor = ${env:MONITOR:}
@@ -35,12 +35,11 @@ dpi-x = 0
 dpi-y = 0
 
 width = 100%
-height = 35
+height = 36
 radius = 0
 
 padding-left = 2
-padding-right = 2
-tray-position = right
+padding-right = 3
 
 modules-right = mail filesystem cpu memory network-up network-down wireguard-status wlan battery date powermenu pulseaudio-rofi-output
 modules-left = bspwm
