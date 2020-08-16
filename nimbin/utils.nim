@@ -1,7 +1,10 @@
 import macros
 import sequtils
-import options
+import fp/option
+import fp/list
+import sugar
 
+{.experimental.}
 
 template findIt*(coll, cond): untyped =
   var res: typeof(coll.items, typeOfIter)
@@ -13,6 +16,18 @@ template findIt*(coll, cond): untyped =
 
 proc optionIndex*[T](xs: openArray[T], i: int): Option[T] =
   if (xs.len > i): return some(xs[i])
+
+
+proc bitap*[T](xs: Option[T], errFn: () -> void, succFn: T -> void): Option[T] =
+  if (xs.isDefined):
+    succFn(xs.get)
+  else:
+    errFn()
+  xs
+
+proc tap*[T](xs: List[T], f: T -> void): List[T] =
+  f(xs)
+  xs
 
 proc bifold*[T](x: Option[T], errFn: proc(): T, succFn: proc(el: T): T): T =
   if (x.isSome): succFn(x.get)

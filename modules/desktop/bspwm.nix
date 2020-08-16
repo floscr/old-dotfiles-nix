@@ -31,6 +31,11 @@
       description = "Switch to previous window";
     }
     {
+      binding = "super + comma";
+      command = "nimx /etc/dotfiles/nimbin/scratchTerminal";
+      description = "Switch to previous window";
+    }
+    {
       binding = "super + Tab";
       command = "bspc desktop -f last";
       description = "Switch to previous desktop";
