@@ -34,6 +34,7 @@ proc hide(id: string): void =
 
 proc show(id: string): void =
   discard execShellCmd(&"xdotool windowmap {id}")
+  discard execShellCmd(&"xdotool windowmove {id} x 37")
 
 proc toggle(): Option[string] =
   scratchWindows()
