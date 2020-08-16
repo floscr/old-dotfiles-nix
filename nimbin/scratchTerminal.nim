@@ -1,4 +1,3 @@
-import options
 import os
 import osproc
 import sequtils
@@ -6,40 +5,48 @@ import strformat
 import strutils
 import utils
 import fp/list
+import fp/option
 import regex
 import sugar
+
+{.experimental.}
 
 proc parseId(str: string): string =
   var m: RegexMatch
   discard str.match(re" *(?P<id>[0-9a-z]*).*", m)
   m.group("id", str)[0]
 
-proc focusedId(): string =
-  execProcess("echo \"0x0$(printf '%x\n' $(xdotool getwindowfocus))\"")
-  .replace("\n", "")
+proc scratchWindows(): Option[string] =
+  return execProcess("xwininfo -root -children")
+    .split("\n")
+    .asList
+    .drop(6)
+    .filter(x => x.contains("-scratch"))
+    # Ignore spawn process window
+    .filter(x => not(x.contains("10x10")))
+    .headOption
 
-proc xids(): List[string] =
-  execProcess("xwininfo -root -children")
-  .split("\n")
-  .asList
-  .drop(6)
-  .filter(x => x != "")
+proc createTerm(): void =
+  discard startProcess("/home/floscr/.nix-profile/bin/termite", args = ["--class", "termite-scratch"])
+
+proc hide(id: string): void =
+  discard execShellCmd(&"xdotool windowunmap {id}")
+
+proc show(id: string): void =
+  discard execShellCmd(&"xdotool windowmap {id}")
+
+proc toggle(): Option[string] =
+  scratchWindows()
   .map(parseId)
+  .bitap(
+    () => createTerm(),
+    proc (x: string) =
+      if (execProcess(&"xwininfo -id {x}").contains("IsUnMapped")):
+        echo "show"
+        show(x)
+      else:
+        echo "hide"
+        hide(x)
+  )
 
-proc scratchWindows(): List[string] =
-  xids()
-  .map(x => execProcess(&"xprop -id {x} _SCRATCH"))
-
-proc makeScratchWindow(): any =
-  discard startProcess("termite")
-
-echo "~/.nix-profile/bin/termite"
-.some
-.map(expandTilde)
-.map(x => &"{x} -t TerminalScratchpad")
-.get
-
-# discard startProcess(("~/.nix-profile/bin/termite"))
-
-# makeScratchWindow()
-# echo focusedId()
+discard toggle()
