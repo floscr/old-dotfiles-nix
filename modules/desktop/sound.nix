@@ -88,7 +88,7 @@
       binding = "{ super + alt + t }";
       description = "Toggle Headphone Audio Output";
       categories = "Script, Audio";
-      command = "nimx /etc/dotfiles/nimbin/toggleHeadphoneAudioOutput";
+      command = "nimx toggleHeadphoneAudioOutput";
     }
     {
       description = "Player: Metadata";

@@ -1,12 +1,14 @@
-import os,
-       osproc,
-       strutils,
-       sequtils,
-       strformat,
-       options
+import os
+import osproc
+import strutils
+import sequtils
+import strformat
+import fp/option
 import utils
 import argparse
 import sugar
+
+{.experimental.}
 
 let config = expandTilde("~/.config/cmder/cmd.csv")
 let splitChar = ",,,"
@@ -25,7 +27,7 @@ proc commands*(xs: seq[ConfigItem]): string =
 
 proc renderBinding(x: Option[string]): string =
   x
-    .bifold(
+    .fold(
       () => "",
       (x) => &"<span gravity=\"east\" size=\"x-small\" font_style=\"italic\" foreground=\"#5c606b\"> {x}</span>",
     )

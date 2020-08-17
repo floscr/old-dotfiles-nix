@@ -29,10 +29,6 @@ proc tap*[T](xs: List[T], f: T -> void): List[T] =
   f(xs)
   xs
 
-proc bifold*[T](x: Option[T], errFn: proc(): T, succFn: proc(el: T): T): T =
-  if (x.isSome): succFn(x.get)
-  else: errFn()
-
 proc orElse*[T](x: Option[T], noneX: T): T =
   if (x.isSome): return x.get
   else: noneX

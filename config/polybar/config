@@ -349,7 +349,7 @@ spacing = 4
 [module/mail]
 type = custom/script
 interval = 30
-exec = /etc/dotfiles/nimbin/mail;
+exec = /etc/dotfiles/nimbin/dst/mail;
 
 [module/network-up]
 type = internal/network

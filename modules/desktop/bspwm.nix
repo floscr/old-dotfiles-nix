@@ -32,7 +32,7 @@
     }
     {
       binding = "super + comma";
-      command = "nimx /etc/dotfiles/nimbin/scratchTerminal";
+      command = "nimx scratchTerminal";
       description = "Switch to previous window";
     }
     {
