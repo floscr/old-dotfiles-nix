@@ -1,5 +1,5 @@
 import os, osproc, strutils, sequtils, strformat
-import utils
+import lib/utils
 import argparse
 import sugar
 

@@ -3,7 +3,7 @@ import osproc
 import sequtils
 import strformat
 import strutils
-import utils
+import lib/utils
 import fp/list
 import fp/option
 import regex

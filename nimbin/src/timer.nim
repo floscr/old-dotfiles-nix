@@ -11,7 +11,7 @@ import strformat
 import strutils
 import sugar
 import times
-import utils
+import lib/utils
 
 # let cacheDir = "nim_timer"
 # let defaultCacheDir = joinPath(getEnv("XDG_CACHE_HOME", "/tmp"), cacheDir)

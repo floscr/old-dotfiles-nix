@@ -1,6 +1,6 @@
 import os, osProc
 import sequtils, strutils, strformat
-import utils
+import lib/utils
 
 const headsetUnitName = "headset_head_unit"
 const a2dpUnitName = "a2dp_sink_aac"
