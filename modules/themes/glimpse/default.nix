@@ -23,7 +23,7 @@
       '';
     };
     sessionCommands = ''
-      xsetroot -solid "${config.theme.colors.black2}"
+      xsetroot -solid "${config.theme.colors.background}"
     '';
   };
 
