@@ -56,13 +56,13 @@
       description = "Switch to desktop";
     }
     {
-      binding = "super + {_,ctrl +}{h,j,k,l}";
-      command = "/etc/dotfiles/bin/bspc/focus {_,-m }{west,south,north,east}";
+      binding = "super + {h,j,k,l}";
+      command = "/etc/dotfiles/bin/bspc/focus {west,south,north,east}";
       description = "Focus/Swap the node in the given direction";
     }
     {
-      binding = "super + shift + {_,ctrl +}{h,j,k,l}";
-      command = "/etc/dotfiles/bin/bspc/swap {_,-m }{west,south,north,east}";
+      binding = "super + shift + {h,j,k,l}";
+      command = "/etc/dotfiles/bin/bspc/swap {west,south,north,east}";
       description = "Focus/Swap the node in the given direction";
     }
     {
@@ -89,6 +89,11 @@
       binding = "super + alt + b";
       command = "bspc node @brother -B";
       description = "Flip Splits";
+    }
+    {
+      binding = "super + ctrl + {h,j,k,l}";
+      description = "Resize Window";
+      command = "/etc/dotfiles/bin/bspc/resize {west,south,north,east}";
     }
   ];
 
