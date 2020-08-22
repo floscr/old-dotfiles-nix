@@ -24,7 +24,7 @@ with lib;
         ExecStop = "${pkgs.emacsUnstable}/bin/emacsclient --eval '(kill-emacs)'";
         Restart = "always";
       };
-      wantedBy = [ "default.target" ];
+      wantedBy = [ "graphical-session.target" ];
     };
     systemd.services.emacs.enable = true;
   };
