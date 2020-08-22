@@ -3,8 +3,16 @@ import sequtils
 import fp/option
 import fp/list
 import sugar
+import osproc
+import strutils
 
 {.experimental.}
+
+proc shellCommand*(c: string): seq[string] =
+  execProcess(c).strip(chars = {'\n'}).splitLines()
+
+func grep*(sa: seq[string], s:string) : seq[string] = sa.filter(proc(l:string) : bool = s in l)
+func getColumn*(s: string, n: int) : string = s.strip().splitWhiteSpace()[n]
 
 template findIt*(coll, cond): untyped =
   var res: typeof(coll.items, typeOfIter)
