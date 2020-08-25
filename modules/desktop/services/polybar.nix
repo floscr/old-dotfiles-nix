@@ -24,6 +24,7 @@ in {
             bspc config top_padding 0
         else
             systemctl --user start polybar.service
+            bspc config top_padding 36
         fi
       '')
     ];
