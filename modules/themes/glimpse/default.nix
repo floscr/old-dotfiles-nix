@@ -22,8 +22,11 @@
         border-color = ${config.theme.colors.black2}
       '';
     };
-    sessionCommands = ''
-      xsetroot -solid "${config.theme.colors.background}"
+    sessionCommands = let
+      xsetroot = "${pkgs.xorg.xsetroot}/bin/xsetroot";
+    in ''
+      echo "Setting background color..."
+      (sleep 0.5 && ${xsetroot} -solid "${config.theme.colors.background}") &
     '';
   };
 
