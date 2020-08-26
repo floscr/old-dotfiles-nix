@@ -8,6 +8,7 @@ in {
     <home-manager/nixos>
 
     ./editors
+    ./gaming
     ./desktop
     ./dev
     ./media

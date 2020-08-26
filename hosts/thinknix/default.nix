@@ -44,6 +44,10 @@
       services = {
         keyboardTrackpadDisable.enable = true;
       };
+
+      gaming = {
+        steam.enable = true;
+      };
     };
 
     editors = {
