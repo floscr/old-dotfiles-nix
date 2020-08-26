@@ -1,6 +1,7 @@
 { config, lib, pkgs, ... }:
 
 {
+  ## File Handling and file systems
   environment.systemPackages = with pkgs; [
     # Use nix-run to test applications instead of littering you base
     nix-bundle
@@ -15,7 +16,8 @@
 
   # Nothing in /tmp should survive a reboot
   boot.tmpOnTmpfs = true;
-  # Use simple bootloader; I prefer the on-demand BIOs boot menu
+
+  ## Bootloader
   boot.loader = {
     timeout = 1;
     efi.canTouchEfiVariables = true;
@@ -29,7 +31,7 @@
     };
   };
 
-  ### A tidy $HOME is a tidy mind
+  # XDG Conventions
   # Obey XDG conventions;
   my.home.xdg.enable = true;
   environment.variables = {
@@ -41,7 +43,6 @@
     XDG_BIN_HOME    = "$HOME/.local/bin";
     DOTFILES = "$HOME/.dotfiles";
   };
-
   my.home.xdg.configFile."user-dirs.dirs".text = ''
     XDG_DESKTOP_DIR="$HOME/Desktop"
     XDG_DOWNLOAD_DIR="$HOME/Downloads"
@@ -51,9 +52,6 @@
     XDG_VIDEOS_DIR="$HOME/Media/Videos"
     XDG_TEMPLATES_DIR="$HOME/Documents/Templates"
   '';
-
-  # Conform more programs to XDG conventions. The rest are handled by their
-  # respective modules.
   my.env = {
     __GL_SHADER_DISK_CACHE_PATH = "$XDG_CACHE_HOME/nv";
     CUDA_CACHE_PATH = "$XDG_CACHE_HOME/nv";
@@ -62,7 +60,6 @@
     LESSHISTFILE = "$XDG_CACHE_HOME/lesshst";
     WGETRC = "$XDG_CACHE_HOME/wgetrc";
   };
-
   # Clean up leftovers, as much as we can
   system.activationScripts.clearHome = ''
     pushd /home/${config.my.username}
@@ -70,5 +67,4 @@
     [ -s .xsession-errors ] || rm -f .xsession-errors*
     popd
   '';
-
 }
