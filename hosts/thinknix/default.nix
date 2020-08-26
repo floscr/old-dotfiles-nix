@@ -95,6 +95,11 @@
     defaultLocale = "en_US.UTF-8";
   };
 
+  networking.extraHosts = ''
+    # Alias localhost to l
+    127.0.0.1 l
+  '';
+
   services.wg-quicker = {
     available = true;
     setups = {
@@ -102,6 +107,7 @@
       "us" = builtins.toString "/etc/dotfiles-private/mullvad/us1.conf";
     };
   };
+  # Start wg-quicker commands without sudo from rofi
   security.sudo.enable = true;
   security.sudo.extraConfig = ''
     %wheel      ALL=(ALL:ALL) NOPASSWD: ${pkgs.systemd}/bin/systemctl start wg-quicker-ch.service
@@ -115,10 +121,6 @@
       dpi = 180;
       defaultFonts.monospace = [ "Iosevka" ];
       useEmbeddedBitmaps = true;
-      # ultimate = {
-      #   enable = true;
-      #   substitutions = "combi";
-      # };
     };
     fonts = with pkgs; [
       fira-code
@@ -131,12 +133,6 @@
       symbola
     ];
   };
-
-  # Notify on low battery
-  services.batteryNotifier.enable = true;
-
-  # Printing
-  services.printing.enable = true;
 
   # Monitor backlight control
   programs.light.enable = true;
