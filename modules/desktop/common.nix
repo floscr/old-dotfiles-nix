@@ -21,19 +21,24 @@
   ## X
   services.xserver = {
     enable = true;
+
     displayManager.lightdm.greeters.mini.user = config.my.username;
     displayManager.lightdm.enable = true;
     displayManager.lightdm.greeters.mini.enable = true;
-    displayManager.sessionCommands = ''
-      # disable Display Power Managing Signaling
-      xset -dpms
 
-      # Trackpad settings
-      xinput set-prop 13 317 0.7 # Speed
-      xinput set-prop 13 318 3, 3 # Sensitivity
+    displayManager.sessionCommands = let
+      xset = "${pkgs.xorg.xset}/bin/xset";
+      xinput = "${pkgs.xlibs.xinput}/bin/xinput";
+    in ''
+      echo "Setup: Disabling power management signaling..."
+      ${xset} -dpms
 
-      systemctl --user start setup-keyboard.service
-      systemctl --user start setup-monitor.service&
+      systemctl --user restart setup-keyboard.service &
+      systemctl --user restart setup-monitor.service &
+
+      echo "Setup: Customizing trackpad sensitivity"
+      ${xinput} set-prop 13 317 0.7  # Speed
+      ${xinput} set-prop 13 318 3, 3 # Sensitivity
     '';
   };
 
