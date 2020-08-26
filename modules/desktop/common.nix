@@ -154,7 +154,7 @@
     enable = true;
     defaultApplications = {
       "image/bmp" = [ "feh.desktop" ];
-      "image/gif" = [ "feh.desktop" ];
+      "image/gif" = [ "chromium.desktop" ];
       "image/jpeg" = [ "feh.desktop" ];
       "image/jpg" = [ "feh.desktop" ];
       "image/pjpeg" = [ "feh.desktop" ];
