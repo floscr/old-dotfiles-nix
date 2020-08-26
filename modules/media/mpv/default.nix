@@ -194,9 +194,6 @@ in {
                     K add volume 10
                     J add volume -10
 
-                    n add-chapter 1
-                    p add-chapter -1
-
                     > multiply speed 11:10  # Extra speed
                     < multiply speed 9:10   # v speed
                     0 set speed 1.0         # Controlled speed
