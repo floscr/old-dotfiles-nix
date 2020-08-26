@@ -100,6 +100,10 @@
     127.0.0.1 l
   '';
 
+  # Automatically log in since the disk is encrypted with a password anyway
+  services.xserver.displayManager.lightdm.autoLogin.enable = true;
+  services.xserver.displayManager.lightdm.autoLogin.user = config.my.username;
+
   services.wg-quicker = {
     available = true;
     setups = {
