@@ -3,7 +3,9 @@
 device:
 { config, pkgs, options, lib, ...}:
 {
+  ## Networking
   networking.hostName = lib.mkDefault device;
+  networking.networkmanager.enable = true;
 
   imports = [
     ./modules

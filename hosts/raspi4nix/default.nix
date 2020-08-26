@@ -34,6 +34,5 @@
   };
 
   # Networking
-  networking.networkmanager.enable = true;
   services.sshd.enable = true;
 }

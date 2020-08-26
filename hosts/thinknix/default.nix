@@ -135,9 +135,6 @@
   # Notify on low battery
   services.batteryNotifier.enable = true;
 
-  # Networking
-  networking.networkmanager.enable = true;
-
   # Printing
   services.printing.enable = true;
 
