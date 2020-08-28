@@ -60,12 +60,17 @@ in {
                 rev = "4ecf6d72523b1385f4122d69b9045b447dfbb4f8";
                 sha256 = "0mwkmy95f1jl6cli0arvp6xh02rdp41ylal5pg9cdrvfrnjvqn67";
                 });
-            in
-                {
+            in {
                 # mpv-gallery-view
                 "mpv/scripts/lib".source = "${mpv-gallery-view}/scripts/lib";
                 "mpv/scripts/gallery-thumbgen.lua".source = "${mpv-gallery-view}/scripts/gallery-thumbgen.lua";
                 "mpv/scripts/playlist-view.lua".source = "${mpv-gallery-view}/scripts/playlist-view.lua";
+
+                # Copy time stamp of web videos
+                "mpv/scripts/copy-timestamp.lua".source = ./scripts/input-copy-timestamped-url.lua;
+                "mpv/scripts/lib-copy-paste.lua".source = ./scripts/lib-copy-paste.lua;
+                "mpv/scripts/lib-web-video.lua".source = ./scripts/lib-web-video.lua;
+
 
                 "mpv/scripts/mpv_thumbnail_client-1.lua".source =
                     (pkgs.fetchurl {
@@ -220,6 +225,9 @@ in {
 
                     # playlist view
                     g script-message playlist-view-toggle
+
+                    # Copy time-stamped
+                    Ctrl+y script-binding copy-timestamped-url
                 '';
 
                 "mpv/mpv.conf".text = ''
