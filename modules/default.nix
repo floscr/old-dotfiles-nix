@@ -9,7 +9,6 @@ in {
 
     ./editors
     ./gaming
-    ./desktop
     ./dev
     ./media
     ./shell
