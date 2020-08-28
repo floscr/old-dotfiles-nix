@@ -52,7 +52,7 @@
     }
     {
       binding = "super + {_,shift +}{1-9,0}";
-      command = "bspc {desktop -f,node -d} {1-9,10}";
+      command = "bspc {desktop -f,node -d} \^{1-9,10}";
       description = "Switch to desktop";
     }
     {
