@@ -1,8 +1,14 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
+
+with lib;
 
 let
   mpv-thumbs-cache = "/tmp/mpv_thumbs_cache";
   mpv-gallery-thumb-dir = "/tmp/mpv_gallery_cache";
+  notube = pkgs.writeScriptBin "notube" ''
+     #!${pkgs.stdenv.shell}
+     ${pkgs.mpv-with-scripts}/bin/mpv "$(echo "$@" | sed "s/notube://")"
+  '';
 in {
   imports = [
     ./mpv-scratchpad.nix
@@ -14,6 +20,16 @@ in {
     # Peerflix
     socat
     nodePackages.peerflix
+
+    notube
+    (makeDesktopItem {
+        terminal = "False";
+        name = "notube";
+        desktopName = "notube";
+        mimeType = "x-scheme-handler/notube";
+        exec = "${notube}/bin/notube %u";
+        type = "Application";
+    })
 
     (mpv-with-scripts.override {
       scripts = [
