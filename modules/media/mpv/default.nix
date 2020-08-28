@@ -71,6 +71,8 @@ in {
                 "mpv/scripts/lib-copy-paste.lua".source = ./scripts/lib-copy-paste.lua;
                 "mpv/scripts/lib-web-video.lua".source = ./scripts/lib-web-video.lua;
 
+                # Keep log of videos played
+                "mpv/scripts/keep-history-log.lua".source = ./scripts/keep-history-log.lua;
 
                 "mpv/scripts/mpv_thumbnail_client-1.lua".source =
                     (pkgs.fetchurl {
