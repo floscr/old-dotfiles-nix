@@ -19,11 +19,6 @@ in {
       scripts = [
         pkgs.mpvScripts.mpris # playerctl support
         (fetchurl {
-          # autoload
-          url = "https://raw.githubusercontent.com/mpv-player/mpv/master/TOOLS/lua/autoload.lua";
-          sha256 = "0ifml25sc1mxv0m4qy50xshsx75560zmwj4ivys14vnpk1j40m1r";
-        })
-        (fetchurl {
           # peerflix-hook
           url = "https://gist.githubusercontent.com/floscr/004f4b4d840a6ee0be40328744525c74/raw/903a183827d943abd4a914d0666a337f4e403f9c/peerflix-hook.lua";
           sha256 = "945c32353f2ee16b4838f9384e8428fff9705dcfb3838ac03b4dab45c58ceef0";
@@ -66,6 +61,9 @@ in {
 
                 # Catch up audio to video lag
                 "mpv/scripts/autospeed.lua".source = ./scripts/autospeed.lua;
+
+                # Automatically try to load next file
+                "mpv/scripts/autoload.lua".source = ./scripts/autoload.lua;
 
                 "mpv/scripts/mpv_thumbnail_client-1.lua".source =
                     (pkgs.fetchurl {
