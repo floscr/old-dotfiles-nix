@@ -24,11 +24,6 @@ in {
           sha256 = "0ifml25sc1mxv0m4qy50xshsx75560zmwj4ivys14vnpk1j40m1r";
         })
         (fetchurl {
-          # reload
-          url = "https://raw.githubusercontent.com/4e6/mpv-reload/2b8a719fe166d6d42b5f1dd64761f97997b54a86/reload.lua";
-          sha256 = "0dyx22rr1883m2lhnaig9jdp7lpjydha0ad7lj9pfwlgdr2zg4b9";
-        })
-        (fetchurl {
           # peerflix-hook
           url = "https://gist.githubusercontent.com/floscr/004f4b4d840a6ee0be40328744525c74/raw/903a183827d943abd4a914d0666a337f4e403f9c/peerflix-hook.lua";
           sha256 = "945c32353f2ee16b4838f9384e8428fff9705dcfb3838ac03b4dab45c58ceef0";
@@ -63,6 +58,8 @@ in {
                 "mpv/scripts/lib-web-video.lua".source = ./scripts/lib-web-video.lua;
                 # Set youtube quality via Ctrl+f
                 "mpv/scripts/youtube-quality.lua".source = ./scripts/youtube-quality.lua;
+                # Reload video (when stuck while buffering) with Ctrl+r
+                "mpv/scripts/reload.lua".source = ./scripts/reload.lua;
 
                 # Keep log of videos played
                 "mpv/scripts/keep-history-log.lua".source = ./scripts/keep-history-log.lua;
