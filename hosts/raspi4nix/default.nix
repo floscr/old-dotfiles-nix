@@ -13,6 +13,11 @@
       default = "nvim";
       vim.enable = true;
     };
+    
+    term = {
+      default = "termite";
+      termite.enable = false;
+    };
 
     shell = {
       git.enable = true;
