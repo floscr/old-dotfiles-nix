@@ -14,11 +14,6 @@
       vim.enable = true;
     };
     
-    term = {
-      default = "termite";
-      termite.enable = false;
-    };
-
     shell = {
       git.enable = true;
       gnupg.enable = true;
