@@ -34,11 +34,6 @@ in {
           sha256 = "0dyx22rr1883m2lhnaig9jdp7lpjydha0ad7lj9pfwlgdr2zg4b9";
         })
         (fetchurl {
-          # youtube-quality - ctrl + f
-          url = "https://raw.githubusercontent.com/jgreco/mpv-youtube-quality/d03278f07bd8e202845f4a8a5b7761d98ad71878/youtube-quality.lua";
-          sha256 = "0fi1b4r5znp2k2z590jrrbn6wirx7nggjcl1frkcwsv7gmhjl11l";
-        })
-        (fetchurl {
           # peerflix-hook
           url = "https://gist.githubusercontent.com/floscr/004f4b4d840a6ee0be40328744525c74/raw/903a183827d943abd4a914d0666a337f4e403f9c/peerflix-hook.lua";
           sha256 = "945c32353f2ee16b4838f9384e8428fff9705dcfb3838ac03b4dab45c58ceef0";
@@ -73,6 +68,8 @@ in {
 
                 # Keep log of videos played
                 "mpv/scripts/keep-history-log.lua".source = ./scripts/keep-history-log.lua;
+
+                "mpv/scripts/youtube-quality.lua".source = ./scripts/youtube-quality.lua;
 
                 "mpv/scripts/mpv_thumbnail_client-1.lua".source =
                     (pkgs.fetchurl {
