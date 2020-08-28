@@ -19,11 +19,6 @@ in {
       scripts = [
         pkgs.mpvScripts.mpris # playerctl support
         (fetchurl {
-          # autospeed
-          url = "https://raw.githubusercontent.com/kevinlekiller/mpv_scripts/master/autospeed/autospeed.lua";
-          sha256 = "18m0lzf0gs3g0mfgwfgih6mz98v5zcciykjl7jmg9rllwsx8syjl";
-        })
-        (fetchurl {
           # autoload
           url = "https://raw.githubusercontent.com/mpv-player/mpv/master/TOOLS/lua/autoload.lua";
           sha256 = "0ifml25sc1mxv0m4qy50xshsx75560zmwj4ivys14vnpk1j40m1r";
@@ -47,6 +42,7 @@ in {
           mimeApps.defaultApplications = {
               "audio/x-mp3" = [ "mpv.desktop" ];
           };
+
           configFile =
             let
                 mpv-gallery-view = (pkgs.fetchFromGitHub {
@@ -61,15 +57,18 @@ in {
                 "mpv/scripts/gallery-thumbgen.lua".source = "${mpv-gallery-view}/scripts/gallery-thumbgen.lua";
                 "mpv/scripts/playlist-view.lua".source = "${mpv-gallery-view}/scripts/playlist-view.lua";
 
-                # Copy time stamp of web videos
+                # Copy url with time stamp of web videos
                 "mpv/scripts/copy-timestamp.lua".source = ./scripts/input-copy-timestamped-url.lua;
                 "mpv/scripts/lib-copy-paste.lua".source = ./scripts/lib-copy-paste.lua;
                 "mpv/scripts/lib-web-video.lua".source = ./scripts/lib-web-video.lua;
+                # Set youtube quality via Ctrl+f
+                "mpv/scripts/youtube-quality.lua".source = ./scripts/youtube-quality.lua;
 
                 # Keep log of videos played
                 "mpv/scripts/keep-history-log.lua".source = ./scripts/keep-history-log.lua;
 
-                "mpv/scripts/youtube-quality.lua".source = ./scripts/youtube-quality.lua;
+                # Catch up audio to video lag
+                "mpv/scripts/autospeed.lua".source = ./scripts/autospeed.lua;
 
                 "mpv/scripts/mpv_thumbnail_client-1.lua".source =
                     (pkgs.fetchurl {
