@@ -213,7 +213,7 @@ in {
                     c cycle icc-profile-auto
 
                     # Screenshot of the window output
-                    S screenshot window
+                    S no-osd screenshot video
 
                     # Toggle aspect ratio information on and off
                     A cycle-values video-aspect "-1" "no"
@@ -308,7 +308,7 @@ in {
                     screenshot-png-filter=0
                     screenshot-tag-colorspace=yes
                     screenshot-high-bit-depth=yes
-                    screenshot-directory=/home/${config.my.username}/Media/Screenshots
+                    screenshot-directory=/home/${config.my.username}/Media/Pictures/Screenshots
 
                     ## SUBTITLES
 
