@@ -27,13 +27,14 @@
 
       apps = {
         flameshot.enable = true;
+        font-manager.enable = true;
         gimp.enable = true;
         gparted.enable = true;
         inkscape.enable = true;
         rofi.enable = true;
         spotify.enable = true;
-        xcolor.enable = true;
         transmission.enable = true;
+        xcolor.enable = true;
       };
 
       term = {

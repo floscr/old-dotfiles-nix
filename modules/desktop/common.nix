@@ -6,7 +6,6 @@
   my.packages = with pkgs; [
     feh
     ffmpeg
-    font-manager
     imagemagickBig
     unstable.dragon-drop
     xcape
@@ -150,6 +149,7 @@
     }
   ];
 
+  ### Mimeapps
   my.home.xdg.mimeApps = {
     enable = true;
     defaultApplications = {
