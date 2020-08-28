@@ -10,7 +10,6 @@ in {
     ./editors
     ./gaming
     ./dev
-    ./media
     ./shell
     ./services
   ];

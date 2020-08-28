@@ -4,6 +4,7 @@
   imports = [
     ../personal.nix   # common settings
     ../../modules/desktop/default.nix
+    ../../modules/media/default.nix
     ./hardware-configuration.nix
 
     <modules/hardware/monitor.nix>
