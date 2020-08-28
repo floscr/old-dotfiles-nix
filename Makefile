@@ -1,4 +1,8 @@
-NIXOS_VERSION := 19.09
+USER := floscr
+HOST := thinknix
+HOME := /home/$(USER)
+
+NIXOS_VERSION := 20.03
 NIXOS_PREFIX  := $(PREFIX)/etc/nixos
 COMMAND       := test
 FLAGS         := -I "config=$$(pwd)/config" \
