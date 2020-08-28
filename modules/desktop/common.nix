@@ -4,11 +4,11 @@
 
   
   my.packages = with pkgs; [
-    unstable.dragon-drop
     feh
     ffmpeg
-    imagemagickBig
     font-manager
+    imagemagickBig
+    unstable.dragon-drop
     xcape
     xclip
     xdotool
