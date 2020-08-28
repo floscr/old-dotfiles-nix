@@ -19,10 +19,6 @@
       gnupg.enable = true;
       zsh.enable = true;
     };
-
-    media = {
-      youtube-dl.enable = true;
-    };
   };
 
   time.timeZone = "Europe/Vienna";
