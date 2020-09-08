@@ -3,9 +3,10 @@
 {
   imports = [
     ../personal.nix   # common settings
-    ../../modules/desktop/default.nix
-    ../../modules/media/default.nix
     ./hardware-configuration.nix
+
+    <modules/desktop/default.nix>
+    <modules/media/default.nix>
 
     <modules/hardware/monitor.nix>
     <modules/hardware/trackpad.nix>
