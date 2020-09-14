@@ -1,3 +1,4 @@
+import argparse
 import fp/option
 import fp/trym except run
 import json
@@ -94,7 +95,6 @@ proc listTimers(showAll: bool): string =
     )
     .getOrElse("")
 
-import argparse
 
 var p = newParser("My Program"):
   command("list"):
@@ -103,6 +103,7 @@ var p = newParser("My Program"):
       listTimers(opts.all) |> echo
   command("in"):
     arg("time", help="", default="")
-    echo opts.argparseCommand
+    run:
+      opts.time |> parseDateString |> echo
 
 p.run()
