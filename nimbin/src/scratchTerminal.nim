@@ -4,6 +4,7 @@ import sequtils
 import strformat
 import strutils
 import lib/utils
+import lib/fpUtils
 import fp/list
 import fp/option
 import regex
