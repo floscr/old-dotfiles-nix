@@ -15,8 +15,9 @@ var p = newParser("My Program"):
     run:
       runTimerIn(opts.time)
         .fold(
-          x => &"Error: {x}",
+          x => &"Error: {x}\n{p.help}",
           x => x,
-        ) |> echo
+        ) |>
+      echo
 
 p.run()
