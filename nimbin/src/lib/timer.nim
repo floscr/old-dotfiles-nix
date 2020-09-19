@@ -12,6 +12,7 @@ import strutils
 import sugar
 import times
 import utils
+import fpUtils
 
 let defaultCacheDir = "/tmp/nim-timer"
 let iso8601format = initTimeFormat("yyyy-MM-dd'T'hh:mm:sszzz")
@@ -34,8 +35,8 @@ method fromJson(data: JsonNode): TimerData =
 method toJson(data: TimerData): JsonNode =
   %* {
     "name": data.name,
-    "startTime": data.startTime.format(iso8601format),
-    "endTime": data.endTime.format(iso8601format),
+    "start": data.startTime.format(iso8601format),
+    "end": data.endTime.format(iso8601format),
   }
 
 method endsInSec(data: TimerData): Duration =
@@ -55,13 +56,17 @@ proc writeFileEither(name: string, content: string): EitherS[string] =
   except IOError:
     ("Could not write file \n" & getCurrentExceptionMsg()).left(string)
 
-proc createTimerFile(name: Option[string], content: string): EitherS[string] =
+proc createTimerFile(name: Option[string], content: string): Either[string, string] =
   let filename = name
     .orElse(() => now().format(fileFormat).some)
     .map(x => &"{x}.json")
     .map(x => joinPath(defaultCacheDir, x))
 
   writeFileEither(filename.get, content)
+    .fold(
+      x => x.left(string),
+      x => x.right(string),
+    )
 
 proc readDir(): seq[TimerData] =
   toSeq(walkDir(defaultCacheDir, true))
@@ -91,7 +96,7 @@ proc runTimerIn*(time: seq[string]): Either[string, string] =
     .headOption
     .asEither("No duration")
 
-  # parse
+    # parse
     .map(parseDateString)
     .map(x => now + x)
 
@@ -103,16 +108,16 @@ proc runTimerIn*(time: seq[string]): Either[string, string] =
     ))
     .map(x => x.toJson().pretty())
 
+    .flatMap((x: string) => createTimerFile(string.none, x))
+
   json
-
-
 
 proc runTimerList*(showAll: bool): string =
   readDir()
     .some
     .mapWhen(
       xs => not(showAll),
-      xs => xs.filterIt(it.endTime > now()),
+      xs => xs.filterIt(it.endTime < now()),
     )
     .map(xs => xs
          .mapIt(it.toStr)
