@@ -1,15 +1,22 @@
 import argparse
 import lib/utils
 import lib/timer
+import strformat
+from fp/either import fold
+import sugar
 
 var p = newParser("My Program"):
   command("list"):
     flag("-a", "--all")
     run:
-      listTimers(opts.all) |> echo
+      runTimerList(opts.all) |> echo
   command("in"):
-    arg("time", help="", default="")
+    arg("time", help="Clock", default="", nargs = -1)
     run:
-      opts.time |> parseDateString |> echo
+      runTimerIn(opts.time)
+        .fold(
+          x => &"Error: {x}",
+          x => x,
+        ) |> echo
 
 p.run()

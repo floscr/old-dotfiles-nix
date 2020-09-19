@@ -1,8 +1,10 @@
 import fp/option
+import fp/list
 import fp/trym except run
 import json
 import optionUtils
 import os
+import osproc
 import regex
 import sequtils
 import strformat
@@ -11,9 +13,7 @@ import sugar
 import times
 import utils
 
-# let cacheDir = "nim_timer"
-# let defaultCacheDir = joinPath(getEnv("XDG_CACHE_HOME", "/tmp"), cacheDir)
-let defaultCacheDir = expandTilde "/tmp/nim-timer"
+let defaultCacheDir = "/tmp/nim-timer"
 let iso8601format = initTimeFormat("yyyy-MM-dd'T'hh:mm:sszzz")
 let readableFormat = initTimeFormat("yyyy-MM-dd - hh:mm:ss")
 let fileFormat = initTimeFormat("yyyy-MM-dd-hh:mm-ss")
@@ -30,6 +30,13 @@ method fromJson(data: JsonNode): TimerData =
     startTime: data["start"].getStr().parse(iso8601format),
     endTime: data["end"].getStr().parse(iso8601format),
   )
+
+method toJson(data: TimerData): JsonNode =
+  %* {
+    "name": data.name,
+    "startTime": data.startTime.format(iso8601format),
+    "endTime": data.endTime.format(iso8601format),
+  }
 
 method endsInSec(data: TimerData): Duration =
   now() - data.endTime
@@ -74,12 +81,33 @@ proc parseDateString*(str: string): Duration =
   )
   initDuration(hours = ms[0], minutes = ms[1], seconds = ms[2])
 
-# proc createTimer(name: Option(string)): string =
-#   discard createDir(defaultCacheDir)
-#   let name = name
-#     .map(parseDateString)
+proc runTimerIn*(time: seq[string]): Either[string, string] =
+  createDir(defaultCacheDir)
 
-proc listTimers*(showAll: bool): string =
+  let now = now()
+
+  let json = time
+    .asList
+    .headOption
+    .asEither("No duration")
+
+  # parse
+    .map(parseDateString)
+    .map(x => now + x)
+
+    # Create json
+    .map(x => TimerData(
+      name: "",
+      startTime: now,
+      endTime: x,
+    ))
+    .map(x => x.toJson().pretty())
+
+  json
+
+
+
+proc runTimerList*(showAll: bool): string =
   readDir()
     .some
     .mapWhen(
