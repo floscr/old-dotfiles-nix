@@ -13,6 +13,7 @@ import sugar
 import times
 import utils
 import fpUtils
+import math
 
 let defaultCacheDir = "/tmp/nim-timer"
 let iso8601format = initTimeFormat("yyyy-MM-dd'T'hh:mm:sszzz")
@@ -43,14 +44,32 @@ method endsInSec(data: TimerData): Duration =
   now() - data.endTime
 
 method toStr(data: TimerData): string =
-  let diff = (data.endTime - now()).toParts()
+  let now = now()
+  let duration = (data.endTime - now)
+  let diff = duration.toParts()
+
+  let prefix = ""
+    .some
+    .mapWhen(
+      x => diff[Seconds] < 0,
+      x => &"{x}Expired: -",
+    )
+    .mapWhen(
+      x => diff[Days].abs > 0,
+      (proc (x: string): string =
+        let days = diff[Days].abs
+        let str = if (days > 1): "Days" else: "Day"
+        &"{x} {days} {str} ")
+    )
+    .getOrElse("")
+
   [
     data.name.some
       .notEmpty
       .map(x => &"Name: {x}"),
     fmt"Start: {data.startTime.format(readableFormat)}".some,
     fmt"End: {data.endTime.format(readableFormat)}".some,
-    fmt"Time Left: {diff[Minutes]:02}:{diff[Seconds]:02}".some,
+    fmt"Time Left: {prefix}{diff[Hours].abs:02}:{diff[Minutes].abs:02}:{diff[Seconds].abs:02}".some,
   ]
   .filter(x => x.isDefined)
   .map(x => x.get)
@@ -120,11 +139,13 @@ proc runTimerIn*(time: seq[string]): Either[string, string] =
   json
 
 proc runTimerList*(showAll: bool): string =
+  let now = now()
+
   readDir()
     .some
     .mapWhen(
       xs => not(showAll),
-      xs => xs.filterIt(it.endTime < now()),
+      xs => xs.filterIt(it.endTime > now),
     )
     .map(xs => xs
          .mapIt(it.toStr)
