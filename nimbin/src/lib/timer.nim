@@ -44,10 +44,17 @@ method endsInSec(data: TimerData): Duration =
 
 method toStr(data: TimerData): string =
   let diff = (data.endTime - now()).toParts()
-  &"""Name: {data.name}
-Start: {data.startTime.format(readableFormat)}
-End: {data.endTime.format(readableFormat)}
-Time Left: {diff[Minutes]:02}:{diff[Seconds]:02}"""
+  [
+    data.name.some
+      .notEmpty
+      .map(x => &"Name: {x}"),
+    fmt"Start: {data.startTime.format(readableFormat)}".some,
+    fmt"End: {data.endTime.format(readableFormat)}".some,
+    fmt"Time Left: {diff[Minutes]:02}:{diff[Seconds]:02}".some,
+  ]
+  .filter(x => x.isDefined)
+  .map(x => x.get)
+  .join("\n")
 
 proc writeFileEither(name: string, content: string): EitherS[string] =
   try:
