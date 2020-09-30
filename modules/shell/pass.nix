@@ -15,6 +15,7 @@ with lib;
           exts.pass-genphrase
           exts.pass-import
         ]))
+        pkgs.libqrencode # Generate QR code from pass
         (lib.mkIf (config.services.xserver.enable) rofi-pass)
       ];
       bindings = [
