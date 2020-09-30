@@ -19,5 +19,7 @@ var p = newParser("My Program"):
           x => $x,
         ) |>
       echo
-
+  command("next"):
+    run:
+      runNext() |> echo
 p.run()

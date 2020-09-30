@@ -112,6 +112,29 @@ proc parseDateString*(str: string): Duration =
   )
   initDuration(hours = ms[0], minutes = ms[1], seconds = ms[2])
 
+proc runNext*(): string =
+  let now = now()
+
+  readDir()
+    .asList
+    .foldLeft(
+      now.left(DateTime),
+      proc(x: Either[DateTime, DateTime], y: TimerData): Either[DateTime, DateTime] =
+        # Remove expired times
+        if (y.endTime < now):
+          x
+        # The time is smaller than the current Right
+        elif (x.isRight and y.endTime < x.get):
+          y.endTime.right(DateTime)
+        else:
+          y.endTime.right(DateTime)
+    )
+    .fold(
+      x => "",
+      x => "",
+    )
+    .getOrElse("")
+
 proc runTimerIn*(time: seq[string]): Either[string, string] =
   createDir(defaultCacheDir)
 
