@@ -1,4 +1,4 @@
-let emacsOverlaySha = "076246e7d209313112f13f03a9ee92534f0bbf0a";
+let emacsOverlaySha = "cba999dda3899d83ffc30b97b0f34243ac198854";
 in [
   (self: super: with super; {
     my = {
