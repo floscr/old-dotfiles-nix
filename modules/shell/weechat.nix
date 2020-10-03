@@ -9,6 +9,7 @@ with lib;
 
   config = mkIf config.modules.shell.weechat.enable {
     my = {
+      env.WEECHAT_HOME = "$XDG_CONFIG_HOME/weechat";
       packages = with pkgs; [
         weechat
       ];
