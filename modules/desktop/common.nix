@@ -26,6 +26,7 @@
     displayManager.lightdm.greeters.mini.enable = true;
 
     displayManager.sessionCommands = let
+      udiskie = "${pkgs.udiskie}/bin/udiskie";
       xset = "${pkgs.xorg.xset}/bin/xset";
       xinput = "${pkgs.xlibs.xinput}/bin/xinput";
     in ''
@@ -35,7 +36,10 @@
       systemctl --user restart setup-keyboard.service &
       systemctl --user restart setup-monitor.service &
 
-      echo "Setup: Customizing trackpad sensitivity"
+      echo "Starting udiskie..."
+      ${udiskie} --tray &
+
+      echo "Setup: Customizing trackpad sensitivity..."
       ${xinput} set-prop 13 317 0.7  # Speed
       ${xinput} set-prop 13 318 3, 3 # Sensitivity
     '';
