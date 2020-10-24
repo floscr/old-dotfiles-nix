@@ -41,6 +41,8 @@ bspc rule -a termite-scratch state=floating follow=on focus=on rectangle=250x550
 
 bspc rule -a feh state=fullscreen
 
+bspc rule -a flameshot state=floating
+
 for file in $XDG_CONFIG_HOME/bspwm/rc.d/*; do
   source "$file"
 done
