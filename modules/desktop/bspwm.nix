@@ -20,7 +20,7 @@
     xserver = {
       desktopManager.xterm.enable = false;
       windowManager.bspwm.enable = true;
-      windowManager.default = "bspwm";
+      displayManager.defaultSession = "none+bspwm";
     };
   };
 

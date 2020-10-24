@@ -24,8 +24,10 @@
   time.timeZone = "Europe/Vienna";
 
   i18n = {
-    consoleFont = "Lat2-Terminus16";
-    consoleKeyMap = "us";
+    console = {
+      font = "Lat2-Terminus16";
+      keyMap = "us";
+    };
     defaultLocale = "en_US.UTF-8";
   };
 
