@@ -71,24 +71,25 @@ in {
     '';
   };
 
+  boot.extraModprobeConfig = "options thinkpad_acpi experimental=1 fan_control=1";
+
   ### Fanspeed
   # https://gist.github.com/Yatoom/1c80b8afe7fa47a938d3b667ce234559
   services.thinkfan.enable = true;
   services.thinkfan.sensors = ''
-    hwmon /sys/devices/platform/coretemp.0/hwmon/hwmon3/temp3_input
-    hwmon /sys/devices/platform/coretemp.0/hwmon/hwmon3/temp4_input
-    hwmon /sys/devices/platform/coretemp.0/hwmon/hwmon3/temp1_input
-    hwmon /sys/devices/platform/coretemp.0/hwmon/hwmon3/temp5_input
-    hwmon /sys/devices/platform/coretemp.0/hwmon/hwmon3/temp2_input
+    hwmon /sys/devices/platform/coretemp.0/hwmon/hwmon4/temp1_input
+    hwmon /sys/devices/platform/coretemp.0/hwmon/hwmon4/temp2_input
+    hwmon /sys/devices/platform/coretemp.0/hwmon/hwmon4/temp3_input
+    hwmon /sys/devices/platform/coretemp.0/hwmon/hwmon4/temp4_input
+    hwmon /sys/devices/platform/coretemp.0/hwmon/hwmon4/temp5_input
   '';
   services.thinkfan.levels = ''
     (0, 0, 68)
     (1, 50, 70)
-    (2, 68, 74)
-    (3, 72, 75)
-    (4, 74, 78)
-    (5, 76, 80)
-    (7, 78, 32767)
+    (2, 50, 80)
+    (3, 80, 90)
+    (4, 90, 100)
+    (7, 100, 32767)
  '';
 
   ### Undervolting & Throttling
@@ -185,11 +186,12 @@ in {
   services.fstrim.enable = true;
 
   ### Harddrives
-  boot.initrd.luks.devices = [{
-    name = "root";
-    device = "/dev/nvme0n1p2";
-    preLVM = true;
-  }];
+  boot.initrd.luks.devices = {
+    root = {
+      device = "/dev/nvme0n1p2";
+      preLVM = true;
+    };
+  };
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/1256e32a-46cd-443e-9bb7-8fd910cc5b32";
       fsType = "ext4";
