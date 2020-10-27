@@ -5,6 +5,7 @@
     ../personal.nix   # common settings
     ./hardware-configuration.nix
 
+    <modules/nixos/cachix.nix>
     <modules/desktop/default.nix>
     <modules/media/default.nix>
 
@@ -21,6 +22,9 @@
   ];
 
   modules = {
+    nixos = {
+      cachix.enable = true;
+    };
     desktop = {
       browsers = {
         default = "chromium";
