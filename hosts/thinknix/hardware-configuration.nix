@@ -77,11 +77,11 @@ in {
   # https://gist.github.com/Yatoom/1c80b8afe7fa47a938d3b667ce234559
   services.thinkfan.enable = true;
   services.thinkfan.sensors = ''
-    hwmon /sys/devices/platform/coretemp.0/hwmon/hwmon4/temp1_input
-    hwmon /sys/devices/platform/coretemp.0/hwmon/hwmon4/temp2_input
-    hwmon /sys/devices/platform/coretemp.0/hwmon/hwmon4/temp3_input
-    hwmon /sys/devices/platform/coretemp.0/hwmon/hwmon4/temp4_input
-    hwmon /sys/devices/platform/coretemp.0/hwmon/hwmon4/temp5_input
+    hwmon /sys/devices/platform/coretemp.0/hwmon/hwmon5/temp1_input
+    hwmon /sys/devices/platform/coretemp.0/hwmon/hwmon5/temp2_input
+    hwmon /sys/devices/platform/coretemp.0/hwmon/hwmon5/temp3_input
+    hwmon /sys/devices/platform/coretemp.0/hwmon/hwmon5/temp4_input
+    hwmon /sys/devices/platform/coretemp.0/hwmon/hwmon5/temp5_input
   '';
   services.thinkfan.levels = ''
     (0, 0, 68)
