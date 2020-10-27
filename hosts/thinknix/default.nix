@@ -63,6 +63,7 @@
       emacs.enable = true;
       emacsCalcTex.enable = true;
       vim.enable = true;
+      vscode.enable = true;
     };
 
     shell = {
