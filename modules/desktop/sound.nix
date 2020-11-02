@@ -5,19 +5,20 @@
   hardware.bluetooth = {
     enable = true;
     powerOnBoot = true;
-    extraConfig = ''
-        ControllerMode = bredr
-        [Headset]
-        HFP=true
-        MaxConnected=1
-        FastConnectable=true
-        [General]
-        Disable=Headset
-        AutoEnable=true
-        MultiProfile=multiple
-        AutoConnect=true
-        Enable=Source,Sink,Media,Socket
-        '';
+    config = {
+      Headset = {
+        FastConnectable = "true";
+        HFP = "true";
+      };
+      General = {
+        ControllerMode = "bredr";
+        Disable = "Headset";
+        AutoEnable = "true";
+        AutoConnect = "true";
+        MultiProfile = "multiple";
+        Enable = "Source,Sink,Media,Socket";
+      };
+    };
   };
 
   hardware.pulseaudio = {
