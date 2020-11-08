@@ -28,3 +28,18 @@ alias gss='git status'
 alias gst='git stash'
 alias gr='git reset HEAD'
 alias grv='git rev-parse'
+
+#
+function clonecd {
+  url=$1;
+  # If there is no user input name the repo folder after the repo name
+  if [[ -z "$2" ]]; then
+    reponame=$(echo "$url" | awk -F/ '{print $NF}' | sed -e 's/.git$//');
+  else
+    reponame="$2"
+  fi
+  git clone --recursive "$url" "$reponame";
+  cd "$reponame";
+}
+
+alias gccd='clonecd'
