@@ -59,12 +59,12 @@ in {
             });
         in {
             # mpv-gallery-view
-            "mpv/scripts/lib".source = "${mpv-gallery-view}/scripts/lib";
-            "mpv/scripts/gallery-thumbgen.lua".source = "${mpv-gallery-view}/scripts/gallery-thumbgen.lua";
-            "mpv/scripts/playlist-view.lua".source = "${mpv-gallery-view}/scripts/playlist-view.lua";
+            # "mpv/scripts/lib".source = "${mpv-gallery-view}/scripts/lib";
+            # "mpv/scripts/gallery-thumbgen.lua".source = "${mpv-gallery-view}/scripts/gallery-thumbgen.lua";
+            # "mpv/scripts/playlist-view.lua".source = "${mpv-gallery-view}/scripts/playlist-view.lua";
 
             # Copy url with time stamp of web videos
-            "mpv/scripts/copy-timestamp.lua".source = ./scripts/input-copy-timestamped-url.lua;
+            # "mpv/scripts/copy-timestamp.lua".source = ./scripts/input-copy-timestamped-url.lua;
             "mpv/scripts/lib-copy-paste.lua".source = ./scripts/lib-copy-paste.lua;
             "mpv/scripts/lib-web-video.lua".source = ./scripts/lib-web-video.lua;
             # Set youtube quality via Ctrl+f
@@ -81,97 +81,97 @@ in {
             # Automatically try to load next file
             "mpv/scripts/autoload.lua".source = ./scripts/autoload.lua;
 
-            "mpv/scripts/mpv_thumbnail_client-1.lua".source =
-                (pkgs.fetchurl {
-                # mpv thumbnail client
-                url = "https://github.com/TheAMM/mpv_thumbnail_script/releases/download/0.4.2/mpv_thumbnail_script_client_osc.lua";
-                sha256 = "1g8g0l2dfydmbh1rbsxvih8zsyr7r9x630jhw95jwb1s1x8izrr7";
-                });
+            # "mpv/scripts/mpv_thumbnail_client-1.lua".source =
+            #     (pkgs.fetchurl {
+            #     # mpv thumbnail client
+            #     url = "https://github.com/TheAMM/mpv_thumbnail_script/releases/download/0.4.2/mpv_thumbnail_script_client_osc.lua";
+            #     sha256 = "1g8g0l2dfydmbh1rbsxvih8zsyr7r9x630jhw95jwb1s1x8izrr7";
+            #     });
 
-            "mpv/scripts/mpv_thumbnail_server.lua".source =
-                (pkgs.fetchurl {
-                # mpv thumbnail server
-                url = "https://github.com/TheAMM/mpv_thumbnail_script/releases/download/0.4.2/mpv_thumbnail_script_server.lua";
-                sha256 = "12flp0flzgsfvkpk6vx59n9lpqhb85azcljcqg21dy9g8dsihnzg";
-                });
+            # "mpv/scripts/mpv_thumbnail_server.lua".source =
+            #     (pkgs.fetchurl {
+            #     # mpv thumbnail server
+            #     url = "https://github.com/TheAMM/mpv_thumbnail_script/releases/download/0.4.2/mpv_thumbnail_script_server.lua";
+            #     sha256 = "12flp0flzgsfvkpk6vx59n9lpqhb85azcljcqg21dy9g8dsihnzg";
+            #     });
 
-            "mpv/script-opts/mpv_thumbnail_script.conf".text = ''
-                cache_directory=${mpv-thumbs-cache}
-                autogenerate=yes
-                autogenerate_max_duration=1800
-                prefer_mpv=yes
-                mpv_no_sub=no
-                disable_keybinds=no
-                thumbnail_width=150
-                thumbnail_height=150
-                thumbnail_count=100
-                min_delta=5
-                max_delta=90
-                thumbnail_network=yes
-                remote_thumbnail_count=40
-                remote_min_delta=15
-                remote_max_delta=120
-            '';
+            # "mpv/script-opts/mpv_thumbnail_script.conf".text = ''
+            #     cache_directory=${mpv-thumbs-cache}
+            #     autogenerate=yes
+            #     autogenerate_max_duration=1800
+            #     prefer_mpv=yes
+            #     mpv_no_sub=no
+            #     disable_keybinds=no
+            #     thumbnail_width=150
+            #     thumbnail_height=150
+            #     thumbnail_count=100
+            #     min_delta=5
+            #     max_delta=90
+            #     thumbnail_network=yes
+            #     remote_thumbnail_count=40
+            #     remote_min_delta=15
+            #     remote_max_delta=120
+            # '';
 
-            "mpv/script-opts/playlist_view.conf".text = ''
-                thumbs_dir=${mpv-gallery-thumb-dir}
+            # "mpv/script-opts/playlist_view.conf".text = ''
+            #     thumbs_dir=${mpv-gallery-thumb-dir}
 
-                generate_thumbnails_with_mpv=yes
+            #     generate_thumbnails_with_mpv=yes
 
-                gallery_position={ (ww - gw) / 2, (wh - gh) / 2 }
-                gallery_size={ 9 * ww / 10, 9 * wh / 10 }
-                min_spacing={ 15, 15 }
-                thumbnail_size=(ww * wh <= 1366 * 768) and {192, 108} or {288, 162}
+            #     gallery_position={ (ww - gw) / 2, (wh - gh) / 2 }
+            #     gallery_size={ 9 * ww / 10, 9 * wh / 10 }
+            #     min_spacing={ 15, 15 }
+            #     thumbnail_size=(ww * wh <= 1366 * 768) and {192, 108} or {288, 162}
 
-                max_thumbnails=64
+            #     max_thumbnails=64
 
-                take_thumbnail_at=20%
+            #     take_thumbnail_at=20%
 
-                load_file_on_toggle_off=no
-                close_on_load_file=yes
-                pause_on_start=yes
-                resume_on_stop=only-if-did-pause
-                start_on_mpv_startup=no
-                start_on_file_end=no
-                follow_playlist_position=yes
-                remember_time_position=yes
+            #     load_file_on_toggle_off=no
+            #     close_on_load_file=yes
+            #     pause_on_start=yes
+            #     resume_on_stop=only-if-did-pause
+            #     start_on_mpv_startup=no
+            #     start_on_file_end=no
+            #     follow_playlist_position=yes
+            #     remember_time_position=yes
 
-                show_text=yes
-                show_title=yes
-                strip_directory=yes
-                strip_extension=yes
-                text_size=28
+            #     show_text=yes
+            #     show_title=yes
+            #     strip_directory=yes
+            #     strip_extension=yes
+            #     text_size=28
 
-                background_color=333333
-                background_opacity=33
-                normal_border_color=BBBBBB
-                normal_border_size=1
-                selected_border_color=DDDDDD
-                selected_border_size=6
-                flagged_border_color=5B9769
-                flagged_border_size=4
-                selected_flagged_border_color=BAFFCA
-                placeholder_color=222222
+            #     background_color=333333
+            #     background_opacity=33
+            #     normal_border_color=BBBBBB
+            #     normal_border_size=1
+            #     selected_border_color=DDDDDD
+            #     selected_border_size=6
+            #     flagged_border_color=5B9769
+            #     flagged_border_size=4
+            #     selected_flagged_border_color=BAFFCA
+            #     placeholder_color=222222
 
-                command_on_open=
-                command_on_close=
+            #     command_on_open=
+            #     command_on_close=
 
-                mouse_support=yes
-                UP=UP
-                DOWN=DOWN
-                LEFT=LEFT
-                RIGHT=RIGHT
-                PAGE_UP=PGUP
-                PAGE_DOWN=PGDWN
-                FIRST=HOME
-                LAST=END
-                RANDOM=r
-                ACCEPT=ENTER
-                CANCEL=ESC
-                # this only removes entries from the playlist, not the underlying file
-                REMOVE=DEL
-                FLAG=SPACE
-            '';
+            #     mouse_support=yes
+            #     UP=UP
+            #     DOWN=DOWN
+            #     LEFT=LEFT
+            #     RIGHT=RIGHT
+            #     PAGE_UP=PGUP
+            #     PAGE_DOWN=PGDWN
+            #     FIRST=HOME
+            #     LAST=END
+            #     RANDOM=r
+            #     ACCEPT=ENTER
+            #     CANCEL=ESC
+            #     # this only removes entries from the playlist, not the underlying file
+            #     REMOVE=DEL
+            #     FLAG=SPACE
+            # '';
 
             ## Bindings
             "mpv/input.conf".text = ''
@@ -247,31 +247,35 @@ in {
 
                 ## VIDEO
 
+                hwdec=auto-safe
+                vo=gpu
+                profile=gpu-hq
+
                 # X11
-                x11-bypass-compositor=yes
-                demuxer-thread=yes
+                # x11-bypass-compositor=yes
+                # demuxer-thread=yes
 
                 # The default profile you use for your stuff. Always use this one
-                profile=gpu-hq
+                # profile=gpu-hq
 
                 # The called API. Vulkan is highly recommended.
                 # Use "opengl" if you have compatibility problems
-                gpu-api=vulkan
+                # gpu-api=vulkan
 
                 # The backend with the API. Leave it "auto"
                 # Or use "winvk" with "gpu-api=vulkan" or "win" / "angle" with "gpu-api=opengl"
-                gpu-context=x11vk
+                # gpu-context=x11vk
 
                 # Choose the compiler for translating glsl code for Vulkan. Leave it "auto"
                 # Or use "shaderc" with a nVidia/AMD/Intel GPU or "nvidia" with a nVidia GPU
-                spirv-compiler=auto
+                # spirv-compiler=auto
 
                 # Scaling method
                 # ewa_lanczossharp is the most processor heavy, but also the prettiest
-                scale=ewa_lanczossharp
-                cscale=ewa_lanczossoft
-                # scale-radius=3
-                fbo-format=rgba16f
+                # scale=ewa_lanczossharp
+                # cscale=ewa_lanczossoft
+                # # scale-radius=3
+                # fbo-format=rgba16f
 
                 # Reduce stuttering caused by mismatches in the video fps
                 video-sync=display-resample

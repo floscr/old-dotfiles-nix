@@ -51,11 +51,12 @@ in {
   };
   hardware.opengl = {
     enable = true;
-    extraPackages = with pkgs; [
-      vaapiIntel
+    driSupport = true;
+    extraPackages32 = with pkgs; [
+      intel-media-driver # LIBVA_DRIVER_NAME=iHD
+      vaapiIntel         # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
       vaapiVdpau
       libvdpau-va-gl
-      intel-media-driver
     ];
   };
 
@@ -76,13 +77,7 @@ in {
   ### Fanspeed
   # https://gist.github.com/Yatoom/1c80b8afe7fa47a938d3b667ce234559
   services.thinkfan.enable = true;
-  services.thinkfan.sensors = ''
-    hwmon /sys/devices/platform/coretemp.0/hwmon/hwmon5/temp1_input
-    hwmon /sys/devices/platform/coretemp.0/hwmon/hwmon5/temp2_input
-    hwmon /sys/devices/platform/coretemp.0/hwmon/hwmon5/temp3_input
-    hwmon /sys/devices/platform/coretemp.0/hwmon/hwmon5/temp4_input
-    hwmon /sys/devices/platform/coretemp.0/hwmon/hwmon5/temp5_input
-  '';
+  services.thinkfan.smartSupport = true;
   services.thinkfan.levels = ''
     (0, 0, 68)
     (1, 50, 70)
