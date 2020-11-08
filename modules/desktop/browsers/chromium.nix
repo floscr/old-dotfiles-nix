@@ -54,6 +54,7 @@ with lib;
       defaultSearchProviderSearchURL = "https://duckduckgo.com/?q={searchTerms}";
       defaultSearchProviderSuggestURL = "https://ac.duckduckgo.com/ac/?q={searchTerms}&type=list";
       extensions = [
+        "icpgjfneehieebagbmdbhnlpiopdcmna" # New Tab URL - To fix vimium new tab disable
         "gcbommkclmclpchllfjekcdonpmejbdp" # HTTPS Everywhere
         "cjpalhdlnbpafiamejdnhcphjbkeiagm" # uBlock Origin
         "dbepggeogbaibhgnhhndojpepiihcmeb" # Vimium

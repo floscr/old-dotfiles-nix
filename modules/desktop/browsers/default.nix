@@ -15,5 +15,19 @@ with lib;
 
   config = mkIf (config.modules.desktop.browsers.default != null) {
     my.env.BROWSER = config.modules.desktop.browsers.default;
+    my.home.xdg.configFile = {
+      "browser/home.html".text = ''
+        <html>
+          <head>
+            <style type="text/css" media="screen">
+              html {
+                  background-color: ${config.theme.colors.background};
+              }
+            </style>
+          </head>
+        </html>
+      '';
+    };
   };
+
 }
