@@ -9,6 +9,7 @@
     ./node.nix
     ./reasonml.nix
     ./nim.nix
+    ./elixir.nix
     # ./rust.nix
   ];
 
