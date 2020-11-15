@@ -36,6 +36,7 @@ proc hide(id: string): void =
 proc show(id: string): void =
   discard execShellCmd(&"xdotool windowmap {id}")
   discard execShellCmd(&"xdotool windowmove {id} x 37")
+  discard execShellCmd(&"bspc node {id} --to-desktop $(bspc query --desktop  -D focused)")
 
 proc toggle(): Option[string] =
   scratchWindows()
