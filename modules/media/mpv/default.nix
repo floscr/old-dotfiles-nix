@@ -298,7 +298,6 @@ in {
 
                 ## UI
 
-                osc=no # Disable on-screen controls
                 script-opts=osc-layout=box
 
                 # Show UI when seeking
