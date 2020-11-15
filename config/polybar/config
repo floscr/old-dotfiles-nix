@@ -41,7 +41,7 @@ radius = 0
 padding-left = 2
 padding-right = 3
 
-modules-right = mail filesystem cpu memory network-up network-down wireguard-status wlan battery date powermenu pulseaudio-rofi-output
+modules-right = mail filesystem cpu memory network-up network-down wireguard-status wlan battery date powermenu pulseaudio-control
 modules-left = bspwm
 separator = " "
 
@@ -164,6 +164,17 @@ menu-0-3 = "  "
 menu-0-3-foreground = ${colors.red}
 menu-0-3-underline = ${colors.red}
 menu-0-3-exec = shutdown -h now
+
+[module/pulseaudio-control]
+
+type = custom/script
+exec = ~/.config/polybar/modules/pulseaudio-polybar
+tail = true
+label=%output%
+
+click-left = /run/current-system/sw/bin/pavucontrol &
+scroll-up = ~/.config/polybar/modules/pulseaudio-control/pulseaudio-control.bash up
+scroll-down = ~/.config/polybar/modules/pulseaudio-control/pulseaudio-control.bash down
 
 [module/pulseaudio-rofi-output]
 type = custom/script
