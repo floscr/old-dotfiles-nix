@@ -221,7 +221,7 @@ in {
                 = no-osd set video-zoom 0; script-message reset-pan-if-visible
 
                 # Toggle Pixel Interpolation
-                a cycle-values scale nearest ewa_lanczossharp
+                # a cycle-values scale nearest ewa_lanczossharp
 
                 # Toggle color management on or off
                 c cycle icc-profile-auto
