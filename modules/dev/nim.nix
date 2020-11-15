@@ -2,7 +2,7 @@
 
 {
   environment.systemPackages = with pkgs; [
-      unstable.nim
+      nim
       (pkgs.writeScriptBin "nimx" ''
         bin=$1
         src="/etc/dotfiles/nimbin/src/$bin.nim"
