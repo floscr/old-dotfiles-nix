@@ -27,6 +27,16 @@ in {
             bspc config top_padding 36
         fi
       '')
+      (pkgs.writeScriptBin "bluetooth-battery" ''
+        DEVICE=$(${pkgs.bluez}/bin/bluetoothctl info | grep -o "[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]:[0-9A-F][0-9A-F]" | head -1)
+        CHARGE=$(${pkgs.python3.withPackages (ps: [ ps.pybluez ])}/bin/python3 ${./bluetooth_battery.py} $DEVICE.8)
+        echo $CHARGE
+        if (( CHARGE >= 0 && CHARGE <= 100 )); then
+          echo " "$CHARGE"%"
+        else
+          echo " OFF"
+        fi
+     '')
     ];
 
     my.home.xdg.configFile = {
@@ -38,11 +48,12 @@ in {
       after = [ "graphical-session-pre.target" ];
       wantedBy = [ "graphical-session-pre.target" ];
       partOf = [ "graphical-session-pre.target" ];
-      # restartTriggers = [ config.my.home.xdg.configFile."polybar".source ];
+      restartTriggers = [ "~/.config/polybar/config" ];
       script = ''
           polybar main &
         '';
       path = with pkgs; [
+        bash
         gawk
         networkmanager
         polybar
