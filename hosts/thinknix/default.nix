@@ -51,6 +51,7 @@
 
       services = {
         keyboardTrackpadDisable.enable = true;
+        psd.enable = true;
       };
 
       gaming = {
