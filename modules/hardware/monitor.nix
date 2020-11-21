@@ -26,5 +26,9 @@ KERNEL=="i2c-[0-9]*", GROUP="i2c", MODE="0660"
       categories = "Script";
       command = "ddcutil setvcp 10 100";
     }
+    {
+      description = "Turn off display";
+      command = "xset dpms force off";
+    }
   ];
 }
