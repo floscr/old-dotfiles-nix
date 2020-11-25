@@ -1,8 +1,5 @@
-# Emacs Doom is my main driver.
-# https://github.com/hlissner/doom-emacs.
-# This module sets it up to meet my particular Doomy needs.
-
 { config, options, lib, pkgs, ... }:
+
 with lib;
 {
   options.modules.editors.emacs = {

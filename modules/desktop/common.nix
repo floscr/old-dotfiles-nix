@@ -1,8 +1,6 @@
 { config, lib, pkgs, ... }:
 
 {
-
-  
   my.packages = with pkgs; [
     feh
     ffmpeg
