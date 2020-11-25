@@ -81,6 +81,7 @@
     };
 
     services = {
+      atd.enable = true;
       android.enable = true;
       emacsGit.enable = true;
       syncthing.enable = true;
