@@ -8,6 +8,11 @@
     ./term/default.nix
   ];
 
+  modules.theme.onReload.bspwm = ''
+    ${pkgs.bspwm}/bin/bspc wm -r
+    source $XDG_CONFIG_HOME/bspwm/bspwmrc
+  '';
+
   environment = {
     systemPackages = with pkgs; [
       lightdm

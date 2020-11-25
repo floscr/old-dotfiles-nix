@@ -1,22 +1,54 @@
-# modules/themes/default.nix
+{ config, options, lib, pkgs, ... }:
 
-{ config, ... }:
-{
+with lib;
+let cfg = config.modules.theme;
+in {
   imports = [ ./options.nix ];
 
-  # Try really hard to get QT to respect my GTK theme.
-  my.env.GTK_DATA_PREFIX = [ "${config.system.path}" ];
-  my.env.QT_QPA_PLATFORMTHEME = "gtk2";
-  qt5 = { style = "gtk2"; platformTheme = "gtk2"; };
-  services.xserver.displayManager.sessionCommands = ''
-    export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
-    source "$XDG_CONFIG_HOME"/xsession/*.sh
-    xrdb -merge "$XDG_CONFIG_HOME"/xtheme/*
-  '';
+  options.modules.theme = with types; {
+    onReload = mkOption {
+      type = attrsOf (lines);
+      default = {};
+    };
+  };
 
-  my.env.XCURSOR_PATH = [
-    "${config.system.path}/share/icons"
-    "$HOME/.config/icons"
-    "$HOME/.nix-profile/share/icons/"
+  config = mkMerge [
+    (mkIf (cfg.onReload != {})
+      (let reloadTheme =
+             with pkgs; (writeScriptBin "reloadTheme" ''
+               #!${stdenv.shell}
+               echo "Reloading current theme."
+               ${concatStringsSep "\n"
+                 (mapAttrsToList (name: script: ''
+                   echo "[${name}]"
+                   ${script}
+                 '') cfg.onReload)}
+             '');
+       in {
+         my.packages = [ reloadTheme ];
+         system.userActivationScripts.reloadTheme = ''
+           [ -z "$NORELOAD" ] && ${reloadTheme}/bin/reloadTheme
+         '';
+       }))
+
+    {
+      # Try really hard to get QT to respect my GTK theme.
+      my.env.GTK_DATA_PREFIX = [ "${config.system.path}" ];
+      my.env.QT_QPA_PLATFORMTHEME = "gtk2";
+      qt5 = { style = "gtk2"; platformTheme = "gtk2"; };
+      services.xserver.displayManager.sessionCommands = ''
+        export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc"
+        source "$XDG_CONFIG_HOME"/xsession/*.sh
+        xrdb -merge "$XDG_CONFIG_HOME"/xtheme/*
+      '';
+    }
+    {
+      my.env.XCURSOR_PATH = [
+        "${config.system.path}/share/icons"
+        "$HOME/.config/icons"
+        "$HOME/.nix-profile/share/icons/"
+      ];
+    }
   ];
+
 }
