@@ -2,6 +2,8 @@
 
 """
 A python script to get battery level from Bluetooth headsets
+
+Source: https://github.com/TheWeirdDev/Bluetooth_Headset_Battery_Level
 """
 
 # License: GPL-3.0
@@ -56,7 +58,7 @@ def getATCommand(sock, line, device):
         send(sock, b"OK")
 
     if blevel != -1:
-        print(f"Battery level for {device} is {blevel}%")
+        print(f"{blevel}") # Only show battery level
         return False
 
     return True
@@ -89,7 +91,9 @@ def main():
             try:
                 s = bluetooth.BluetoothSocket(bluetooth.RFCOMM)
                 s.connect((device, port))
+                print(s)
                 while getATCommand(s, s.recv(128), device):
+                    print(s)
                     pass
                 s.close()
             except OSError as e:

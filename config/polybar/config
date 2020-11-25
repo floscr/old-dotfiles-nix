@@ -38,10 +38,9 @@ width = 100%
 height = 36
 radius = 0
 
-padding-left = 2
-padding-right = 3
+padding = 2
 
-modules-right = mail filesystem cpu memory network-up network-down wireguard-status wlan battery date powermenu pulseaudio-control
+modules-right = cpu memory filesystem wireguard-status wlan battery date pulseaudio-control
 modules-left = bspwm
 separator = " "
 
@@ -120,8 +119,8 @@ ws-icon-default = x
 type = internal/date
 interval = 5
 
-label = %date%  %time%
-date = %A, %h %d
+label = %date% %time%
+date = %a %d.%m
 date-alt = %Y-%m-%d
 time = %H:%M
 time-alt = %I:%M %p
@@ -201,14 +200,6 @@ exec = echo ""
 interval = 10
 exec-if = nmcli c show --active | grep wireguard
 format-foreground = ${colors.icons}
-
-; TODO
-[module/org-clock]
-type = custom/script
-interval = 10;
-exec = ${scripts}/org-clock.sh;
-click-left = emacsclient --eval '(org-clock-out)' && echo ' Stopped!';
-
 
 [module/battery]
 type = internal/battery
@@ -318,7 +309,7 @@ bar-load-foreground-2 = ${colors.ylw}
 bar-load-foreground-3 = ${colors.red}
 bar-load-foreground-4 = ${colors.red}
 bar-load-fill = |
-bar-load-empty = ¦
+bar-load-empty = |
 bar-load-empty-foreground = ${colors.fg-alt}
 
 [module/memory]
@@ -345,17 +336,8 @@ bar-used-empty-foreground = ${colors.fg-alt}
 
 [module/filesystem]
 type = internal/fs
-
-; Mountpoints to display
 mount-0 = /
-
-; Display fixed precision values
-; Default: false
 fixed-values = true
-
-; Spacing between entries
-; Default: 2
-spacing = 4
 
 [module/mail]
 type = custom/script

@@ -4,5 +4,5 @@
     --sink-nickname "bluez_sink.04_52_C7_C6_1B_68.headset_head_unit:" \
     --sink-nickname "bluez_sink.04_52_C7_C6_1B_68.a2dp_sink:" \
     --icon-muted "" \
-    --format '$ICON_SINK $SINK_NICKNAME   $VOL_ICON ${VOL_LEVEL}%' \
+    --format '$ICON_SINK $SINK_NICKNAME $VOL_ICON ${VOL_LEVEL}' \
     listen
