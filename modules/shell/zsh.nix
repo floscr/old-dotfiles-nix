@@ -8,6 +8,8 @@ with lib;
   };
 
   config = mkIf config.modules.shell.zsh.enable {
+    users.defaultUserShell = pkgs.zsh;
+
     my = {
       packages = with pkgs; [
         zsh
