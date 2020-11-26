@@ -90,8 +90,12 @@ in {
 
     my.bindings = [
       {
-        description = "Standing Timer";
-        command = ''echo "notify-send \"Standing Timer: 1 hour\" | at now + 1 hours"'';
+        description = "Timer: Standing";
+        command = ''echo "notify-send \"Standing Timer: 1 hour\"" | at now + 6 minutes'';
+      }
+      {
+        description = "Timer: Clear Queue";
+        command = "for i in `atq | awk '{print $1}'`;do atrm $i;done";
       }
     ];
   };
