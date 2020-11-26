@@ -10,7 +10,6 @@
 
   modules.theme.onReload.bspwm = ''
     ${pkgs.bspwm}/bin/bspc wm -r
-    source $XDG_CONFIG_HOME/bspwm/bspwmrc
   '';
 
   environment = {
@@ -105,25 +104,23 @@
   my.home.xdg.configFile = {
     "bspwm" = { source = <config/bspwm>; recursive = true; };
     "sxhkd/sxhkdrc".text = ''
+        # turn off screen
+        super + BackSpace
+          zzz
+        # sleep
+        super + shift + BackSpace
+          zzz -f
 
-# turn off screen
-super + BackSpace
-	zzz
-# sleep
-super + shift + BackSpace
-	zzz -f
+        # Screenshot
+        super + shift + s
+          flameshot gui
 
-# Screenshot
-super + shift + s
-	flameshot gui
-
-# screencast region to mp4
-super + alt + s
-	scrrec -s ~/Media/Screenrecording/$(date +%F-%T).mp4
-# screencast region to gif
-super + ctrl + s
-	scrrec -s ~/Media/Screenrecording/$(date +%F-%T).gif
-
-'';
+        # screencast region to mp4
+        super + alt + s
+          scrrec -s ~/Media/Screenrecording/$(date +%F-%T).mp4
+        # screencast region to gif
+        super + ctrl + s
+          scrrec -s ~/Media/Screenrecording/$(date +%F-%T).gif
+    '';
   };
 }
