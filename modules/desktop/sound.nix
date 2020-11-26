@@ -26,7 +26,7 @@
     support32Bit = true;
     package = pkgs.pulseaudioFull;
     extraModules = [
-      pkgs.unstable.pulseaudio-modules-bt
+      pkgs.pulseaudio-modules-bt
     ];
     extraConfig = ''
       load-module module-udev-detect tsched=0
