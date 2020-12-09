@@ -42,7 +42,7 @@ padding = 2
 
 modules-right = cpu memory filesystem wireguard-status wlan battery date pulseaudio-control
 modules-left = bspwm
-separator = " "
+module-margin = 1
 
 background = #191c21
 foreground = ${colors.fg}
