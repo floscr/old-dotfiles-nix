@@ -91,7 +91,7 @@ in {
     my.bindings = [
       {
         description = "Timer: Standing";
-        command = ''echo "notify-send \"Standing Timer: 1 hour\"" | at now + 6 minutes'';
+        command = ''echo "notify-send \"Standing Timer: 1 hour\"" | at now + 60 minutes'';
       }
       {
         description = "Timer: Clear Queue";
