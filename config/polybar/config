@@ -120,15 +120,12 @@ type = internal/date
 interval = 5
 
 label = %date% %time%
-date = %a %d.%m
+date =  %a %d.%m
 date-alt = %Y-%m-%d
-time = %H:%M
+time =   %H:%M
 time-alt = %I:%M %p
-; format-prefix = ""
 format-prefix-padding = 1
-; format-prefix-background = ${colors.bg-alt}
 format-prefix-foreground = ${colors.icons}
-; format-underline = ${xrdb:color4}
 
 [module/powermenu]
 type = custom/menu
