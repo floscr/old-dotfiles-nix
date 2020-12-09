@@ -20,6 +20,7 @@ fg = ${self.wht}
 bg-alt = #0F1013
 fg-alt = #25282a
 icons = #555856
+fg-alt2 = #3c4040
 
 [global/wm]
 margin-top = 20
@@ -37,7 +38,6 @@ dpi-y = 0
 width = 100%
 height = 36
 radius = 0
-
 padding = 2
 
 modules-right = cpu memory filesystem wireguard-status wlan battery date pulseaudio-control
@@ -88,12 +88,12 @@ type = internal/bspwm
 format = <label-mode> <label-state>
 index-sort = true
 
-label-focused = %icon%
+label-focused = 
 label-focused-background = #33000000
 label-focused-foreground = ${colors.grn}
 label-focused-padding = 1
 
-label-occupied = %icon%
+label-occupied = 
 label-occupied-foreground = ${colors.icons}
 label-occupied-padding = 1
 
@@ -102,8 +102,8 @@ label-urgent-foreground = ${colors.red}
 ; label-urgent-background = ${colors.alert}
 label-urgent-padding = 1
 
-label-empty = %icon%
-label-empty-foreground = ${colors.fg-alt}
+label-empty = 
+label-empty-foreground = ${colors.fg-alt2}
 label-empty-padding = 1
 
 ws-icon-0 = 1;
