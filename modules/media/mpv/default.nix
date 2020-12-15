@@ -52,10 +52,10 @@ in {
         configFile =
         let
             mpv-gallery-view = (pkgs.fetchFromGitHub {
-            owner = "occivink";
-            repo = "mpv-gallery-view";
-            rev = "4ecf6d72523b1385f4122d69b9045b447dfbb4f8";
-            sha256 = "0mwkmy95f1jl6cli0arvp6xh02rdp41ylal5pg9cdrvfrnjvqn67";
+                owner = "occivink";
+                repo = "mpv-gallery-view";
+                rev = "4ecf6d72523b1385f4122d69b9045b447dfbb4f8";
+                sha256 = "0mwkmy95f1jl6cli0arvp6xh02rdp41ylal5pg9cdrvfrnjvqn67";
             });
         in {
             # mpv-gallery-view
