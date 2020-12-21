@@ -63,4 +63,7 @@ device:
     ];
     shell = pkgs.zsh;
   };
+  my.home.xdg.configFile = {
+    "wgetrc".source = <config/wget/wgetrc>;
+  };
 }
