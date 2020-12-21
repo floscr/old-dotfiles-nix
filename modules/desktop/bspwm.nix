@@ -110,11 +110,6 @@
         # sleep
         super + shift + BackSpace
           zzz -f
-
-        # Screenshot
-        super + shift + s
-          flameshot gui
-
         # screencast region to mp4
         super + alt + s
           scrrec -s ~/Media/Screenrecording/$(date +%F-%T).mp4
