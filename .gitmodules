@@ -1,3 +1,6 @@
 [submodule "pulseaudio-control"]
 	path = config/polybar/modules/pulseaudio-control
 	url = https://github.com/marioortizmanero/polybar-pulseaudio-control
+[submodule "bsp-layout"]
+	path = submodules/bsp-layout
+	url = https://github.com/phenax/bsp-layout

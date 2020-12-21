@@ -99,6 +99,46 @@
       description = "Resize Window";
       command = "/etc/dotfiles/bin/bspc/resize {west,south,north,east}";
     }
+    {
+      description = "Layout: Tall";
+      command = "/etc/dotfiles/submodules/bsp-layout/src/layout.sh set tall";
+    }
+    {
+      description = "Layout: Reverse Tall";
+      command = "/etc/dotfiles/submodules/bsp-layout/src/layout.sh set rtall";
+    }
+    {
+      description = "Layout: Wide";
+      command = "/etc/dotfiles/submodules/bsp-layout/src/layout.sh set wide";
+    }
+    {
+      description = "Layout: Reverse Wide";
+      command = "/etc/dotfiles/submodules/bsp-layout/src/layout.sh set rwide";
+    }
+    {
+      description = "Layout: Grid";
+      command = "/etc/dotfiles/submodules/bsp-layout/src/layout.sh set grid";
+    }
+    {
+      description = "Layout: Reverse Grid";
+      command = "/etc/dotfiles/submodules/bsp-layout/src/layout.sh set rgrid";
+    }
+    {
+      description = "Layout: Balance Windows";
+      command = "/etc/dotfiles/submodules/bsp-layout/src/layout.sh set even";
+    }
+    {
+      description = "Layout: Default (tiles)";
+      command = "/etc/dotfiles/submodules/bsp-layout/src/layout.sh set tiled";
+    }
+    {
+      description = "Layout: Reset";
+      command = "/etc/dotfiles/submodules/bsp-layout/src/layout.sh remove";
+    }
+    {
+      description = "Layout: Cycle";
+      command = "/etc/dotfiles/submodules/bsp-layout/src/layout.sh cycle";
+    }
   ];
 
   my.home.xdg.configFile = {
