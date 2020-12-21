@@ -27,9 +27,10 @@ with lib;
       };
       bindings = [
         {
-          description = "Flameshot";
+          binding = "super + shift + s";
           categories = "Screenshot";
           command = "flameshot gui";
+          description = "Flameshot";
         }
       ];
     };
