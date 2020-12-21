@@ -19,14 +19,14 @@ with lib;
         export DEFAULT_ARGS="--enable-native-notifications --restore-last-session"
 
         if [[ $(xrandr | grep "^eDP1 connected primary") ]]; then
-          chromium-browser $DEFAULT_ARGS --force-device-scale-factor=1.2
+          chromium-browser $DEFAULT_ARGS --force-device-scale-factor=1.2 $@
         else
-          chromium-browser $DEFAULT_ARGS --force-device-scale-factor=1.5
+          chromium-browser $DEFAULT_ARGS --force-device-scale-factor=1.5 $@
         fi
       '')
       (pkgs.writeScriptBin "chromium-private" ''
         #! ${pkgs.bash}/bin/bash
-        chromium-browser --incognito "$@"
+        launch-chrome --incognito "$@"
       '')
     ];
 
@@ -36,11 +36,11 @@ with lib;
         categories = "Browser";
         command = "launch-chrome";
       }
-      # {
-      #   description = "Private Chromium";
-      #   categories = "Browser";
-      #   command = "chromium-private";
-      # }
+      {
+        description = "Incognito Chromium";
+        categories = "Browser";
+        command = "chromium-private";
+      }
     ];
 
     # Needed for netflix
