@@ -85,6 +85,11 @@
       command = "pavucontrol";
     }
     {
+      description = "Connect Swiss Box";
+      categories = "Script";
+      command = "bluetoothctl connect 30:23:80:C0:7D:85";
+    }
+    {
       description = "Connect Bluetooth Headphones";
       categories = "Script";
       command = "bose_connect";
