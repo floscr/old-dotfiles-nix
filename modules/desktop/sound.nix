@@ -33,6 +33,10 @@
       load-module module-bluetooth-policy
       load-module module-bluetooth-discover
       load-module module-switch-on-connect
+
+      # Internal Microphone
+      load-module alsa-source device=hw:0,0
+      .ifexists module-udev-detect.so
     '';
     # https://medium.com/@gamunu/enable-high-quality-audio-on-linux-6f16f3fe7e1f
     daemon.config = {
