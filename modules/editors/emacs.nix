@@ -54,6 +54,9 @@ with lib;
         git
         (ripgrep.override {withPCRE2 = true;})
 
+        # Offline dictionary
+        wordnet
+
         # Emacs compiled with packages
         ((emacsPackagesNgGen emacsUnstable).emacsWithPackages (epkgs: [
           # vterm
