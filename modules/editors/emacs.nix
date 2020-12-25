@@ -63,6 +63,13 @@ with lib;
           epkgs.emacs-libvterm
         ]))
 
+        # Edb
+        perlPackages.DBI
+        perlPackages.RPCEPCService
+        perlPackages.DBDPg
+        perlPackages.DBDmysql
+
+
         ## Optional dependencies
         editorconfig-core-c # per-project style config
         fd                  # faster projectile indexing
