@@ -11,7 +11,6 @@ device:
   ] ++ lib.optional (builtins.pathExists /etc/dotfiles-private/private.nix) /etc/dotfiles-private/private.nix;
 
   nix = {
-    autoOptimiseStore = true;
     trustedUsers = [ "root" "@wheel" ];
     nixPath = options.nix.nixPath.default ++ [
       "bin=/etc/dotfiles/bin"
@@ -19,6 +18,7 @@ device:
       "config=/etc/dotfiles/config"
       "modules=/etc/dotfiles/modules"
     ];
+    autoOptimiseStore = true;
     useSandbox = true;
   };
 
