@@ -1,5 +1,3 @@
-# default.nix --- my dotfile bootstrapper
-
 device:
 { config, pkgs, options, lib, ...}:
 {
@@ -12,16 +10,16 @@ device:
     "${./hosts}/${device}"
   ] ++ lib.optional (builtins.pathExists /etc/dotfiles-private/private.nix) /etc/dotfiles-private/private.nix;
 
-  ### NixOS
-  nix.autoOptimiseStore = true;
-  nix.trustedUsers = [ "root" "@wheel" ];
-  nix.nixPath = options.nix.nixPath.default ++ [
-    # So we can use absolute import paths
-    "bin=/etc/dotfiles/bin"
-    "nimbin=/etc/dotfiles/nimbin"
-    "config=/etc/dotfiles/config"
-    "modules=/etc/dotfiles/modules"
-  ];
+  nix = {
+    autoOptimiseStore = true;
+    trustedUsers = [ "root" "@wheel" ];
+    nixPath = options.nix.nixPath.default ++ [
+      "bin=/etc/dotfiles/bin"
+      "nimbin=/etc/dotfiles/nimbin"
+      "config=/etc/dotfiles/config"
+      "modules=/etc/dotfiles/modules"
+    ];
+  };
 
   # Add custom packages & unstable channel, so they can be accessed via pkgs.*
   nixpkgs.overlays = import ./packages;
