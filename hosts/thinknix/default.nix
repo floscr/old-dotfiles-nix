@@ -21,6 +21,12 @@
     <modules/themes/glimpse>
   ];
 
+  my.packages = with pkgs; [
+    unzip
+    unrar
+    jq
+  ];
+
   modules = {
     nixos = {
       cachix.enable = true;

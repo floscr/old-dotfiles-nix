@@ -28,17 +28,13 @@ device:
   environment.systemPackages = with pkgs; [
     coreutils
     git
+    gnumake
     killall
     networkmanager
     networkmanagerapplet
-    unzip
-    unrar
+    unstable.cached-nix-shell
     vim
     wget
-    jq
-  
-    gnumake # for our own makefile
-    unstable.cached-nix-shell # for instant nix-shell scripts
   ];
 
   environment.shellAliases = {
