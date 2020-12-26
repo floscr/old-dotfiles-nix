@@ -19,6 +19,7 @@ device:
       "config=/etc/dotfiles/config"
       "modules=/etc/dotfiles/modules"
     ];
+    useSandbox = true;
   };
 
   # Add custom packages & unstable channel, so they can be accessed via pkgs.*
