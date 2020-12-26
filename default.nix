@@ -22,11 +22,9 @@ device:
     useSandbox = true;
   };
 
-  # Add custom packages & unstable channel, so they can be accessed via pkgs.*
   nixpkgs.overlays = import ./packages;
   nixpkgs.config.allowUnfree = true;
 
-  # These are the things I want installed on all my systems
   environment.systemPackages = with pkgs; [
     coreutils
     git
