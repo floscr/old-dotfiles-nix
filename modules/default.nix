@@ -7,6 +7,7 @@ in {
   imports = [
     <home-manager/nixos>
 
+    ./security.nix
     ./xdg.nix
     ./editors
     ./gaming

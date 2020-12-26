@@ -1,5 +1,7 @@
 device:
 { config, pkgs, options, lib, ...}:
+
+with lib;
 {
   ## Networking
   networking.hostName = lib.mkDefault device;
@@ -43,7 +45,13 @@ device:
     nu = "sudo nix-env --uninstall";
   };
 
-  ### My user settings
+  boot.loader = {
+    efi.canTouchEfiVariables = true;
+    systemd-boot.configurationLimit = 10;
+    systemd-boot.enable = mkDefault true;
+    timeout = 1;
+  };
+
   my.user = {
     isNormalUser = true;
     uid = 1000;

@@ -14,23 +14,6 @@
   ];
   boot.extraModulePackages = [ config.boot.kernelPackages.exfat-nofuse ];
 
-  # Nothing in /tmp should survive a reboot
-  boot.tmpOnTmpfs = true;
-
-  ## Bootloader
-  boot.loader = {
-    timeout = 1;
-    efi.canTouchEfiVariables = true;
-    systemd-boot = {
-      enable = true;
-      # Fix a security hole in place for backwards compatibility. See desc in
-      # nixpkgs/nixos/modules/system/boot/loader/systemd-boot/systemd-boot.nix
-      editor = false;
-      # Limit number of generations to display in boot menu
-      configurationLimit = 10;
-    };
-  };
-
   my.home.xdg.configFile."user-dirs.dirs".text = ''
     XDG_DESKTOP_DIR="$HOME/Desktop"
     XDG_DOWNLOAD_DIR="$HOME/Downloads"
