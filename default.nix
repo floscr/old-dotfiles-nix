@@ -30,8 +30,6 @@ device:
     git
     gnumake
     killall
-    networkmanager
-    networkmanagerapplet
     unstable.cached-nix-shell
     vim
     wget
